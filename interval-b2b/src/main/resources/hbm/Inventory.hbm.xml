@@ -1,27 +1,24 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-
     <class name="com.interval.dao.models.Inventory" table="INVENTORY" schema="PUBLIC" catalog="PUBLIC">
-        <id name="id">
-            <column name="ID" sql-type="integer" not-null="true"/>
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
         </id>
-        <property name="productId">
-            <column name="PRODUCT_ID" sql-type="integer" not-null="true"/>
-        </property>
-        <property name="availableQuantity">
-            <column name="AVAILABLE_QUANTITY" sql-type="integer"/>
-        </property>
-        <property name="safetyStock">
-            <column name="SAFETY_STOCK" sql-type="integer"/>
-        </property>
-        <property name="availability">
-            <column name="AVAILABILITY" sql-type="boolean"/>
-        </property>
-        <many-to-one name="productByProductId" class="com.interval.dao.models.Product" insert="false" update="false">
-            <column name="PRODUCT_ID" not-null="true"/>
+        <many-to-one name="product" class="com.interval.dao.models.Product" fetch="select">
+            <column name="PRODUCT_ID" not-null="true" />
         </many-to-one>
+        <property name="availableQuantity" type="java.lang.Integer">
+            <column name="AVAILABLE_QUANTITY" />
+        </property>
+        <property name="safetyStock" type="java.lang.Integer">
+            <column name="SAFETY_STOCK" />
+        </property>
+        <property name="availability" type="java.lang.Boolean">
+            <column name="AVAILABILITY" />
+        </property>
     </class>
 </hibernate-mapping>

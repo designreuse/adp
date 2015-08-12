@@ -8,6 +8,9 @@
     <context:component-scan base-package="com.interval.*"/>
     
     <import resource="transaction.config.xml"/>
+    <import resource="rest.config.xml"/>
+    <import resource="services.config.xml"/>
+    <import resource="dao.config.xml"/>
 
     <context:annotation-config/>
 

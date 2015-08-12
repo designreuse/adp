@@ -1,27 +1,27 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-
     <class name="com.interval.dao.models.TransactionType" table="TRANSACTION_TYPE" schema="PUBLIC" catalog="PUBLIC">
-        <id name="id">
-            <column name="ID" sql-type="integer" not-null="true"/>
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
         </id>
-        <property name="name">
-            <column name="NAME" sql-type="character" length="60"/>
+        <property name="name" type="string">
+            <column name="NAME" length="60" />
         </property>
-        <set name="inventoryTransactionsById" inverse="true">
+        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="TRANSACTION_TYPE_ID" not-null="true"/>
+                <column name="TRANSACTION_TYPE_ID" not-null="true" />
             </key>
-            <one-to-many not-found="ignore" class="com.interval.dao.models.InventoryTransaction"/>
+            <one-to-many class="com.interval.dao.models.InventoryTransaction" />
         </set>
-        <set name="transactionsById" inverse="true">
+        <set name="transactions" table="TRANSACTION" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="TRANSACTION_TYPE_ID" not-null="true"/>
+                <column name="TRANSACTION_TYPE_ID" not-null="true" />
             </key>
-            <one-to-many not-found="ignore" class="com.interval.dao.models.Transaction"/>
+            <one-to-many class="com.interval.dao.models.Transaction" />
         </set>
     </class>
 </hibernate-mapping>

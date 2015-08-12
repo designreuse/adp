@@ -1,51 +1,51 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-
     <class name="com.interval.dao.models.Center" table="CENTER" schema="PUBLIC" catalog="PUBLIC">
-        <id name="id">
-            <column name="ID" sql-type="integer" not-null="true"/>
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
         </id>
-        <property name="name">
-            <column name="NAME" sql-type="character" length="60"/>
+        <property name="name" type="string">
+            <column name="NAME" length="60" />
         </property>
-        <property name="address1">
-            <column name="ADDRESS_1" sql-type="character" length="60"/>
+        <property name="address1" type="string">
+            <column name="ADDRESS_1" length="60" />
         </property>
-        <property name="address2">
-            <column name="ADDRESS_2" sql-type="character" length="60"/>
+        <property name="address2" type="string">
+            <column name="ADDRESS_2" length="60" />
         </property>
-        <property name="city">
-            <column name="CITY" sql-type="character" length="60"/>
+        <property name="city" type="string">
+            <column name="CITY" length="60" />
         </property>
-        <property name="state">
-            <column name="STATE" sql-type="character" length="60"/>
+        <property name="state" type="string">
+            <column name="STATE" length="60" />
         </property>
-        <property name="zip">
-            <column name="ZIP" sql-type="character" length="60"/>
+        <property name="zip" type="string">
+            <column name="ZIP" length="60" />
         </property>
-        <property name="country">
-            <column name="COUNTRY" sql-type="character" length="60"/>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="60" />
         </property>
-        <property name="phone">
-            <column name="PHONE" sql-type="character" length="60"/>
+        <property name="phone" type="string">
+            <column name="PHONE" length="60" />
         </property>
-        <property name="email">
-            <column name="EMAIL" sql-type="character" length="60"/>
+        <property name="email" type="string">
+            <column name="EMAIL" length="60" />
         </property>
-        <property name="createdTime">
-            <column name="CREATED_TIME" sql-type="date"/>
+        <property name="createdTime" type="date">
+            <column name="CREATED_TIME" length="10" />
         </property>
-        <property name="updatedTime">
-            <column name="UPDATED_TIME" sql-type="character" length="60"/>
+        <property name="updatedTime" type="string">
+            <column name="UPDATED_TIME" length="60" />
         </property>
-        <set name="vendorCentersById" inverse="true">
+        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="CENTER_ID" not-null="true"/>
+                <column name="CENTER_ID" not-null="true" />
             </key>
-            <one-to-many not-found="ignore" class="com.interval.dao.models.VendorCenter"/>
+            <one-to-many class="com.interval.dao.models.VendorCenter" />
         </set>
     </class>
 </hibernate-mapping>
