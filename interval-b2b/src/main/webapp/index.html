@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Shibi">
+    <title>Interval-B2B</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body ng-app="app">
+
+<div id="wrapper" ng-controller="NavCtrl">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <img src="img/logo.png" height="42" width="42">
+            <li ng-class="navClass('home')">
+                <a href="" ng-click="loadHome()">Home</a>
+            </li>
+            <li ng-class="navClass('dashboard')">
+                <a href="" ng-click="loadDashboard()">Dashboard</a>
+            </li>
+            <li ng-class="navClass('categories')">
+                <a href="" ng-click="loadCategories()">Categories</a>
+            </li>
+            <li ng-class="navClass('inventory')">
+                <a href="" ng-click="loadInventory()">Inventory</a>
+            </li>
+            <li ng-class="navClass('sales')">
+                <a href="" ng-click="loadSales()">Sales</a>
+            </li>
+            <li ng-class="navClass('about')">
+                <a href="" ng-click="loadAbout()">About</a>
+            </li>
+            <li ng-class="navClass('services')">
+                <a href="" ng-click="loadServices()">Services</a>
+            </li>
+            <li ng-class="navClass('contact')">
+                <a href="" ng-click="loadContact()">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div id="sidebar-wrapper-right">
+        <div class="sidebar-nav">
+            <div class="profile-userpic">
+                <img src="img/profile.png" class="img-responsive" alt="">
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    Shibi
+                </div>
+                <div class="profile-usertitle-job">
+                    Developer
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+
+</html>
