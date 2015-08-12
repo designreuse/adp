@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.OrderDetail" table="ORDER_DETAIL" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id">
+            <column name="ID" sql-type="integer" not-null="true"/>
+        </id>
+        <property name="userId">
+            <column name="USER_ID" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="total">
+            <column name="TOTAL" sql-type="double" precision="64"/>
+        </property>
+        <property name="subTotal">
+            <column name="SUB_TOTAL" sql-type="double" precision="64"/>
+        </property>
+        <property name="lineItemCount">
+            <column name="LINE_ITEM_COUNT" sql-type="integer"/>
+        </property>
+        <property name="discountTotal">
+            <column name="DISCOUNT_TOTAL" sql-type="double" precision="64"/>
+        </property>
+        <property name="promoCode">
+            <column name="PROMO_CODE" sql-type="character" length="60"/>
+        </property>
+        <property name="createdTime">
+            <column name="CREATED_TIME" sql-type="date"/>
+        </property>
+        <property name="updatedTime">
+            <column name="UPDATED_TIME" sql-type="date"/>
+        </property>
+        <property name="taxTotal">
+            <column name="TAX_TOTAL" sql-type="double" precision="64"/>
+        </property>
+        <property name="status">
+            <column name="STATUS" sql-type="integer" not-null="true"/>
+        </property>
+        <many-to-one name="orderStatusByStatus" class="com.interval.dao.models.OrderStatus" insert="false" update="false">
+            <column name="STATUS" not-null="true"/>
+        </many-to-one>
+        <set name="invoicesById" inverse="true">
+            <key>
+                <column name="ORDER_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.Invoice"/>
+        </set>
+        <set name="orderItemsById" inverse="true">
+            <key>
+                <column name="ORDER_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.OrderItem"/>
+        </set>
+    </class>
+</hibernate-mapping>

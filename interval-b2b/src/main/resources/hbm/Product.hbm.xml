@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.Product" table="PRODUCT" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id">
+            <column name="ID" sql-type="integer" not-null="true"/>
+        </id>
+        <property name="name">
+            <column name="NAME" sql-type="character" length="60"/>
+        </property>
+        <property name="description">
+            <column name="DESCRIPTION" sql-type="character" length="60"/>
+        </property>
+        <property name="image">
+            <column name="IMAGE" sql-type="blob"/>
+        </property>
+        <property name="createdTime">
+            <column name="CREATED_TIME" sql-type="date"/>
+        </property>
+        <property name="updatedTime">
+            <column name="UPDATED_TIME" sql-type="date"/>
+        </property>
+        <property name="vendorCenterId">
+            <column name="VENDOR_CENTER_ID" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="categoryId">
+            <column name="CATEGORY_ID" sql-type="integer" not-null="true"/>
+        </property>
+        <many-to-one name="categoryByCategoryId" class="com.interval.dao.models.Category" insert="false" update="false">
+            <column name="CATEGORY_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="vendorCenterByVendorCenterId" class="com.interval.dao.models.VendorCenter" insert="false" update="false">
+            <column name="VENDOR_CENTER_ID" not-null="true"/>
+        </many-to-one>
+        <set name="inventoriesById" inverse="true">
+            <key>
+                <column name="PRODUCT_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.Inventory"/>
+        </set>
+        <set name="inventoryTransactionsById" inverse="true">
+            <key>
+                <column name="PRODUCT_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.InventoryTransaction"/>
+        </set>
+        <set name="orderItemsById" inverse="true">
+            <key>
+                <column name="PRODUCT_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.OrderItem"/>
+        </set>
+    </class>
+</hibernate-mapping>

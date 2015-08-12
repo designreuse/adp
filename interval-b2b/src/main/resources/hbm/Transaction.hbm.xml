@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.Transaction" table="TRANSACTION" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id">
+            <column name="ID" sql-type="integer" not-null="true"/>
+        </id>
+        <property name="transactionTypeId">
+            <column name="TRANSACTION_TYPE_ID" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="createdTime">
+            <column name="CREATED_TIME" sql-type="date"/>
+        </property>
+        <property name="updatedTime">
+            <column name="UPDATED_TIME" sql-type="date"/>
+        </property>
+        <many-to-one name="transactionTypeByTransactionTypeId" class="com.interval.dao.models.TransactionType"
+                     insert="false" update="false">
+            <column name="TRANSACTION_TYPE_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

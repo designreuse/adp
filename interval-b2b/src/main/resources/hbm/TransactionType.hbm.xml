@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.TransactionType" table="TRANSACTION_TYPE" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id">
+            <column name="ID" sql-type="integer" not-null="true"/>
+        </id>
+        <property name="name">
+            <column name="NAME" sql-type="character" length="60"/>
+        </property>
+        <set name="inventoryTransactionsById" inverse="true">
+            <key>
+                <column name="TRANSACTION_TYPE_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.InventoryTransaction"/>
+        </set>
+        <set name="transactionsById" inverse="true">
+            <key>
+                <column name="TRANSACTION_TYPE_ID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.interval.dao.models.Transaction"/>
+        </set>
+    </class>
+</hibernate-mapping>

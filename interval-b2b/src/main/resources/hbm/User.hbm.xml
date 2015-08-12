@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.User" table="USER" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id">
+            <column name="ID" sql-type="integer" not-null="true"/>
+        </id>
+        <property name="email">
+            <column name="EMAIL" sql-type="character" length="60"/>
+        </property>
+        <property name="phone">
+            <column name="PHONE" sql-type="character" length="60"/>
+        </property>
+        <property name="firstName">
+            <column name="FIRST_NAME" sql-type="character" length="60"/>
+        </property>
+        <property name="lastName">
+            <column name="LAST_NAME" sql-type="character" length="60"/>
+        </property>
+        <property name="createdTime">
+            <column name="CREATED_TIME" sql-type="date"/>
+        </property>
+        <property name="updatedTime">
+            <column name="UPDATED_TIME" sql-type="date"/>
+        </property>
+    </class>
+</hibernate-mapping>

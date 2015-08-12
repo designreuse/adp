@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.interval.dao.models.OrderItem" table="ORDER_ITEM" schema="PUBLIC" catalog="PUBLIC">
+        <composite-id mapped="true" class="com.interval.dao.models.OrderItemPK">
+            <key-property name="orderId">
+                <column name="ORDER_ID" sql-type="integer" not-null="true"/>
+            </key-property>
+            <key-property name="userId">
+                <column name="USER_ID" sql-type="integer" not-null="true"/>
+            </key-property>
+            <key-property name="productId">
+                <column name="PRODUCT_ID" sql-type="integer" not-null="true"/>
+            </key-property>
+        </composite-id>
+        <property name="quantity">
+            <column name="QUANTITY" sql-type="integer"/>
+        </property>
+        <many-to-one name="orderDetailByOrderId" class="com.interval.dao.models.OrderDetail">
+            <column name="ORDER_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="productByProductId" class="com.interval.dao.models.Product">
+            <column name="PRODUCT_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
