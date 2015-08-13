@@ -1,7 +1,8 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,13 +13,20 @@ public class OrderStatus implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
+	private String description;
+	private Date createdTime;
+	private Date updatedTime;
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 
 	public OrderStatus() {
 	}
 
-	public OrderStatus(String name, Set<OrderDetail> orderDetails) {
+	public OrderStatus(String name, String description, Date createdTime,
+			Date updatedTime, Set<OrderDetail> orderDetails) {
 		this.name = name;
+		this.description = description;
+		this.createdTime = createdTime;
+		this.updatedTime = updatedTime;
 		this.orderDetails = orderDetails;
 	}
 
@@ -36,6 +44,30 @@ public class OrderStatus implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getCreatedTime() {
+		return this.createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	public Date getUpdatedTime() {
+		return this.updatedTime;
+	}
+
+	public void setUpdatedTime(Date updatedTime) {
+		this.updatedTime = updatedTime;
 	}
 
 	public Set<OrderDetail> getOrderDetails() {

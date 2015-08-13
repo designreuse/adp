@@ -1,6 +1,6 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,8 +12,8 @@ import java.util.Set;
 public class OrderDetail implements java.io.Serializable {
 
 	private Integer id;
+	private User user;
 	private OrderStatus orderStatus;
-	private int userId;
 	private Double total;
 	private Double subTotal;
 	private Integer lineItemCount;
@@ -22,23 +22,23 @@ public class OrderDetail implements java.io.Serializable {
 	private Date createdTime;
 	private Date updatedTime;
 	private Double taxTotal;
-	private Set<Invoice> invoices = new HashSet<Invoice>(0);
 	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
+	private Set<Invoice> invoices = new HashSet<Invoice>(0);
 
 	public OrderDetail() {
 	}
 
-	public OrderDetail(OrderStatus orderStatus, int userId) {
+	public OrderDetail(User user, OrderStatus orderStatus) {
+		this.user = user;
 		this.orderStatus = orderStatus;
-		this.userId = userId;
 	}
 
-	public OrderDetail(OrderStatus orderStatus, int userId, Double total,
+	public OrderDetail(User user, OrderStatus orderStatus, Double total,
 			Double subTotal, Integer lineItemCount, Double discountTotal,
 			String promoCode, Date createdTime, Date updatedTime,
-			Double taxTotal, Set<Invoice> invoices, Set<OrderItem> orderItems) {
+			Double taxTotal, Set<OrderItem> orderItems, Set<Invoice> invoices) {
+		this.user = user;
 		this.orderStatus = orderStatus;
-		this.userId = userId;
 		this.total = total;
 		this.subTotal = subTotal;
 		this.lineItemCount = lineItemCount;
@@ -47,8 +47,8 @@ public class OrderDetail implements java.io.Serializable {
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
 		this.taxTotal = taxTotal;
-		this.invoices = invoices;
 		this.orderItems = orderItems;
+		this.invoices = invoices;
 	}
 
 	public Integer getId() {
@@ -59,20 +59,20 @@ public class OrderDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public OrderStatus getOrderStatus() {
 		return this.orderStatus;
 	}
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public Double getTotal() {
@@ -139,20 +139,20 @@ public class OrderDetail implements java.io.Serializable {
 		this.taxTotal = taxTotal;
 	}
 
-	public Set<Invoice> getInvoices() {
-		return this.invoices;
-	}
-
-	public void setInvoices(Set<Invoice> invoices) {
-		this.invoices = invoices;
-	}
-
 	public Set<OrderItem> getOrderItems() {
 		return this.orderItems;
 	}
 
 	public void setOrderItems(Set<OrderItem> orderItems) {
 		this.orderItems = orderItems;
+	}
+
+	public Set<Invoice> getInvoices() {
+		return this.invoices;
+	}
+
+	public void setInvoices(Set<Invoice> invoices) {
+		this.invoices = invoices;
 	}
 
 }

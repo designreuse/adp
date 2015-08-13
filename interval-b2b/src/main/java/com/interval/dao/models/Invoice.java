@@ -1,6 +1,6 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -11,22 +11,18 @@ public class Invoice implements java.io.Serializable {
 
 	private Integer id;
 	private OrderDetail orderDetail;
-	private int userId;
 	private Date createdTime;
 	private Date updatedTime;
 
 	public Invoice() {
 	}
 
-	public Invoice(OrderDetail orderDetail, int userId) {
+	public Invoice(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
-		this.userId = userId;
 	}
 
-	public Invoice(OrderDetail orderDetail, int userId, Date createdTime,
-			Date updatedTime) {
+	public Invoice(OrderDetail orderDetail, Date createdTime, Date updatedTime) {
 		this.orderDetail = orderDetail;
-		this.userId = userId;
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
 	}
@@ -45,14 +41,6 @@ public class Invoice implements java.io.Serializable {
 
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
-	}
-
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public Date getCreatedTime() {

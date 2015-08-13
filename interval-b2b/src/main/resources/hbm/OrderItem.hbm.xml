@@ -1,15 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Aug 13, 2015 3:14:02 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.interval.dao.models.OrderItem" table="ORDER_ITEM" schema="PUBLIC" catalog="PUBLIC">
         <composite-id name="id" class="com.interval.dao.models.OrderItemId">
             <key-property name="orderId" type="int">
                 <column name="ORDER_ID" />
-            </key-property>
-            <key-property name="userId" type="int">
-                <column name="USER_ID" />
             </key-property>
             <key-property name="productId" type="int">
                 <column name="PRODUCT_ID" />

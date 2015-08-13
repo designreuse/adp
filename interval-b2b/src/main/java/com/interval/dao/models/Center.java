@@ -1,6 +1,6 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,7 +22,7 @@ public class Center implements java.io.Serializable {
 	private String phone;
 	private String email;
 	private Date createdTime;
-	private String updatedTime;
+	private Date updatedTime;
 	private Set<VendorCenter> vendorCenters = new HashSet<VendorCenter>(0);
 
 	public Center() {
@@ -30,7 +30,7 @@ public class Center implements java.io.Serializable {
 
 	public Center(String name, String address1, String address2, String city,
 			String state, String zip, String country, String phone,
-			String email, Date createdTime, String updatedTime,
+			String email, Date createdTime, Date updatedTime,
 			Set<VendorCenter> vendorCenters) {
 		this.name = name;
 		this.address1 = address1;
@@ -134,11 +134,11 @@ public class Center implements java.io.Serializable {
 		this.createdTime = createdTime;
 	}
 
-	public String getUpdatedTime() {
+	public Date getUpdatedTime() {
 		return this.updatedTime;
 	}
 
-	public void setUpdatedTime(String updatedTime) {
+	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
 	}
 

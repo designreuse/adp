@@ -1,6 +1,6 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,19 +12,21 @@ public class TransactionType implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
+	private String description;
+	private Set<Transaction> transactions = new HashSet<Transaction>(0);
 	private Set<InventoryTransaction> inventoryTransactions = new HashSet<InventoryTransaction>(
 			0);
-	private Set<Transaction> transactions = new HashSet<Transaction>(0);
 
 	public TransactionType() {
 	}
 
-	public TransactionType(String name,
-			Set<InventoryTransaction> inventoryTransactions,
-			Set<Transaction> transactions) {
+	public TransactionType(String name, String description,
+			Set<Transaction> transactions,
+			Set<InventoryTransaction> inventoryTransactions) {
 		this.name = name;
-		this.inventoryTransactions = inventoryTransactions;
+		this.description = description;
 		this.transactions = transactions;
+		this.inventoryTransactions = inventoryTransactions;
 	}
 
 	public Integer getId() {
@@ -43,13 +45,12 @@ public class TransactionType implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Set<InventoryTransaction> getInventoryTransactions() {
-		return this.inventoryTransactions;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setInventoryTransactions(
-			Set<InventoryTransaction> inventoryTransactions) {
-		this.inventoryTransactions = inventoryTransactions;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Set<Transaction> getTransactions() {
@@ -58,6 +59,15 @@ public class TransactionType implements java.io.Serializable {
 
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
+	}
+
+	public Set<InventoryTransaction> getInventoryTransactions() {
+		return this.inventoryTransactions;
+	}
+
+	public void setInventoryTransactions(
+			Set<InventoryTransaction> inventoryTransactions) {
+		this.inventoryTransactions = inventoryTransactions;
 	}
 
 }

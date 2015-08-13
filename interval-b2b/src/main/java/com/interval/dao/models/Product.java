@@ -1,8 +1,7 @@
 package com.interval.dao.models;
 
-// Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
 
-import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,13 +16,13 @@ public class Product implements java.io.Serializable {
 	private Category category;
 	private String name;
 	private String description;
-	private Blob image;
+	private byte[] image;
 	private Date createdTime;
 	private Date updatedTime;
 	private Set<Inventory> inventories = new HashSet<Inventory>(0);
+	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
 	private Set<InventoryTransaction> inventoryTransactions = new HashSet<InventoryTransaction>(
 			0);
-	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
 
 	public Product() {
 	}
@@ -34,10 +33,10 @@ public class Product implements java.io.Serializable {
 	}
 
 	public Product(VendorCenter vendorCenter, Category category, String name,
-			String description, Blob image, Date createdTime, Date updatedTime,
-			Set<Inventory> inventories,
-			Set<InventoryTransaction> inventoryTransactions,
-			Set<OrderItem> orderItems) {
+			String description, byte[] image, Date createdTime,
+			Date updatedTime, Set<Inventory> inventories,
+			Set<OrderItem> orderItems,
+			Set<InventoryTransaction> inventoryTransactions) {
 		this.vendorCenter = vendorCenter;
 		this.category = category;
 		this.name = name;
@@ -46,8 +45,8 @@ public class Product implements java.io.Serializable {
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
 		this.inventories = inventories;
-		this.inventoryTransactions = inventoryTransactions;
 		this.orderItems = orderItems;
+		this.inventoryTransactions = inventoryTransactions;
 	}
 
 	public Integer getId() {
@@ -90,11 +89,11 @@ public class Product implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public Blob getImage() {
+	public byte[] getImage() {
 		return this.image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 
@@ -122,6 +121,14 @@ public class Product implements java.io.Serializable {
 		this.inventories = inventories;
 	}
 
+	public Set<OrderItem> getOrderItems() {
+		return this.orderItems;
+	}
+
+	public void setOrderItems(Set<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
 	public Set<InventoryTransaction> getInventoryTransactions() {
 		return this.inventoryTransactions;
 	}
@@ -129,14 +136,6 @@ public class Product implements java.io.Serializable {
 	public void setInventoryTransactions(
 			Set<InventoryTransaction> inventoryTransactions) {
 		this.inventoryTransactions = inventoryTransactions;
-	}
-
-	public Set<OrderItem> getOrderItems() {
-		return this.orderItems;
-	}
-
-	public void setOrderItems(Set<OrderItem> orderItems) {
-		this.orderItems = orderItems;
 	}
 
 }

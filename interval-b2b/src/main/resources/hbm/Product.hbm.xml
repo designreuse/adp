@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 12, 2015 7:36:52 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Aug 13, 2015 3:14:02 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.interval.dao.models.Product" table="PRODUCT" schema="PUBLIC" catalog="PUBLIC">
         <id name="id" type="java.lang.Integer">
@@ -20,7 +20,7 @@
         <property name="description" type="string">
             <column name="DESCRIPTION" length="60" />
         </property>
-        <property name="image" type="blob">
+        <property name="image" type="binary">
             <column name="IMAGE" />
         </property>
         <property name="createdTime" type="date">
@@ -35,17 +35,17 @@
             </key>
             <one-to-many class="com.interval.dao.models.Inventory" />
         </set>
-        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="PRODUCT_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.interval.dao.models.InventoryTransaction" />
-        </set>
         <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PRODUCT_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.OrderItem" />
+        </set>
+        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUCT_ID" not-null="true" />
+            </key>
+            <one-to-many class="com.interval.dao.models.InventoryTransaction" />
         </set>
     </class>
 </hibernate-mapping>
