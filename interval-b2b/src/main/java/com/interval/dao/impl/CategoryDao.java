@@ -12,11 +12,8 @@ import java.util.List;
 /**
  * Created by USER on 12-08-2015.
  */
-@Service
-public class CategoryDao implements Dao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+public class CategoryDao extends BaseDao<Category> {
 
     @Override
     public void create() {
@@ -24,8 +21,8 @@ public class CategoryDao implements Dao {
     }
 
     @Override
-    public void update() {
-
+    public void update(Category category) {
+        sessionFactory.getCurrentSession().saveOrUpdate(category);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.interval.dao.models;
 
-// Generated Aug 13, 2015 3:14:01 PM by Hibernate Tools 3.4.0.CR1
+// Generated Aug 14, 2015 6:24:11 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,10 +19,10 @@ public class Product implements java.io.Serializable {
 	private byte[] image;
 	private Date createdTime;
 	private Date updatedTime;
-	private Set<Inventory> inventories = new HashSet<Inventory>(0);
-	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
 	private Set<InventoryTransaction> inventoryTransactions = new HashSet<InventoryTransaction>(
 			0);
+	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
+	private Set<Inventory> inventories = new HashSet<Inventory>(0);
 
 	public Product() {
 	}
@@ -34,9 +34,8 @@ public class Product implements java.io.Serializable {
 
 	public Product(VendorCenter vendorCenter, Category category, String name,
 			String description, byte[] image, Date createdTime,
-			Date updatedTime, Set<Inventory> inventories,
-			Set<OrderItem> orderItems,
-			Set<InventoryTransaction> inventoryTransactions) {
+			Date updatedTime, Set<InventoryTransaction> inventoryTransactions,
+			Set<OrderItem> orderItems, Set<Inventory> inventories) {
 		this.vendorCenter = vendorCenter;
 		this.category = category;
 		this.name = name;
@@ -44,9 +43,9 @@ public class Product implements java.io.Serializable {
 		this.image = image;
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
-		this.inventories = inventories;
-		this.orderItems = orderItems;
 		this.inventoryTransactions = inventoryTransactions;
+		this.orderItems = orderItems;
+		this.inventories = inventories;
 	}
 
 	public Integer getId() {
@@ -113,12 +112,13 @@ public class Product implements java.io.Serializable {
 		this.updatedTime = updatedTime;
 	}
 
-	public Set<Inventory> getInventories() {
-		return this.inventories;
+	public Set<InventoryTransaction> getInventoryTransactions() {
+		return this.inventoryTransactions;
 	}
 
-	public void setInventories(Set<Inventory> inventories) {
-		this.inventories = inventories;
+	public void setInventoryTransactions(
+			Set<InventoryTransaction> inventoryTransactions) {
+		this.inventoryTransactions = inventoryTransactions;
 	}
 
 	public Set<OrderItem> getOrderItems() {
@@ -129,13 +129,12 @@ public class Product implements java.io.Serializable {
 		this.orderItems = orderItems;
 	}
 
-	public Set<InventoryTransaction> getInventoryTransactions() {
-		return this.inventoryTransactions;
+	public Set<Inventory> getInventories() {
+		return this.inventories;
 	}
 
-	public void setInventoryTransactions(
-			Set<InventoryTransaction> inventoryTransactions) {
-		this.inventoryTransactions = inventoryTransactions;
+	public void setInventories(Set<Inventory> inventories) {
+		this.inventories = inventories;
 	}
 
 }

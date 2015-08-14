@@ -9,7 +9,7 @@ public class UnMarshaller {
 
     private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
 
-    private static <T> T unmarshallJSON(final Class clazz, final String json) throws Exception {
+    public static <T> T unmarshallJSON(final Class clazz, final String json) throws Exception {
 
         T bo;
         try{

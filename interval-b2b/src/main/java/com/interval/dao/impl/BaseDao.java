@@ -6,10 +6,15 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by User on 8/12/2015.
  */
-public class BaseDao implements Dao{
+public class BaseDao<T> implements Dao<T>{
+
+    @Autowired
+    protected SessionFactory sessionFactory;
 
     @Override
     public void create() {
@@ -17,7 +22,7 @@ public class BaseDao implements Dao{
     }
 
     @Override
-    public void update() {
+    public void update(T t) {
 
     }
 
@@ -27,7 +32,7 @@ public class BaseDao implements Dao{
     }
 
     @Override
-    public Criteria getAll() {
+    public List<T> getAll() {
       return null;
     }
 

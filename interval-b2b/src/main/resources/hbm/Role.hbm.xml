@@ -3,28 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 14, 2015 6:24:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.interval.dao.models.OrderStatus" table="ORDER_STATUS" schema="PUBLIC" catalog="PUBLIC">
+    <class name="com.interval.dao.models.Role" table="ROLE" schema="PUBLIC" catalog="PUBLIC">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="identity" />
         </id>
         <property name="name" type="string">
-            <column name="NAME" length="60" />
+            <column name="NAME" length="30" not-null="true" />
         </property>
         <property name="description" type="string">
-            <column name="DESCRIPTION" length="60" />
+            <column name="DESCRIPTION" length="60" not-null="true" />
         </property>
         <property name="createdTime" type="timestamp">
-            <column name="CREATED_TIME" length="26" />
+            <column name="CREATED_TIME" length="26" not-null="true" />
         </property>
         <property name="updatedTime" type="timestamp">
-            <column name="UPDATED_TIME" length="26" />
+            <column name="UPDATED_TIME" length="26" not-null="true" />
         </property>
-        <set name="orderDetails" table="ORDER_DETAIL" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="STATUS" not-null="true" />
-            </key>
-            <one-to-many class="com.interval.dao.models.OrderDetail" />
-        </set>
     </class>
 </hibernate-mapping>

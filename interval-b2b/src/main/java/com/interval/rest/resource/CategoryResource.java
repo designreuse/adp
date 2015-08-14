@@ -1,15 +1,19 @@
 package com.interval.rest.resource;
 
+import com.interval.common.UnMarshaller;
 import com.interval.dao.models.Category;
+import com.interval.rest.models.RESTCategory;
 import com.interval.service.Service;
 import com.interval.service.impl.CategoryService;
+import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -22,6 +26,8 @@ import java.util.List;
 @Named
 public class CategoryResource {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryResource.class);
+
     private final Service categoryService;
 
     @Inject
@@ -30,19 +36,27 @@ public class CategoryResource {
     }
 
     @GET
-    @Path("/get")
-    public Response load() {
-        return Response.ok().build();
-    }
-
-    @GET
     @Path("/categories")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCategories() {
-
-        final List<Category> categoryList = (List<Category>)categoryService.getAll();
+        final List<RESTCategory> categoryList = (List<RESTCategory>)categoryService.getAll();
         return Response.ok().entity(categoryList).build();
     }
 
+    @POST
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@Context final HttpContext requestContext){
+        String request = requestContext.getRequest().getEntity(String.class);
+        try{
+            RESTCategory category = UnMarshaller.unmarshallJSON(RESTCategory.class, request);
+            LOGGER.info(category.getDescription());
+            categoryService.update(category);
+        }catch (Exception exc){
+            LOGGER.error("exception occurred while converting to RESTCategory {0}", exc);
+        }
+        return Response.ok().entity(null).build();
+    }
 
 }

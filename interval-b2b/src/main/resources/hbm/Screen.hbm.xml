@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 14, 2015 6:24:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.interval.dao.models.Screen" table="SCREEN" schema="PUBLIC" catalog="PUBLIC">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select">
+            <column name="CENTER_ID" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="60" not-null="true" />
+        </property>
+        <property name="createdTime" type="date">
+            <column name="CREATED_TIME" length="10" not-null="true" />
+        </property>
+        <property name="updatedTime" type="date">
+            <column name="UPDATED_TIME" length="10" not-null="true" />
+        </property>
+        <set name="shows" table="SHOW" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="SCREEN_ID" not-null="true" />
+            </key>
+            <one-to-many class="com.interval.dao.models.Show" />
+        </set>
+    </class>
+</hibernate-mapping>
