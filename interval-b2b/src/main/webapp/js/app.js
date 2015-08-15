@@ -1,4 +1,4 @@
-var app = angular.module('app', [])
+var app = angular.module('app', ["ngRoute","ngResource"])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
         $routeProvider.when('/home',
@@ -63,6 +63,10 @@ app.controller('NavCtrl',
             $location.url('/contact');
         };
 
+        $scope.loadCategories = function () {
+            $location.url('/categories');
+        };
+
     }]);
 
 app.controller('AboutCtrl', function ($scope, $compile) {
@@ -80,9 +84,9 @@ app.controller('ContactCtrl', function ($scope, $compile) {
 });
 
 
-app.controller('CategoriesCtrl', function ($scope, $compile) {
+app.controller('CategoriesCtrl', function ($scope, categories) {
+    $scope.categories = categoriesFactory.query();
     console.log('inside categories controller');
-
 });
 
 app.controller('DashboardCtrl', function ($scope, $compile) {
@@ -100,4 +104,10 @@ app.controller('ServicesCtrl', function ($scope, $compile) {
 
 });
 
+app.factory("categoriesFactory", function ($resource) {
 
+    return $resource('api/category', {}, {
+        query: { method: 'GET', isArray: true },
+        create: { method: 'POST' }
+    })
+});

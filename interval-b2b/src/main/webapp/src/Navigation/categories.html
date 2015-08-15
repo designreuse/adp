@@ -3,3 +3,15 @@
         <h2 class="text-center">Categories</h2>
     </div>
 </div>
+<div class="row">
+    <div  class="col-md-4 portfolio-item" ng-repeat="category in categories" ng-controller="CategoriesCtrl">
+        <h3>{{ category.id }}</h3>
+        <h1>{{ category.name }}</h1>
+        <h3>{{ category.description }}</h3>
+        <a ng-click="editCategory(category.id)" class="btn btn-small btn-primary">edit</a>
+        <a ng-click="deleteCategory(category.id)" class="btn btn-small btn-danger">delete</a>
+        <a ng-click="createNewCategory()" class="btn btn-small">create new user</a>
+    </div>
+
+</div>
+A

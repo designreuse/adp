@@ -143,6 +143,10 @@
     margin-bottom: 15px;
 }
 
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
 @media (min-width: 768px) {
     #wrapper {
         padding-left: 150px;
@@ -173,4 +177,5 @@
         position: relative;
         margin-right: 0;
     }
+
 }

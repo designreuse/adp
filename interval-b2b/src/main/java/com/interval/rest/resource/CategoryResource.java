@@ -36,7 +36,6 @@ public class CategoryResource {
     }
 
     @GET
-    @Path("/categories")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCategories() {
         final List<RESTCategory> categoryList = (List<RESTCategory>)categoryService.getAll();
@@ -44,7 +43,6 @@ public class CategoryResource {
     }
 
     @POST
-    @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@Context final HttpContext requestContext){
