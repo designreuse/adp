@@ -20,7 +20,7 @@
         <property name="updatedTime" type="date">
             <column name="UPDATED_TIME" length="10" not-null="true" />
         </property>
-        <set name="shows" table="SHOW" inverse="true" lazy="false" fetch="select">
+        <set name="shows" table="SHOW" inverse="true" lazy="false" fetch="select" cascade="save-update">
             <key>
                 <column name="SCREEN_ID" not-null="true" />
             </key>

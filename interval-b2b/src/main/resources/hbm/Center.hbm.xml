@@ -47,7 +47,7 @@
             </key>
             <one-to-many class="com.interval.dao.models.VendorCenter" />
         </set>
-        <set name="screens" table="SCREEN" inverse="true" lazy="false" fetch="select">
+        <set name="screens" table="SCREEN" inverse="true" lazy="false" fetch="select" cascade="save-update">
             <key>
                 <column name="CENTER_ID" not-null="true" />
             </key>

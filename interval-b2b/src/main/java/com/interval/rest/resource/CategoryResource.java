@@ -1,10 +1,8 @@
 package com.interval.rest.resource;
 
 import com.interval.common.UnMarshaller;
-import com.interval.dao.models.Category;
 import com.interval.rest.models.RESTCategory;
 import com.interval.service.Service;
-import com.interval.service.impl.CategoryService;
 import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
 import org.slf4j.Logger;
@@ -53,6 +51,7 @@ public class CategoryResource {
             categoryService.update(category);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTCategory {0}", exc);
+            return Response.serverError().build();
         }
         return Response.ok().entity(null).build();
     }

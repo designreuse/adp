@@ -35,7 +35,7 @@ public class CategoryService implements Service<RESTCategory> {
         category.setName(restCategory.getName());
         category.setUpdatedTime(new Date());
         categoryDao.update(category);
-        return null;
+        return restCategory;
     }
 
     @Override

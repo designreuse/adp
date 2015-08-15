@@ -3,12 +3,11 @@ package com.interval.rest.models;
 import java.util.Date;
 
 /**
- * Created by USER on 11-08-2015.
+ * Created by User on 8/15/2015.
  */
-public class RESTOrderStatus {
+public class RESTShow {
     private int id;
-    private String name;
-    private String description;
+    private Date time;
     private Date createdTime;
     private Date updatedTime;
 
@@ -20,20 +19,12 @@ public class RESTOrderStatus {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getTime() {
+        return time;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public Date getCreatedTime() {

@@ -1,7 +1,7 @@
 package com.interval.rest.resource;
 
 import com.interval.common.UnMarshaller;
-import com.interval.rest.models.RESTCenter;
+import com.interval.rest.models.RESTOrderStatus;
 import com.interval.service.Service;
 import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
@@ -17,26 +17,26 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * Created by User on 8/14/2015.
+ * Created by User on 8/15/2015.
  */
 @Singleton
-@Path("center")
+@Path("orderStatus")
 @Named
-public class CenterResource {
+public class OrderStatusResource {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CenterResource.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderStatusResource.class);
 
-    private final Service centerService;
+    private final Service orderStatusService;
 
     @Inject
-    public CenterResource(final Service centerService) {
-        this.centerService = centerService;
+    public OrderStatusResource(final Service orderStatusService) {
+        this.orderStatusService = orderStatusService;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCenters() {
-        final List<RESTCenter> centerList = (List<RESTCenter>)centerService.getAll();
+    public Response getOrderStatus() {
+        final List<RESTOrderStatus> centerList = (List<RESTOrderStatus>)orderStatusService.getAll();
         return Response.ok().entity(centerList).build();
     }
 
@@ -46,11 +46,11 @@ public class CenterResource {
     public Response update(@Context final HttpContext requestContext){
         String request = requestContext.getRequest().getEntity(String.class);
         try{
-            RESTCenter center = UnMarshaller.unmarshallJSON(RESTCenter.class, request);
-            LOGGER.info(center.getName());
-            centerService.update(center);
+            RESTOrderStatus restOrderStatus = UnMarshaller.unmarshallJSON(RESTOrderStatus.class, request);
+            LOGGER.info(restOrderStatus.getName());
+            orderStatusService.update(restOrderStatus);
         }catch (Exception exc){
-            LOGGER.error("exception occurred while converting to RESTCenter {0}", exc);
+            LOGGER.error("exception occurred while converting to RESTOrderStatus {0}", exc);
             return Response.serverError().build();
         }
         return Response.ok().entity(null).build();

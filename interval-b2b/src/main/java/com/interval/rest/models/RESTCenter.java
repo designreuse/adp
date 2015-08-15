@@ -1,6 +1,7 @@
 package com.interval.rest.models;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by USER on 11-08-2015.
@@ -18,6 +19,7 @@ public class RESTCenter {
     private String email;
     private Date createdTime;
     private String updatedTime;
+    private Set<RESTScreen> screens;
 
     public int getId() {
         return id;
@@ -113,5 +115,13 @@ public class RESTCenter {
 
     public void setUpdatedTime(String updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public Set<RESTScreen> getScreens() {
+        return screens;
+    }
+
+    public void setScreens(Set<RESTScreen> screens) {
+        this.screens = screens;
     }
 }

@@ -1,16 +1,17 @@
 package com.interval.rest.models;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
- * Created by USER on 11-08-2015.
+ * Created by User on 8/15/2015.
  */
-public class RESTOrderStatus {
+public class RESTScreen {
     private int id;
     private String name;
-    private String description;
     private Date createdTime;
     private Date updatedTime;
+    private Set<RESTShow> shows;
 
     public int getId() {
         return id;
@@ -28,14 +29,6 @@ public class RESTOrderStatus {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -50,5 +43,13 @@ public class RESTOrderStatus {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public Set<RESTShow> getShows() {
+        return shows;
+    }
+
+    public void setShows(Set<RESTShow> shows) {
+        this.shows = shows;
     }
 }

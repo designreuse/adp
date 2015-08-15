@@ -1,6 +1,5 @@
 package com.interval.dao.impl;
 
-import com.interval.dao.models.Category;
 import com.interval.dao.models.Center;
 import org.hibernate.Criteria;
 
@@ -18,7 +17,7 @@ public class CenterDao extends BaseDao<Center> {
 
     @Override
     public void update(Center center) {
-
+        sessionFactory.getCurrentSession().saveOrUpdate(center);
     }
 
     @Override
