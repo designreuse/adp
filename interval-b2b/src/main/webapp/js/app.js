@@ -3,7 +3,7 @@ var app = angular.module('app', [])
 
         $routeProvider.when('/home',
             {
-                templateUrl: 'src/Navigation/home.html',
+                templateUrl: '/src/Navigation/home.html',
                 controller: 'HomeCtrl'
             });
         $routeProvider.when('/about',
@@ -38,7 +38,7 @@ var app = angular.module('app', [])
             });
         $routeProvider.otherwise(
             {
-                redirectTo: '/src/Navigation/home',
+                redirectTo: '/home',
                 controller: 'HomeCtrl'
             }
         );

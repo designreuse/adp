@@ -39,3 +39,5 @@ overlays/
 *.gradle
 
 *.log
+
+interval-b2b.iml
