@@ -21,6 +21,11 @@ var app = angular.module('app', ["ngRoute","ngResource"])
                 templateUrl: '/src/Navigation/categories.html',
                 controller: 'CategoriesCtrl'
             });
+        $routeProvider.when('/centers',
+            {
+                templateUrl: '/src/Navigation/centers.html',
+                controller: 'CentersCtrl'
+            });
         $routeProvider.when('/dashboard',
             {
                 templateUrl: '/src/Navigation/dashboard.html',
@@ -67,6 +72,10 @@ app.controller('NavCtrl',
             $location.url('/categories');
         };
 
+        $scope.loadCenters = function () {
+            $location.url('/centers');
+        };
+
     }]);
 
 app.controller('AboutCtrl', function ($scope, $compile) {
@@ -84,9 +93,14 @@ app.controller('ContactCtrl', function ($scope, $compile) {
 });
 
 
-app.controller('CategoriesCtrl', function ($scope, categories) {
+app.controller('CategoriesCtrl', function ($scope, categoriesFactory) {
     $scope.categories = categoriesFactory.query();
     console.log('inside categories controller');
+});
+
+app.controller('CentersCtrl', function ($scope, centersFactory) {
+    $scope.centers = centersFactory.query();
+    console.log('inside centers controller');
 });
 
 app.controller('DashboardCtrl', function ($scope, $compile) {
@@ -101,13 +115,12 @@ app.controller('SalesCtrl', function ($scope, $compile) {
 
 app.controller('ServicesCtrl', function ($scope, $compile) {
     console.log('inside Services controller');
-
 });
 
 app.factory("categoriesFactory", function ($resource) {
+    return $resource('v1/category/');
+});
 
-    return $resource('api/category', {}, {
-        query: { method: 'GET', isArray: true },
-        create: { method: 'POST' }
-    })
+app.factory("centersFactory", function ($resource) {
+    return $resource('v1/center/');
 });

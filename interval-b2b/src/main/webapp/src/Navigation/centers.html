@@ -1,0 +1,32 @@
+<div class="row">
+    <div id="pageHeader" class="page-header">
+        <h2 class="text-left">Centers</h2>
+    </div>
+</div>
+<div class="row">
+    <div  class="col-md-4 portfolio-item">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="center in centers" ng-controller="CentersCtrl">
+            <tr>
+                <td>{{ center.name }}</td>
+                <td>{{ center.address1 + center.address2 + center.city + center.state + center.zip + center.country}}</td>
+                <td>{{ center.phone }}</td>
+                <td>{{ center.email }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a ng-click="editCenter(center.id)" class="btn btn-small btn-primary">edit</a>
+        <a ng-click="deleteCenter(center.id)" class="btn btn-small btn-danger">delete</a>
+        <a ng-click="createNewCenter()" class="btn btn-small">create new center</a>
+    </div>
+
+</div>

@@ -1,17 +1,28 @@
 <div class="row">
-    <div id="banner" class="jumbotron">
-        <h2 class="text-center">Categories</h2>
+    <div id="pageHeader" class="page-header">
+        <h2 class="text-left">Categories</h2>
     </div>
 </div>
 <div class="row">
-    <div  class="col-md-4 portfolio-item" ng-repeat="category in categories" ng-controller="CategoriesCtrl">
-        <h3>{{ category.id }}</h3>
-        <h1>{{ category.name }}</h1>
-        <h3>{{ category.description }}</h3>
+    <div  class="col-md-4 portfolio-item">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="category in categories" ng-controller="CategoriesCtrl">
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+
         <a ng-click="editCategory(category.id)" class="btn btn-small btn-primary">edit</a>
         <a ng-click="deleteCategory(category.id)" class="btn btn-small btn-danger">delete</a>
-        <a ng-click="createNewCategory()" class="btn btn-small">create new user</a>
+        <a ng-click="createNewCategory()" class="btn btn-small">create new category</a>
     </div>
 
 </div>
-A

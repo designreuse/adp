@@ -16,6 +16,8 @@
     <script src="js/angular.js" type="text/javascript"></script>
     <script src="js/angular-resource.js" type="text/javascript"></script>
     <script src="js/angular-route.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
 
 </head>
 <body ng-app="app">
@@ -24,7 +26,7 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <img src="img/logo.png" height="42" width="42">
+                <img src="img/logo.png" height="42" width="42"/><h1>Interval</h1>
             <li ng-class="navClass('home')">
                 <a href="" ng-click="loadHome()">Home</a>
             </li>
@@ -33,6 +35,9 @@
             </li>
             <li ng-class="navClass('categories')">
                 <a href="" ng-click="loadCategories()">Categories</a>
+            </li>
+            <li ng-class="navClass('centers')">
+                <a href="" ng-click="loadCenters()">Centers</a>
             </li>
             <li ng-class="navClass('inventory')">
                 <a href="" ng-click="loadInventory()">Inventory</a>
@@ -54,9 +59,9 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div id="banner" class="jumbotron col-sm-9">
-                    <h2 class="text-center">Interval</h2>
-                </div>
+                <!--div id="banner" class="jumbotron">
+                    <h1 class="text-left">Interval</h1>
+                </div-->
             </div>
 
             <div class="row">
@@ -66,10 +71,6 @@
     </div>
 
 </div>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>
 
 </body>
-
-
 </html>
