@@ -3,42 +3,42 @@ var app = angular.module('app', ["ngRoute","ngResource"])
 
         $routeProvider.when('/home',
             {
-                templateUrl: '/src/Navigation/home.html',
+                templateUrl: '/templates/home.html',
                 controller: 'HomeCtrl'
             });
         $routeProvider.when('/about',
             {
-                templateUrl: 'src/Navigation/about.html',
+                templateUrl: '/templates/about.html',
                 controller: 'AboutCtrl'
             });
         $routeProvider.when('/contact',
             {
-                templateUrl: 'src/Navigation/contact.html',
+                templateUrl: '/templates/contact.html',
                 controller: 'ContactCtrl'
             });
         $routeProvider.when('/categories',
             {
-                templateUrl: '/src/Navigation/categories.html',
+                templateUrl: '/templates/categories.html',
                 controller: 'CategoriesCtrl'
             });
         $routeProvider.when('/centers',
             {
-                templateUrl: '/src/Navigation/centers.html',
+                templateUrl: '/templates/centers.html',
                 controller: 'CentersCtrl'
             });
         $routeProvider.when('/dashboard',
             {
-                templateUrl: '/src/Navigation/dashboard.html',
+                templateUrl: '/templates/dashboard.html',
                 controller: 'DashboardCtrl'
             });
         $routeProvider.when('/sales',
             {
-                templateUrl: '/src/Navigation/sales.html',
+                templateUrl: '/templates/sales.html',
                 controller: 'SalesCtrl'
             });
         $routeProvider.when('/services',
             {
-                templateUrl: '/src/Navigation/services.html',
+                templateUrl: '/templates/services.html',
                 controller: 'ServicesCtrl'
             });
         $routeProvider.otherwise(
@@ -57,22 +57,27 @@ app.controller('NavCtrl',
         };
 
         $scope.loadHome = function () {
+            $scope.pageHeader = "Home";
             $location.url('/home');
         };
 
         $scope.loadAbout = function () {
+            $scope.pageHeader = "About";
             $location.url('/about');
         };
 
         $scope.loadContact = function () {
+            $scope.pageHeader = "Contact";
             $location.url('/contact');
         };
 
         $scope.loadCategories = function () {
+            $scope.pageHeader = "Categories";
             $location.url('/categories');
         };
 
         $scope.loadCenters = function () {
+            $scope.pageHeader = "Centers";
             $location.url('/centers');
         };
 
@@ -80,12 +85,10 @@ app.controller('NavCtrl',
 
 app.controller('AboutCtrl', function ($scope, $compile) {
     console.log('inside about controller');
-
 });
 
 app.controller('HomeCtrl', function ($scope, $compile) {
     console.log('inside home controller');
-
 });
 
 app.controller('ContactCtrl', function ($scope, $compile) {
@@ -105,12 +108,10 @@ app.controller('CentersCtrl', function ($scope, centersFactory) {
 
 app.controller('DashboardCtrl', function ($scope, $compile) {
     console.log('inside dashboard controller');
-
 });
 
 app.controller('SalesCtrl', function ($scope, $compile) {
     console.log('inside sales controller');
-
 });
 
 app.controller('ServicesCtrl', function ($scope, $compile) {
