@@ -15,7 +15,7 @@ public class BaseDao<T> implements Dao<T>{
     protected SessionFactory sessionFactory;
 
     @Override
-    public void create() {
+    public void create(T t) {
 
     }
 

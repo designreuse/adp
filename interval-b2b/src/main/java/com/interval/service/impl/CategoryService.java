@@ -23,7 +23,13 @@ public class CategoryService implements Service<RESTCategory> {
     }
 
     @Override
-    public RESTCategory create() {
+    public RESTCategory create(RESTCategory restCategory) {
+        Category category = new Category();
+        category.setName(restCategory.getName());
+        category.setDescription(restCategory.getDescription());
+        category.setCreatedTime(new Date());
+        category.setUpdatedTime(new Date());
+        categoryDao.create(category);
         return null;
     }
 

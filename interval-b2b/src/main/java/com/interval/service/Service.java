@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface Service<T> {
 
-    public T create();
+    public T create(T t);
 
     public T update(T  t);
 

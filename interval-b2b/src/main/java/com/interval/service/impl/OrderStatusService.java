@@ -22,7 +22,7 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
     }
 
     @Override
-    public RESTOrderStatus create() {
+    public RESTOrderStatus create(RESTOrderStatus restOrderStatus) {
         return null;
     }
 

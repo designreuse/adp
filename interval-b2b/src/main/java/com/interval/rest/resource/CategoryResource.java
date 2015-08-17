@@ -43,6 +43,22 @@ public class CategoryResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    public Response create(@Context final HttpContext requestContext){
+        String request = requestContext.getRequest().getEntity(String.class);
+        try{
+            RESTCategory category = UnMarshaller.unmarshallJSON(RESTCategory.class, request);
+            LOGGER.info(category.getDescription());
+            categoryService.create(category);
+        }catch (Exception exc){
+            LOGGER.error("exception occurred while converting to RESTCategory {0}", exc);
+            return Response.serverError().build();
+        }
+        return Response.ok().entity(null).build();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response update(@Context final HttpContext requestContext){
         String request = requestContext.getRequest().getEntity(String.class);
         try{

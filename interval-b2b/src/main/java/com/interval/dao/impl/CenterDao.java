@@ -11,7 +11,7 @@ import java.util.List;
 public class CenterDao extends BaseDao<Center> {
 
     @Override
-    public void create() {
+    public void create(Center center) {
 
     }
 

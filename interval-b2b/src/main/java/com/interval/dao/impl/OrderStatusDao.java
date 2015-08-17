@@ -11,7 +11,7 @@ import java.util.List;
 public class OrderStatusDao extends BaseDao<OrderStatus> {
 
     @Override
-    public void create() {
+    public void create(OrderStatus orderStatus) {
 
     }
 

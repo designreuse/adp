@@ -12,8 +12,8 @@ import java.util.List;
 public class CategoryDao extends BaseDao<Category> {
 
     @Override
-    public void create() {
-
+    public void create(Category category) {
+        sessionFactory.getCurrentSession().save(category);
     }
 
     @Override

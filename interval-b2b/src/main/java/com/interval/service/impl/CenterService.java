@@ -25,7 +25,7 @@ public class CenterService implements Service<RESTCenter> {
     }
 
     @Override
-    public RESTCenter create() {
+    public RESTCenter create(RESTCenter restCenter) {
         return null;
     }
 

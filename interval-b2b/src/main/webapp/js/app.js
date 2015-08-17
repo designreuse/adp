@@ -97,8 +97,19 @@ app.controller('ContactCtrl', function ($scope, $compile) {
 
 
 app.controller('CategoriesCtrl', function ($scope, categoriesFactory) {
-    $scope.categories = categoriesFactory.query();
     console.log('inside categories controller');
+    $scope.newCategory = {};
+    $scope.categories = categoriesFactory.query();
+
+    $scope.create = function(){
+        console.log("newCategory : ",$scope.newCategory);
+        categoriesFactory.save($scope.newCategory);
+    }
+
+    $scope.update = function(){
+        console.log("updateCategory : ",$scope.newCategory);
+        categoriesFactory.update($scope.newCategory);
+    }
 });
 
 app.controller('CentersCtrl', function ($scope, centersFactory) {
@@ -123,5 +134,8 @@ app.factory("categoriesFactory", function ($resource) {
 });
 
 app.factory("centersFactory", function ($resource) {
-    return $resource('v1/center/');
+    return $resource('v1/center/', null,
+        {
+            'update' : {method : 'PUT'}
+        });
 });
