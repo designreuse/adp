@@ -1,4 +1,4 @@
-var app = angular.module('app', ["ngRoute","ngResource"])
+var app = angular.module('app', ["ngRoute","ngResource","ui.grid"])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
         $routeProvider.when('/home',
@@ -95,28 +95,6 @@ app.controller('ContactCtrl', function ($scope, $compile) {
     console.log('inside contact controller');
 });
 
-
-app.controller('CategoriesCtrl', function ($scope, categoriesFactory) {
-    console.log('inside categories controller');
-    $scope.newCategory = {};
-    $scope.categories = categoriesFactory.query();
-
-    $scope.create = function(){
-        console.log("newCategory : ",$scope.newCategory);
-        categoriesFactory.save($scope.newCategory);
-    }
-
-    $scope.update = function(){
-        console.log("updateCategory : ",$scope.newCategory);
-        categoriesFactory.update($scope.newCategory);
-    }
-});
-
-app.controller('CentersCtrl', function ($scope, centersFactory) {
-    $scope.centers = centersFactory.query();
-    console.log('inside centers controller');
-});
-
 app.controller('DashboardCtrl', function ($scope, $compile) {
     console.log('inside dashboard controller');
 });
@@ -129,13 +107,3 @@ app.controller('ServicesCtrl', function ($scope, $compile) {
     console.log('inside Services controller');
 });
 
-app.factory("categoriesFactory", function ($resource) {
-    return $resource('v1/category/');
-});
-
-app.factory("centersFactory", function ($resource) {
-    return $resource('v1/center/', null,
-        {
-            'update' : {method : 'PUT'}
-        });
-});

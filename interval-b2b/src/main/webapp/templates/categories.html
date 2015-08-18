@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<!--div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -13,20 +13,26 @@
         </tr>
         </tbody>
     </table>
+
+    <a ng-click="editCategory(category.id)" class="btn btn-small btn-primary">edit</a>
+    <a ng-click="deleteCategory(category.id)" class="btn btn-small btn-danger">delete</a>
+    <a ng-click="createNewCategory()" class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
+</div-->
+<div class="table-responsive">
+    <div id="categoryGrid" ui-grid="gridOpts" class="grid"></div><br>
     <a ng-click="editCategory(category.id)" class="btn btn-small btn-primary">edit</a>
     <a ng-click="deleteCategory(category.id)" class="btn btn-small btn-danger">delete</a>
     <a ng-click="createNewCategory()" class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
 </div>
-
 <!-- Modal -->
 <div id="createCategory" class="modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" ng-controller="CategoriesCtrl">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Create Category</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" onload="clear()">
                 <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Name:</label>
@@ -47,6 +53,5 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
-
     </div>
 </div>
