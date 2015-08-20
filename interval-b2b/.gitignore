@@ -41,3 +41,7 @@ overlays/
 *.log
 
 interval-b2b.iml
+/build/
+.settings/
+.classpath
+.project
