@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="vendorCenter" class="com.interval.dao.models.VendorCenter" fetch="select">
+        <many-to-one name="vendorCenter" class="com.interval.dao.models.VendorCenter" fetch="select" cascade="save-update,delete">
             <column name="VENDOR_CENTER_ID" not-null="true" />
         </many-to-one>
         <many-to-one name="category" class="com.interval.dao.models.Category" fetch="select">
@@ -29,19 +29,20 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" />
         </property>
-        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false" fetch="select">
+        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false" fetch="select"
+                cascade="save-update,delete">
             <key>
                 <column name="PRODUCT_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.InventoryTransaction" />
         </set>
-        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select">
+        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="PRODUCT_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.OrderItem" />
         </set>
-        <set name="inventories" table="INVENTORY" inverse="true" lazy="false" fetch="select">
+        <set name="inventories" table="INVENTORY" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="PRODUCT_ID" not-null="true" />
             </key>

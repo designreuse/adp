@@ -41,13 +41,13 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" />
         </property>
-        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="false" fetch="select">
+        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="CENTER_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.VendorCenter" />
         </set>
-        <set name="screens" table="SCREEN" inverse="true" lazy="false" fetch="select" cascade="save-update">
+        <set name="screens" table="SCREEN" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="CENTER_ID" not-null="true" />
             </key>

@@ -8,13 +8,13 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select">
+        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select" cascade="save-update,delete">
             <column name="CENTER_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="vendor" class="com.interval.dao.models.Vendor" fetch="select">
+        <many-to-one name="vendor" class="com.interval.dao.models.Vendor" fetch="select" cascade="save-update,delete">
             <column name="VENDOR_ID" not-null="true" />
         </many-to-one>
-        <set name="products" table="PRODUCT" inverse="true" lazy="false" fetch="select">
+        <set name="products" table="PRODUCT" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="VENDOR_CENTER_ID" not-null="true" />
             </key>

@@ -20,7 +20,7 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" />
         </property>
-        <set name="products" table="PRODUCT" inverse="true" lazy="false" fetch="select">
+        <set name="products" table="PRODUCT" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="CATEGORY_ID" not-null="true" />
             </key>

@@ -8,7 +8,8 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="transactionType" class="com.interval.dao.models.TransactionType" fetch="select">
+        <many-to-one name="transactionType" class="com.interval.dao.models.TransactionType" fetch="select"
+                     cascade="save-update,delete">
             <column name="TRANSACTION_TYPE_ID" not-null="true" />
         </many-to-one>
         <property name="createdTime" type="timestamp">

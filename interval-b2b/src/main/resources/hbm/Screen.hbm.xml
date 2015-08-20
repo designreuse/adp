@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select">
+        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select" cascade="save-update,delete">
             <column name="CENTER_ID" not-null="true" />
         </many-to-one>
         <property name="name" type="string">
@@ -20,7 +20,7 @@
         <property name="updatedTime" type="date">
             <column name="UPDATED_TIME" length="10" not-null="true" />
         </property>
-        <set name="shows" table="SHOW" inverse="true" lazy="false" fetch="select" cascade="save-update">
+        <set name="shows" table="SHOW" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="SCREEN_ID" not-null="true" />
             </key>

@@ -12,10 +12,12 @@
                 <column name="PRODUCT_ID" />
             </key-property>
         </composite-id>
-        <many-to-one name="orderDetail" class="com.interval.dao.models.OrderDetail" update="false" insert="false" fetch="select">
+        <many-to-one name="orderDetail" class="com.interval.dao.models.OrderDetail" update="false" insert="false" fetch="select"
+                cascade="save-update,delete">
             <column name="ORDER_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="product" class="com.interval.dao.models.Product" update="false" insert="false" fetch="select">
+        <many-to-one name="product" class="com.interval.dao.models.Product" update="false" insert="false" fetch="select"
+                cascade="save-update,delete">
             <column name="PRODUCT_ID" not-null="true" />
         </many-to-one>
         <property name="quantity" type="java.lang.Integer">

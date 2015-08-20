@@ -41,13 +41,13 @@
         <property name="taxTotal" type="java.lang.Double">
             <column name="TAX_TOTAL" precision="64" scale="0" />
         </property>
-        <set name="invoices" table="INVOICE" inverse="true" lazy="false" fetch="select">
+        <set name="invoices" table="INVOICE" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="ORDER_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.Invoice" />
         </set>
-        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select">
+        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="ORDER_ID" not-null="true" />
             </key>

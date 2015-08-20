@@ -41,7 +41,8 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" />
         </property>
-        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="false" fetch="select">
+        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="false" fetch="select"
+             cascade="save-update,delete">
             <key>
                 <column name="VENDOR_ID" not-null="true" />
             </key>

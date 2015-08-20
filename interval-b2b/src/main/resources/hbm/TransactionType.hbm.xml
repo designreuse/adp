@@ -14,13 +14,14 @@
         <property name="description" type="string">
             <column name="DESCRIPTION" length="60" />
         </property>
-        <set name="transactions" table="TRANSACTION" inverse="true" lazy="false" fetch="select">
+        <set name="transactions" table="TRANSACTION" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="TRANSACTION_TYPE_ID" not-null="true" />
             </key>
             <one-to-many class="com.interval.dao.models.Transaction" />
         </set>
-        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false" fetch="select">
+        <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false" fetch="select"
+                cascade="save-update,delete">
             <key>
                 <column name="TRANSACTION_TYPE_ID" not-null="true" />
             </key>

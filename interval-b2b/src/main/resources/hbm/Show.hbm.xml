@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="screen" class="com.interval.dao.models.Screen" fetch="select">
+        <many-to-one name="screen" class="com.interval.dao.models.Screen" fetch="select" cascade="save-update,delete">
             <column name="SCREEN_ID" not-null="true" />
         </many-to-one>
         <property name="time" type="timestamp">
@@ -20,11 +20,11 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" not-null="true" />
         </property>
-        <set name="orderDetails" table="ORDER_DETAIL" inverse="true" lazy="false" fetch="select">
+        <set name="orderDetails" table="ORDER_DETAIL" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
             <key>
                 <column name="SHOW_ID" not-null="true" />
             </key>
-            <one-to-many class="com.interval.dao.models.OrderDetail" />
+            <one-to-many class="com.interval.dao.models.OrderDetail"  />
         </set>
     </class>
 </hibernate-mapping>
