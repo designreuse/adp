@@ -1,18 +1,19 @@
 <div class="table-responsive">
-    <div id="categoryGrid" ui-grid="gridOpts" class="grid"></div><br>
-    <a ng-click="editCategory(category.id)" class="btn btn-small btn-primary">edit</a>
-    <a ng-click="deleteCategory(category.id)" class="btn btn-small btn-danger">delete</a>
-    <a ng-click="createNewCategory()" class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
+    <div id="categoryGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateCategory">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger">delete</a>
+    <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
 </div>
+
 <!-- Modal -->
-<div id="createCategory" class="modal" role="dialog">
+<div id="createCategory" class="modal" role="dialog" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clear()">&times;</button>
                 <h4 class="modal-title">Create Category</h4>
             </div>
-            <div class="modal-body" onload="clear()">
+            <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Name:</label>
@@ -29,8 +30,40 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="create()">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="updateCategory" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="clear()">&times;</button>
+                <h4 class="modal-title">Create Category</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="catName" ng-model="selectedItem.name" placeholder="Enter category name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="catDescription" ng-model="selectedItem.description" placeholder="Enter category description">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">Cancel</button>
             </div>
         </div>
     </div>

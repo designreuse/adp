@@ -76,7 +76,7 @@ public class CategoryResource {
     @Path("/{categoryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("categoryId") final String categoryId) {
-         categoryService.delete(categoryId);
+        categoryService.delete(categoryId);
         return Response.ok().entity(null).build();
     }
 
