@@ -1,5 +1,6 @@
 package com.interval.dao.impl;
 
+import com.interval.dao.models.Category;
 import com.interval.dao.models.OrderStatus;
 import org.hibernate.Criteria;
 
@@ -12,7 +13,7 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
 
     @Override
     public void create(OrderStatus orderStatus) {
-
+        sessionFactory.getCurrentSession().saveOrUpdate(orderStatus);
     }
 
     @Override
@@ -35,7 +36,10 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String orderId) {
+        final OrderStatus orderStatus = (OrderStatus)sessionFactory.getCurrentSession().get(OrderStatus.class, Integer.parseInt(orderId));
+        if(orderStatus != null) {
+            sessionFactory.getCurrentSession().delete(orderStatus);
+        }
     }
 }

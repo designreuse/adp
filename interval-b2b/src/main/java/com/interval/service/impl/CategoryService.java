@@ -4,6 +4,8 @@ import com.interval.dao.impl.CategoryDao;
 import com.interval.dao.models.Category;
 import com.interval.rest.models.RESTCategory;
 import com.interval.service.Service;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.List;
 public class CategoryService implements Service<RESTCategory> {
 
     private final CategoryDao categoryDao;
+
+    final MapperFactory MAPPER_FACTORY = new DefaultMapperFactory.Builder().build();
 
     @Inject
     public CategoryService(CategoryDao categoryDao) {
@@ -64,7 +68,7 @@ public class CategoryService implements Service<RESTCategory> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String categoryId) {
+        categoryDao.delete(categoryId);
     }
 }

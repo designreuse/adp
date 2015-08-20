@@ -34,8 +34,8 @@ public class BaseDao<T> implements Dao<T>{
       return null;
     }
 
-    @Override
-    public void delete() {
+   @Override
+    public void delete(String id) {
+   }
 
-    }
 }

@@ -36,11 +36,27 @@ public class OrderStatusResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrderStatus() {
-        final List<RESTOrderStatus> centerList = (List<RESTOrderStatus>)orderStatusService.getAll();
-        return Response.ok().entity(centerList).build();
+        final List<RESTOrderStatus> statusList = (List<RESTOrderStatus>)orderStatusService.getAll();
+        return Response.ok().entity(statusList).build();
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response create(@Context final HttpContext requestContext){
+        String request = requestContext.getRequest().getEntity(String.class);
+        try{
+            RESTOrderStatus restOrderStatus = UnMarshaller.unmarshallJSON(RESTOrderStatus.class, request);
+            LOGGER.info(restOrderStatus.getName());
+            orderStatusService.create(restOrderStatus);
+        }catch (Exception exc){
+            LOGGER.error("exception occurred while converting to RESTOrderStatus {0}", exc);
+            return Response.serverError().build();
+        }
+        return Response.ok().entity(null).build();
+    }
+
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@Context final HttpContext requestContext){
@@ -53,6 +69,14 @@ public class OrderStatusResource {
             LOGGER.error("exception occurred while converting to RESTOrderStatus {0}", exc);
             return Response.serverError().build();
         }
+        return Response.ok().entity(null).build();
+    }
+
+    @DELETE
+    @Path("/{orderId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("orderId") final String categoryId) {
+        orderStatusService.delete(categoryId);
         return Response.ok().entity(null).build();
     }
 }

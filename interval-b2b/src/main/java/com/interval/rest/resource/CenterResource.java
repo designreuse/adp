@@ -14,6 +14,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -40,7 +42,7 @@ public class CenterResource {
         return Response.ok().entity(centerList).build();
     }
 
-    @POST
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@Context final HttpContext requestContext){
@@ -53,6 +55,30 @@ public class CenterResource {
             LOGGER.error("exception occurred while converting to RESTCenter {0}", exc);
             return Response.serverError().build();
         }
+        return Response.ok().entity(null).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response add(@Context final HttpContext requestContext){
+        String request = requestContext.getRequest().getEntity(String.class);
+        try{
+            RESTCenter center = UnMarshaller.unmarshallJSON(RESTCenter.class, request);
+            LOGGER.info(center.getName());
+            centerService.create(center);
+        }catch (Exception exc){
+            LOGGER.error("exception occurred while converting to RESTCenter {0}", exc);
+            return Response.serverError().build();
+        }
+        return Response.ok().entity(null).build();
+    }
+
+    @DELETE
+    @Path("{centerId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("centerId") final String categoryId) {
+        centerService.delete(categoryId);
         return Response.ok().entity(null).build();
     }
 }

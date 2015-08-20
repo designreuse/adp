@@ -12,7 +12,7 @@ public class CenterDao extends BaseDao<Center> {
 
     @Override
     public void create(Center center) {
-
+        sessionFactory.getCurrentSession().save(center);
     }
 
     @Override
@@ -35,7 +35,11 @@ public class CenterDao extends BaseDao<Center> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String centerId) {
+        final Center center = (Center)sessionFactory.getCurrentSession().get(Center.class, Integer.parseInt(centerId));
+        if(center != null) {
+            sessionFactory.getCurrentSession().delete(center);
+        }
     }
+
 }

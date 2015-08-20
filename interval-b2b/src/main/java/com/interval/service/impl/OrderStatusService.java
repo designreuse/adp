@@ -23,6 +23,7 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
 
     @Override
     public RESTOrderStatus create(RESTOrderStatus restOrderStatus) {
+        orderStatusDao.create(toOrderStatus(restOrderStatus));
         return null;
     }
 
@@ -48,8 +49,8 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String orderId) {
+        orderStatusDao.delete(orderId);
     }
 
     private RESTOrderStatus toRESTOrderStatus(OrderStatus orderStatus){

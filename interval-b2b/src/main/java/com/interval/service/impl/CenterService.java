@@ -8,6 +8,8 @@ import com.interval.rest.models.RESTCenter;
 import com.interval.rest.models.RESTScreen;
 import com.interval.rest.models.RESTShow;
 import com.interval.service.Service;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -19,6 +21,8 @@ public class CenterService implements Service<RESTCenter> {
 
     private final CenterDao centerDao;
 
+    final MapperFactory MAPPER_FACTORY = new DefaultMapperFactory.Builder().build();
+
     @Inject
     public CenterService(CenterDao centerDao) {
         this.centerDao = centerDao;
@@ -26,6 +30,7 @@ public class CenterService implements Service<RESTCenter> {
 
     @Override
     public RESTCenter create(RESTCenter restCenter) {
+        centerDao.create(toCenter(restCenter));
         return null;
     }
 
@@ -51,8 +56,8 @@ public class CenterService implements Service<RESTCenter> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String centerId) {
+        centerDao.delete(centerId);
     }
 
     private RESTCenter toRESTCenter(Center center){

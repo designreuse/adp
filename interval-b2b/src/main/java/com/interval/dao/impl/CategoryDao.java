@@ -1,6 +1,7 @@
 package com.interval.dao.impl;
 
 import com.interval.dao.models.Category;
+import com.interval.dao.models.Center;
 import org.hibernate.Criteria;
 
 import java.util.List;
@@ -36,7 +37,10 @@ public class CategoryDao extends BaseDao<Category> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(final String categoryId) {
+        final Category category = (Category)sessionFactory.getCurrentSession().get(Category.class, Integer.parseInt(categoryId));
+        if(category != null) {
+            sessionFactory.getCurrentSession().delete(category);
+        }
     }
 }

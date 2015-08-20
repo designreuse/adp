@@ -15,5 +15,5 @@ public interface Dao<T> {
 
     public List<T> getAll();
 
-    public void delete();
+    public void delete(String id);
 }
