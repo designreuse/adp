@@ -11,7 +11,7 @@ public interface Service<T> {
 
     public T update(T  t);
 
-    public T get();
+    public T get(final String id);
 
     public List<T> getAll();
 

@@ -25,8 +25,8 @@ public class BaseDao<T> implements Dao<T>{
     }
 
     @Override
-    public void get() {
-
+    public T get(final String id) {
+        return null;
     }
 
     @Override

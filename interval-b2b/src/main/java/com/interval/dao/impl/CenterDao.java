@@ -21,8 +21,14 @@ public class CenterDao extends BaseDao<Center> {
     }
 
     @Override
-    public void get() {
+    public Center get(final String centerId) {
+        Center center = null;
+        try{
+            center = (Center)sessionFactory.getCurrentSession().get(Center.class, Integer.parseInt(centerId));
+        }catch (NumberFormatException exc){
 
+        }
+        return center;
     }
 
     @Override
@@ -36,7 +42,7 @@ public class CenterDao extends BaseDao<Center> {
 
     @Override
     public void delete(final String centerId) {
-        final Center center = (Center)sessionFactory.getCurrentSession().get(Center.class, Integer.parseInt(centerId));
+        final Center center = get(centerId);
         if(center != null) {
             sessionFactory.getCurrentSession().delete(center);
         }

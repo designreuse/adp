@@ -61,7 +61,7 @@ public class CenterResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response add(@Context final HttpContext requestContext){
+    public Response create(@Context final HttpContext requestContext){
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTCenter center = UnMarshaller.unmarshallJSON(RESTCenter.class, request);

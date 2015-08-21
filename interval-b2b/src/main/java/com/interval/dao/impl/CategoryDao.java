@@ -23,8 +23,14 @@ public class CategoryDao extends BaseDao<Category> {
     }
 
     @Override
-    public void get() {
+    public Category get(final String categoryId) {
+        Category category = null;
+        try{
+            category = (Category)sessionFactory.getCurrentSession().get(Category.class, Integer.parseInt(categoryId));
+        }catch (NumberFormatException exc){
 
+        }
+        return category;
     }
 
     @Override
@@ -38,7 +44,7 @@ public class CategoryDao extends BaseDao<Category> {
 
     @Override
     public void delete(final String categoryId) {
-        final Category category = (Category)sessionFactory.getCurrentSession().get(Category.class, Integer.parseInt(categoryId));
+        final Category category = get(categoryId);
         if(category != null) {
             sessionFactory.getCurrentSession().delete(category);
         }

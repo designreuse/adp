@@ -11,7 +11,7 @@ public interface Dao<T> {
 
     public void update(T t);
 
-    public void get();
+    public T get(final String id);
 
     public List<T> getAll();
 

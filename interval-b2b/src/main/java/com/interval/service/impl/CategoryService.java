@@ -63,8 +63,13 @@ public class CategoryService implements Service<RESTCategory> {
     }
 
     @Override
-    public RESTCategory get() {
-        return null;
+    public RESTCategory get(final String categoryId) {
+        Category category = categoryDao.get(categoryId);
+        RESTCategory restCategory = new RESTCategory();
+        restCategory.setId(category.getId());
+        restCategory.setDescription(category.getDescription());
+        restCategory.setName(category.getName());
+        return restCategory;
     }
 
     @Override

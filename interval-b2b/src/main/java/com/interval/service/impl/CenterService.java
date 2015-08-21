@@ -41,8 +41,8 @@ public class CenterService implements Service<RESTCenter> {
     }
 
     @Override
-    public RESTCenter get() {
-        return null;
+    public RESTCenter get(final String centerId) {
+        return toRESTCenter(centerDao.get(centerId));
     }
 
     @Override

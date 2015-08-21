@@ -34,8 +34,8 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
     }
 
     @Override
-    public RESTOrderStatus get() {
-        return null;
+    public RESTOrderStatus get(final String orderStatusId) {
+        return toRESTOrderStatus(orderStatusDao.get(orderStatusId));
     }
 
     @Override
@@ -49,8 +49,8 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
     }
 
     @Override
-    public void delete(final String orderId) {
-        orderStatusDao.delete(orderId);
+    public void delete(final String orderStatusId) {
+        orderStatusDao.delete(orderStatusId);
     }
 
     private RESTOrderStatus toRESTOrderStatus(OrderStatus orderStatus){

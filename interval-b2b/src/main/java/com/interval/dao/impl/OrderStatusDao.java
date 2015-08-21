@@ -22,8 +22,14 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
     }
 
     @Override
-    public void get() {
+    public OrderStatus get(final String orderStatusId) {
+        OrderStatus orderStatus = null;
+        try{
+            orderStatus = (OrderStatus)sessionFactory.getCurrentSession().get(OrderStatus.class, Integer.parseInt(orderStatusId));
+        }catch (NumberFormatException exc){
 
+        }
+        return orderStatus;
     }
 
     @Override
@@ -36,8 +42,8 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
     }
 
     @Override
-    public void delete(final String orderId) {
-        final OrderStatus orderStatus = (OrderStatus)sessionFactory.getCurrentSession().get(OrderStatus.class, Integer.parseInt(orderId));
+    public void delete(final String orderStatusId) {
+        final OrderStatus orderStatus = get(orderStatusId);
         if(orderStatus != null) {
             sessionFactory.getCurrentSession().delete(orderStatus);
         }
