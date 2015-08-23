@@ -1,6 +1,94 @@
 <div class="table-responsive">
-    <div id="centerGrid" ui-grid="gridOpts" class="grid"></div><br>
-    <a ng-click="editCenter(center.id)" class="btn btn-small btn-primary">edit</a>
-    <a ng-click="deleteCenter(center.id)" class="btn btn-small btn-danger">delete</a>
-    <a ng-click="createNewCenter()" class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
+    <div id="centerGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateCenter">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger">delete</a>
+    <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createCenter">create</a>
+</div>
+
+<!-- Modal -->
+<div id="createCenter" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="clear()">&times;</button>
+                <h4 class="modal-title">Create Center</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" ng-model="newCenter.name" placeholder="Enter Center name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="address">Address:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="address" ng-model="newCenter.address1" placeholder="Enter Center address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="phone">Phone:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone" ng-model="newCenter.phone" placeholder="Enter Center Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" ng-model="newCenter.email" placeholder="Enter Center Email">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="updateCenter" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="clear()">&times;</button>
+                <h4 class="modal-title">Update Center</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="centerName">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="centerName" ng-model="selectedItem.name" placeholder="Enter Center name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="centerAddress">Address:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="centerAddress" ng-model="selectedItem.address1" placeholder="Enter Center Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="centerPhone">Phone:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="centerPhone" ng-model="selectedItem.phone" placeholder="Enter Center Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="centerEmail">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="centerEmail" ng-model="selectedItem.email" placeholder="Enter Center Email">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

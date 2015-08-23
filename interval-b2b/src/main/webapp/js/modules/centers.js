@@ -4,6 +4,7 @@ app.controller('CentersCtrl',
         $scope.newCenter = {};
         $scope.centers = null;
         $scope.gridApi = {};
+        $scope.selectedItem = {};
 
         var columnDef = [
             {name : 'Id', field : 'id'},
@@ -16,8 +17,15 @@ app.controller('CentersCtrl',
         $scope.gridOpts = {
             columnDefs : columnDef,
             data : $scope.centers,
+            enableRowSelection: true,
+            enableSelectAll: false,
+            multiSelect : false,
             onRegisterApi : function (gridApi) {
                 $scope.gridApi = gridApi;
+                gridApi.selection.on.rowSelectionChanged($scope,function(row){
+                    $scope.selectedItem = row.entity;
+                    console.log($scope.selectedItem);
+                });
             }
         };
 
@@ -27,31 +35,45 @@ app.controller('CentersCtrl',
                 $scope.gridOpts.data = $scope.centers;
                 //$scope.gridApi.core.refresh();
                 console.log("centers : ",$scope.centers);
+                $scope.clear();
             });
         }
 
         $scope.create = function(){
             console.log("newCenter : ",$scope.newCenter);
-            centersFactory.save($scope.newCenter);
-            $scope.load();
+            centersFactory.save($scope.newCenter, function(data){
+                $scope.load();
+            });
         }
 
         $scope.update = function(){
-            console.log("updateCenter : ",$scope.newCenter);
-            centersFactory.update($scope.newCenter);
+            console.log("updateCenter : ",$scope.selectedItem);
+            centersFactory.update($scope.selectedItem, function(data){
+                $scope.load();
+            });
+            $scope.load();
+        }
+
+        $scope.delete = function(){
+            console.log("deleteCentre : ",$scope.selectedItem);
+            centersFactory.delete({ id : $scope.selectedItem.id }, function(data){
+                $scope.load();
+            });
             $scope.load();
         }
 
         $scope.clear = function(){
             $scope.newCenter = {};
+            $scope.selectedItem = {};
         }
 
         $scope.load();
+
     }
 );
 
 app.factory("centersFactory", function ($resource) {
-    return $resource('v1/center/', null,
+    return $resource('v1/center/:id', null,
         {
             'update' : {method : 'PUT'}
         });
