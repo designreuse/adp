@@ -35,9 +35,7 @@ public class CenterDao extends BaseDao<Center> {
     public List<Center> getAll() {
         final Criteria criteria = sessionFactory.getCurrentSession()
                 .createCriteria(Center.class);
-        List<Center> centers = criteria.list();
-        System.out.println("centers size : " + centers.size());
-        return centers;
+        return criteria.list();
     }
 
     @Override

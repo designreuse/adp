@@ -7,5 +7,6 @@
     <bean id="centerDao" class="com.interval.dao.impl.CenterDao" />
     <bean id="orderStatusDao" class="com.interval.dao.impl.OrderStatusDao" />
     <bean id="inventoryDao" class="com.interval.dao.impl.InventoryDao" />
+    <bean id="productDao" class="com.interval.dao.impl.ProductDao"/>
 
 </beans>
