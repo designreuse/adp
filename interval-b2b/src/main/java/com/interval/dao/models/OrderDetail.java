@@ -23,6 +23,7 @@ public class OrderDetail implements java.io.Serializable {
 	private Date createdTime;
 	private Date updatedTime;
 	private Double taxTotal;
+	private String seatNo;
 	private Set<Invoice> invoices = new HashSet<Invoice>(0);
 	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
 
@@ -39,7 +40,7 @@ public class OrderDetail implements java.io.Serializable {
 			Double total, Double subTotal, Integer lineItemCount,
 			Double discountTotal, String promoCode, Date createdTime,
 			Date updatedTime, Double taxTotal, Set<Invoice> invoices,
-			Set<OrderItem> orderItems) {
+			Set<OrderItem> orderItems, String seatNo) {
 		this.user = user;
 		this.orderStatus = orderStatus;
 		this.show = show;
@@ -53,6 +54,7 @@ public class OrderDetail implements java.io.Serializable {
 		this.taxTotal = taxTotal;
 		this.invoices = invoices;
 		this.orderItems = orderItems;
+		this.seatNo = seatNo;
 	}
 
 	public Integer getId() {
@@ -167,4 +169,11 @@ public class OrderDetail implements java.io.Serializable {
 		this.orderItems = orderItems;
 	}
 
+	public String getSeatNo() {
+		return seatNo;
+	}
+
+	public void setSeatNo(String seatNo) {
+		this.seatNo = seatNo;
+	}
 }
