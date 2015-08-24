@@ -4,6 +4,7 @@ import com.interval.dao.impl.OrderStatusDao;
 import com.interval.dao.models.OrderStatus;
 import com.interval.rest.models.RESTOrderStatus;
 import com.interval.service.Service;
+import com.interval.transformers.OrderStatusTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -23,27 +24,27 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
 
     @Override
     public RESTOrderStatus create(RESTOrderStatus restOrderStatus) {
-        orderStatusDao.create(toOrderStatus(restOrderStatus));
+        orderStatusDao.create(OrderStatusTransformer.transformOrderStatus(restOrderStatus));
         return null;
     }
 
     @Override
     public RESTOrderStatus update(RESTOrderStatus restOrderStatus) {
-        orderStatusDao.update(toOrderStatus(restOrderStatus));
+        orderStatusDao.update(OrderStatusTransformer.transformOrderStatus(restOrderStatus));
         return restOrderStatus;
     }
 
     @Override
     public RESTOrderStatus get(final String orderStatusId) {
-        return toRESTOrderStatus(orderStatusDao.get(orderStatusId));
+        return OrderStatusTransformer.transformRESTOrderStatus(orderStatusDao.get(orderStatusId));
     }
 
     @Override
     public List<RESTOrderStatus> getAll() {
         List<RESTOrderStatus> restOrderStatusList = new ArrayList<RESTOrderStatus>();
         List<OrderStatus> orderStatusList = orderStatusDao.getAll();
-        for(OrderStatus orderStatus : orderStatusList){
-            restOrderStatusList.add(toRESTOrderStatus(orderStatus));
+        for (OrderStatus orderStatus : orderStatusList) {
+            restOrderStatusList.add(OrderStatusTransformer.transformRESTOrderStatus(orderStatus));
         }
         return restOrderStatusList;
     }
@@ -51,25 +52,5 @@ public class OrderStatusService implements Service<RESTOrderStatus> {
     @Override
     public void delete(final String orderStatusId) {
         orderStatusDao.delete(orderStatusId);
-    }
-
-    private RESTOrderStatus toRESTOrderStatus(OrderStatus orderStatus){
-        RESTOrderStatus restOrderStatus = new RESTOrderStatus();
-        restOrderStatus.setId(orderStatus.getId());
-        restOrderStatus.setName(orderStatus.getName());
-        restOrderStatus.setDescription(orderStatus.getDescription());
-        restOrderStatus.setCreatedTime(orderStatus.getCreatedTime());
-        restOrderStatus.setUpdatedTime(orderStatus.getUpdatedTime());
-        return restOrderStatus;
-    }
-
-    private OrderStatus toOrderStatus(RESTOrderStatus restOrderStatus){
-        OrderStatus orderStatus = new OrderStatus();
-        orderStatus.setId(restOrderStatus.getId());
-        orderStatus.setName(restOrderStatus.getName());
-        orderStatus.setDescription(restOrderStatus.getDescription());
-        orderStatus.setCreatedTime(restOrderStatus.getCreatedTime());
-        orderStatus.setUpdatedTime(restOrderStatus.getUpdatedTime());
-        return orderStatus;
     }
 }

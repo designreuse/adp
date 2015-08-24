@@ -4,12 +4,10 @@ import com.interval.dao.impl.CategoryDao;
 import com.interval.dao.models.Category;
 import com.interval.rest.models.RESTCategory;
 import com.interval.service.Service;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.DefaultMapperFactory;
+import com.interval.transformers.CategoryTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,8 +17,6 @@ public class CategoryService implements Service<RESTCategory> {
 
     private final CategoryDao categoryDao;
 
-    final MapperFactory MAPPER_FACTORY = new DefaultMapperFactory.Builder().build();
-
     @Inject
     public CategoryService(CategoryDao categoryDao) {
         this.categoryDao = categoryDao;
@@ -28,23 +24,13 @@ public class CategoryService implements Service<RESTCategory> {
 
     @Override
     public RESTCategory create(RESTCategory restCategory) {
-        Category category = new Category();
-        category.setName(restCategory.getName());
-        category.setDescription(restCategory.getDescription());
-        category.setCreatedTime(new Date());
-        category.setUpdatedTime(new Date());
-        categoryDao.create(category);
+        categoryDao.create(CategoryTransformer.transformCategory(restCategory));
         return null;
     }
 
     @Override
     public RESTCategory update(RESTCategory restCategory) {
-        Category category = new Category();
-        category.setId(restCategory.getId());
-        category.setDescription(restCategory.getDescription());
-        category.setName(restCategory.getName());
-        category.setUpdatedTime(new Date());
-        categoryDao.update(category);
+        categoryDao.update(CategoryTransformer.transformCategory(restCategory));
         return restCategory;
     }
 
@@ -52,12 +38,8 @@ public class CategoryService implements Service<RESTCategory> {
     public List<RESTCategory> getAll() {
         List<Category> categories = categoryDao.getAll();
         List<RESTCategory> categoryList = new ArrayList<RESTCategory>();
-        for(Category category : categories){
-            RESTCategory restCategory = new RESTCategory();
-            restCategory.setId(category.getId());
-            restCategory.setDescription(category.getDescription());
-            restCategory.setName(category.getName());
-            categoryList.add(restCategory);
+        for (Category category : categories) {
+            categoryList.add(CategoryTransformer.transformRESTCategory(category));
         }
         return categoryList;
     }
@@ -65,11 +47,8 @@ public class CategoryService implements Service<RESTCategory> {
     @Override
     public RESTCategory get(final String categoryId) {
         Category category = categoryDao.get(categoryId);
-        RESTCategory restCategory = new RESTCategory();
-        restCategory.setId(category.getId());
-        restCategory.setDescription(category.getDescription());
-        restCategory.setName(category.getName());
-        return restCategory;
+
+        return CategoryTransformer.transformRESTCategory(category);
     }
 
     @Override
