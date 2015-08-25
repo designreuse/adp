@@ -21,10 +21,12 @@ app.controller('CategoriesCtrl',
             onRegisterApi : function (gridApi) {
                 $scope.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope,function(row){
-                    $scope.selectedItem = row.entity;
                     $scope.disableEdit = row.isSelected;
-                    console.log($scope.selectedItem);
-                    console.log(row.isSelected);
+                    if(row.isSelected){
+                        $scope.selectedItem = row.entity;
+                    }else{
+                        $scope.clearSelectedCategory();
+                    }
                 });
             }
         };
@@ -35,36 +37,34 @@ app.controller('CategoriesCtrl',
                 $scope.gridOpts.data = $scope.categories;
                 //$scope.gridApi.core.refresh();
                 console.log("categories : ",$scope.categories);
-                $scope.clear();
+                $scope.clearSelectedCategory();
+                $scope.clearNewCategory();
             });
         }
 
         $scope.create = function(){
-            console.log("newCategory : ",$scope.newCategory);
             categoriesFactory.save($scope.newCategory, function(data){
                 $scope.load();
             });
-
         }
 
         $scope.update = function(){
-            console.log("updateCategory : ",$scope.selectedItem);
             categoriesFactory.update($scope.selectedItem, function(data){
                 $scope.load();
             });
-            $scope.load();
         }
 
         $scope.delete = function(){
-            console.log("deleteCategory : ",$scope.selectedItem);
             categoriesFactory.delete({ id : $scope.selectedItem.id }, function(data){
                 $scope.load();
             });
-            $scope.load();
         }
 
-        $scope.clear = function(){
+        $scope.clearNewCategory = function(){
             $scope.newCategory = {};
+        }
+
+        $scope.clearSelectedCategory = function(){
             $scope.selectedItem = {};
         }
 

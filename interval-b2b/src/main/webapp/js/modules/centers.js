@@ -23,9 +23,12 @@ app.controller('CentersCtrl',
             onRegisterApi : function (gridApi) {
                 $scope.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope,function(row){
-                    $scope.selectedItem = row.entity;
                     $scope.disableEdit = row.isSelected;
-                    console.log($scope.selectedItem);
+                    if(row.isSelected){
+                        $scope.selectedItem = row.entity;
+                    }else{
+                        $scope.clearSelectedCenter();
+                    }
                 });
             }
         };
@@ -36,7 +39,8 @@ app.controller('CentersCtrl',
                 $scope.gridOpts.data = $scope.centers;
                 //$scope.gridApi.core.refresh();
                 console.log("centers : ",$scope.centers);
-                $scope.clear();
+                $scope.clearSelectedCenter();
+                $scope.clearNewCenter();
             });
         }
 
@@ -52,7 +56,6 @@ app.controller('CentersCtrl',
             centersFactory.update($scope.selectedItem, function(data){
                 $scope.load();
             });
-            $scope.load();
         }
 
         $scope.delete = function(){
@@ -60,11 +63,13 @@ app.controller('CentersCtrl',
             centersFactory.delete({ id : $scope.selectedItem.id }, function(data){
                 $scope.load();
             });
-            $scope.load();
         }
 
-        $scope.clear = function(){
+        $scope.clearNewCenter = function(){
             $scope.newCenter = {};
+        }
+
+        $scope.clearSelectedCenter = function(){
             $scope.selectedItem = {};
         }
 
