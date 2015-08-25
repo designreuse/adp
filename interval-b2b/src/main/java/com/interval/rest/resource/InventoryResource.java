@@ -8,6 +8,7 @@ import com.sun.jersey.spi.resource.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -26,6 +27,11 @@ public class InventoryResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryResource.class);
 
     private Service inventoryService;
+
+    @Inject
+    public InventoryResource(final Service inventoryService) {
+        this.inventoryService = inventoryService;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

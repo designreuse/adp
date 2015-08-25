@@ -6,7 +6,7 @@ package com.interval.rest.models;
 public class RESTOrderItem {
     private int userId;
     private Integer quantity;
-    private int productId;
+    private RESTProduct product;
 
     public int getUserId() {
         return userId;
@@ -24,11 +24,11 @@ public class RESTOrderItem {
         this.quantity = quantity;
     }
 
-    public int getProductId() {
-        return productId;
+    public RESTProduct getProduct() {
+        return product;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct(RESTProduct product) {
+        this.product = product;
     }
 }

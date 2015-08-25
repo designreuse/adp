@@ -12,7 +12,8 @@ public class RESTProduct {
     private byte[] image;
     private Date createdTime;
     private Date updatedTime;
-    private int categoryId;
+    private RESTCategory category;
+    private RESTInventory inventory;
 
     public int getId() {
         return id;
@@ -62,11 +63,19 @@ public class RESTProduct {
         this.updatedTime = updatedTime;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public RESTCategory getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(RESTCategory category) {
+        this.category = category;
+    }
+
+    public RESTInventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(RESTInventory inventory) {
+        this.inventory = inventory;
     }
 }

@@ -8,6 +8,7 @@ public class RESTInventory {
     private Integer availableQuantity;
     private Integer safetyStock;
     private Boolean availability;
+    private RESTProduct product;
 
     public int getId() {
         return id;
@@ -39,5 +40,13 @@ public class RESTInventory {
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
+    }
+
+    public RESTProduct getProduct() {
+        return product;
+    }
+
+    public void setProduct(RESTProduct product) {
+        this.product = product;
     }
 }
