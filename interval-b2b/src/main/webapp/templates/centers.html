@@ -14,29 +14,71 @@
                 <h4 class="modal-title">Create Center</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
+                <form class="form-horizontal" name="createCenterForm"role="form" ng-submit="create()" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" ng-model="newCenter.name" placeholder="Enter Center name">
+                            <input type="text" class="form-control" id="name" ng-model="newCenter.name" placeholder="Enter Center name" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="address">Address:</label>
+                        <label class="control-label col-sm-2" for="address1">Address Line 1:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="address" ng-model="newCenter.address1" placeholder="Enter Center address">
+                            <input type="text" class="form-control" id="address1" ng-model="newCenter.address1" placeholder="Enter Center address Line 1.." required>
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-sm-2" for="address2">Address Line 2:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="address2" ng-model="newCenter.address2" placeholder="Enter Center address Line2.." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="city">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="city" ng-model="newCenter.city" placeholder="Enter city.." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="state">State</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="state" ng-model="newCenter.state" placeholder="Enter state.." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="country">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="country" ng-model="newCenter.country" placeholder="Enter country.." required>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': createCenterForm.phone.$invalid && createCenterForm.phone.$dirty }">
                         <label class="control-label col-sm-2" for="phone">Phone:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="phone" ng-model="newCenter.phone" placeholder="Enter Center Phone">
+                            <input type="number" class="form-control" id="phone" name="phone" ng-model="newCenter.phone" placeholder="Enter Center Phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error': createCenterForm.email.$invalid && createCenterForm.email.$dirty }">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" ng-model="newCenter.email" placeholder="Enter Center Email" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Email:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email" ng-model="newCenter.email" placeholder="Enter Center Email">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">screens</h4>
+                                </div>
+                                <div id="screen" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="col-sm-10" ng-repeat="screen in newCenter.screens">-->
+                                            <input type="text" class="form-control" id="screen.name" ng-model="screen.name" placeholder="Enter screen name"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
