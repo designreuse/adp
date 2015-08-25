@@ -5,7 +5,7 @@ app.controller('CategoriesCtrl',
         $scope.categories = null;
         $scope.gridApi = {};
         $scope.selectedItem = {};
-        $scope.disableEdit;
+        $scope.disableEdit = false;
         var columnDef = [
             {name : 'Id', field : 'id'},
             {name : 'Name', field : 'name'},
