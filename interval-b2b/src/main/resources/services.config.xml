@@ -8,7 +8,7 @@
     <bean id="categoryService" class="com.interval.service.impl.CategoryService" autowire="constructor"/>
     <bean id="centerService" class="com.interval.service.impl.CenterService" autowire="constructor"/>
     <bean id="orderStatusService" class="com.interval.service.impl.OrderStatusService" autowire="constructor" />
-    <bean id="inventoryService" class="com.interval.service.impl.InventoryService"/>
+    <bean id="inventoryService" class="com.interval.service.impl.InventoryService" autowire="constructor"/>
     <bean id="productService" class="com.interval.service.impl.ProductService" autowire="constructor"/>
 
 </beans>

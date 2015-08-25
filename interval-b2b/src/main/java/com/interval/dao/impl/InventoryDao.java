@@ -23,9 +23,9 @@ public class InventoryDao extends BaseDao<Inventory> {
     @Override
     public Inventory get(final String inventoryId) {
         Inventory inventory = null;
-        try{
-            inventory = (Inventory)sessionFactory.getCurrentSession().get(Inventory.class, Integer.parseInt(inventoryId));
-        }catch (NumberFormatException exc){
+        try {
+            inventory = (Inventory) sessionFactory.getCurrentSession().get(Inventory.class, Integer.parseInt(inventoryId));
+        } catch (NumberFormatException exc) {
 
         }
         return inventory;
@@ -36,14 +36,13 @@ public class InventoryDao extends BaseDao<Inventory> {
         final Criteria criteria = sessionFactory.getCurrentSession()
                 .createCriteria(Inventory.class);
         List<Inventory> inventories = criteria.list();
-        System.out.println("inventories size : " + inventories.size());
         return inventories;
     }
 
     @Override
     public void delete(final String inventoryId) {
         final Inventory inventory = get(inventoryId);
-        if(inventory != null) {
+        if (inventory != null) {
             sessionFactory.getCurrentSession().delete(inventory);
         }
     }

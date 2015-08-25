@@ -1,10 +1,13 @@
 package com.interval.service.impl;
 
 import com.interval.dao.impl.InventoryDao;
+import com.interval.dao.models.Inventory;
 import com.interval.rest.models.RESTInventory;
 import com.interval.service.Service;
+import com.interval.transformers.InventoryTransformer;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,26 +24,33 @@ public class InventoryService implements Service<RESTInventory> {
 
     @Override
     public RESTInventory create(RESTInventory restInventory) {
+        inventoryDao.create(InventoryTransformer.transformInventory(restInventory));
         return null;
     }
 
     @Override
     public RESTInventory update(RESTInventory restInventory) {
-        return null;
+        inventoryDao.update(InventoryTransformer.transformInventory(restInventory));
+        return restInventory;
     }
 
     @Override
     public RESTInventory get(final String inventoryId) {
-        return null;
+        return InventoryTransformer.transformRESTInventory(inventoryDao.get(inventoryId));
     }
 
     @Override
     public List<RESTInventory> getAll() {
-        return null;
+        List<RESTInventory> inventoryList = new ArrayList<RESTInventory>();
+        List<Inventory> inventories = inventoryDao.getAll();
+        for (Inventory inventory : inventories) {
+            inventoryList.add(InventoryTransformer.transformRESTInventory(inventory));
+        }
+        return inventoryList;
     }
 
     @Override
     public void delete(final String inventoryId) {
-
+        inventoryDao.delete(inventoryId);
     }
 }
