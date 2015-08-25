@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <div id="categoryGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
-    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateCategory">edit</a>
-    <a ng-click="delete()" class="btn btn-small btn-danger">delete</a>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateCategory" ng-disabled="!disableEdit">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger" ng-disabled="!disableEdit">delete</a>
     <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createCategory">create</a>
 </div>
 

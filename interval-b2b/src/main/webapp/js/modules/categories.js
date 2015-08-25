@@ -5,7 +5,7 @@ app.controller('CategoriesCtrl',
         $scope.categories = null;
         $scope.gridApi = {};
         $scope.selectedItem = {};
-
+        $scope.disableEdit = false;
         var columnDef = [
             {name : 'Id', field : 'id'},
             {name : 'Name', field : 'name'},
@@ -22,7 +22,9 @@ app.controller('CategoriesCtrl',
                 $scope.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope,function(row){
                     $scope.selectedItem = row.entity;
+                    $scope.disableEdit = row.isSelected;
                     console.log($scope.selectedItem);
+                    console.log(row.isSelected);
                 });
             }
         };
