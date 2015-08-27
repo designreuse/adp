@@ -4,19 +4,15 @@
 <!-- Generated Aug 14, 2015 6:24:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.interval.dao.models.OrderItem" table="ORDER_ITEM" schema="PUBLIC" catalog="PUBLIC">
-        <composite-id name="id" class="com.interval.dao.models.OrderItemId">
-            <key-property name="orderId" type="int">
-                <column name="ORDER_ID"/>
-            </key-property>
-            <key-property name="productId" type="int">
-                <column name="PRODUCT_ID"/>
-            </key-property>
-        </composite-id>
-        <many-to-one name="orderDetail" class="com.interval.dao.models.OrderDetail" update="false" insert="false"
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="orderDetail" class="com.interval.dao.models.OrderDetail" update="false"
                      fetch="select">
             <column name="ORDER_ID" not-null="true"/>
         </many-to-one>
-        <many-to-one name="product" class="com.interval.dao.models.Product" update="false" insert="false"
+        <many-to-one name="product" class="com.interval.dao.models.Product" update="false"
                      fetch="select">
             <column name="PRODUCT_ID" not-null="true"/>
         </many-to-one>

@@ -15,6 +15,10 @@ public class RESTOrderDetail {
     private Date createdTime;
     private Date updatedTime;
     private Double taxTotal;
+    private RESTOrderItem orderItem;
+    private Integer showId;
+    private Integer screenId;
+    private Integer orderStatus;
 
     public int getId() {
         return id;
@@ -87,4 +91,36 @@ public class RESTOrderDetail {
     public void setTaxTotal(Double taxTotal) {
         this.taxTotal = taxTotal;
     }
+
+	public RESTOrderItem getOrderItem() {
+		return orderItem;
+	}
+
+	public void setOrderItem(RESTOrderItem orderItem) {
+		this.orderItem = orderItem;
+	}
+
+	public Integer getShowId() {
+		return showId;
+	}
+
+	public void setShowId(Integer showId) {
+		this.showId = showId;
+	}
+
+	public Integer getScreenId() {
+		return screenId;
+	}
+
+	public void setScreenId(Integer screenId) {
+		this.screenId = screenId;
+	}
+
+	public Integer getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 }

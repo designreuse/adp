@@ -7,7 +7,7 @@ package com.interval.dao.models;
  */
 public class OrderItem implements java.io.Serializable {
 
-	private OrderItemId id;
+	private Integer id;
 	private OrderDetail orderDetail;
 	private Product product;
 	private Integer quantity;
@@ -15,25 +15,22 @@ public class OrderItem implements java.io.Serializable {
 	public OrderItem() {
 	}
 
-	public OrderItem(OrderItemId id, OrderDetail orderDetail, Product product) {
-		this.id = id;
+	public OrderItem(OrderDetail orderDetail, Product product) {
 		this.orderDetail = orderDetail;
 		this.product = product;
 	}
 
-	public OrderItem(OrderItemId id, OrderDetail orderDetail, Product product,
-			Integer quantity) {
-		this.id = id;
+	public OrderItem(OrderDetail orderDetail, Product product, Integer quantity) {
 		this.orderDetail = orderDetail;
 		this.product = product;
 		this.quantity = quantity;
 	}
 
-	public OrderItemId getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(OrderItemId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
