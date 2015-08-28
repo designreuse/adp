@@ -1,5 +1,5 @@
 app.controller('CentersCtrl',
-    function ($scope, centersFactory) {
+    function ($scope, centersFactory, $interval) {
         console.log('inside centers controller');
         $scope.newCenter = {};
         $scope.centers = null;
@@ -12,6 +12,11 @@ app.controller('CentersCtrl',
             {name : 'Address', field : 'address1'},
             {name : 'Phone', field : 'phone'},
             {name : 'Email', field : 'email'}
+        ];
+        var screensColumnDef = [
+            {name : 'Id', field : 'id'},
+            {name : 'Name', field : 'name'},
+            {name : 'Shows', cellFilter : 'formatShows:row.entity'}
         ];
 
         $scope.gridOpts = {
@@ -26,9 +31,24 @@ app.controller('CentersCtrl',
                     $scope.disableEdit = row.isSelected;
                     if(row.isSelected){
                         $scope.selectedItem = row.entity;
+                        $scope.editScreensGridOpts.data = $scope.selectedItem.screens;
                     }else{
                         $scope.clearSelectedCenter();
                     }
+                });
+            }
+        };
+
+        $scope.editScreensGridOpts = {
+            columnDefs : screensColumnDef,
+            data : $scope.selectedItem.screens,
+            enableRowSelection: true,
+            enableSelectAll: false,
+            multiSelect : false,
+            onRegisterApi : function (gridApi) {
+                $scope.editScreenGridApi = gridApi;
+                gridApi.selection.on.rowSelectionChanged($scope,function(row){
+
                 });
             }
         };
@@ -65,6 +85,12 @@ app.controller('CentersCtrl',
             });
         }
 
+        $scope.onEdit = function(){
+            $interval( function() {
+                $scope.editScreenGridApi.core.handleWindowResize();
+            }, 10, 500);
+        }
+
         $scope.clearNewCenter = function(){
             $scope.newCenter = {};
         }
@@ -83,4 +109,14 @@ app.factory("centersFactory", function ($resource) {
         {
             'update' : {method : 'PUT'}
         });
+});
+
+app.filter('formatShows', function () {
+    return function (value, row) {
+        var shows = "", index;
+        for	(index = 0; index < row.shows.length; index++) {
+            shows += row.shows[index].time;
+        }
+        return shows;
+    };
 });
