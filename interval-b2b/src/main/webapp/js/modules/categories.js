@@ -39,6 +39,7 @@ app.controller('CategoriesCtrl',
                 console.log("categories : ",$scope.categories);
                 $scope.clearSelectedCategory();
                 $scope.clearNewCategory();
+                $scope.disableEdit = false;
             });
         }
 

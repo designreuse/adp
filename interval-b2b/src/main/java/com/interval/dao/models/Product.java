@@ -12,7 +12,7 @@ import java.util.Set;
 public class Product implements java.io.Serializable {
 
 	private Integer id;
-	private VendorCenter vendorCenter;
+	private Center center;
 	private Category category;
 	private String name;
 	private String description;
@@ -27,16 +27,16 @@ public class Product implements java.io.Serializable {
 	public Product() {
 	}
 
-	public Product(VendorCenter vendorCenter, Category category) {
-		this.vendorCenter = vendorCenter;
+	public Product(Center center, Category category) {
+		this.center = center;
 		this.category = category;
 	}
 
-	public Product(VendorCenter vendorCenter, Category category, String name,
+	public Product(Center center, Category category, String name,
 			String description, byte[] image, Date createdTime,
 			Date updatedTime, Set<InventoryTransaction> inventoryTransactions,
 			Set<OrderItem> orderItems, Set<Inventory> inventories) {
-		this.vendorCenter = vendorCenter;
+		this.center = center;
 		this.category = category;
 		this.name = name;
 		this.description = description;
@@ -56,12 +56,12 @@ public class Product implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public VendorCenter getVendorCenter() {
-		return this.vendorCenter;
+	public Center getCenter() {
+		return this.center;
 	}
 
-	public void setVendorCenter(VendorCenter vendorCenter) {
-		this.vendorCenter = vendorCenter;
+	public void setCenter(Center center) {
+		this.center = center;
 	}
 
 	public Category getCategory() {

@@ -61,6 +61,7 @@ app.controller('CentersCtrl',
                 console.log("centers : ",$scope.centers);
                 $scope.clearSelectedCenter();
                 $scope.clearNewCenter();
+                $scope.disableEdit = false;
             });
         }
 

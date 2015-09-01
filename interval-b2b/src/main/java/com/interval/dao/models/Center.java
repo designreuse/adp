@@ -23,8 +23,9 @@ public class Center implements java.io.Serializable {
 	private String email;
 	private Date createdTime;
 	private Date updatedTime;
-	private Set<VendorCenter> vendorCenters = new HashSet<VendorCenter>(0);
 	private Set<Screen> screens = new HashSet<Screen>(0);
+	private Set<Product> products = new HashSet<Product>(0);
+	private Set<Vendor> vendors = new HashSet<Vendor>(0);
 
 	public Center() {
 	}
@@ -32,7 +33,7 @@ public class Center implements java.io.Serializable {
 	public Center(String name, String address1, String address2, String city,
 			String state, String zip, String country, String phone,
 			String email, Date createdTime, Date updatedTime,
-			Set<VendorCenter> vendorCenters, Set<Screen> screens) {
+			Set<Screen> screens, Set<Product> products, Set<Vendor> vendors) {
 		this.name = name;
 		this.address1 = address1;
 		this.address2 = address2;
@@ -44,8 +45,9 @@ public class Center implements java.io.Serializable {
 		this.email = email;
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
-		this.vendorCenters = vendorCenters;
 		this.screens = screens;
+		this.products = products;
+		this.vendors = vendors;
 	}
 
 	public Integer getId() {
@@ -144,20 +146,28 @@ public class Center implements java.io.Serializable {
 		this.updatedTime = updatedTime;
 	}
 
-	public Set<VendorCenter> getVendorCenters() {
-		return this.vendorCenters;
-	}
-
-	public void setVendorCenters(Set<VendorCenter> vendorCenters) {
-		this.vendorCenters = vendorCenters;
-	}
-
 	public Set<Screen> getScreens() {
 		return this.screens;
 	}
 
 	public void setScreens(Set<Screen> screens) {
 		this.screens = screens;
+	}
+
+	public Set<Product> getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public Set<Vendor> getVendors() {
+		return this.vendors;
+	}
+
+	public void setVendors(Set<Vendor> vendors) {
+		this.vendors = vendors;
 	}
 
 }

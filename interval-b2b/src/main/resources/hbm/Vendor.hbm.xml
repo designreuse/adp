@@ -8,6 +8,9 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
+        <many-to-one name="center" class="com.interval.dao.models.Center" fetch="select">
+            <column name="CENTER_ID" not-null="true" unique="true" />
+        </many-to-one>
         <property name="name" type="string">
             <column name="NAME" length="60" />
         </property>
@@ -41,12 +44,5 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" />
         </property>
-        <set name="vendorCenters" table="VENDOR_CENTER" inverse="true" lazy="false"
-             cascade="save-update,delete">
-            <key>
-                <column name="VENDOR_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.interval.dao.models.VendorCenter" />
-        </set>
     </class>
 </hibernate-mapping>

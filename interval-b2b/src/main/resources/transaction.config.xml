@@ -55,7 +55,6 @@
                 <value>/hbm/TransactionType.hbm.xml</value>
                 <value>/hbm/User.hbm.xml</value>
                 <value>/hbm/Vendor.hbm.xml</value>
-                <value>/hbm/VendorCenter.hbm.xml</value>
                 <value>/hbm/Screen.hbm.xml</value>
                 <value>/hbm/Show.hbm.xml</value>
                 <value>/hbm/Role.hbm.xml</value>
