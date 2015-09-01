@@ -61,6 +61,11 @@ app.controller('NavCtrl',
             $location.url('/home');
         };
 
+        $scope.loadDashboard = function () {
+            $scope.pageHeader = "Dashboard";
+            $location.url('/dashboard');
+        };
+
         $scope.loadAbout = function () {
             $scope.pageHeader = "About";
             $location.url('/about');
