@@ -1,7 +1,16 @@
 <div class="table-responsive">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" ng-disabled="!disableEdit" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Select an action
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a ng-click="onEdit()" data-toggle="modal" data-target="#updateCenter" ng-disabled="!disableEdit">View/Edit Center Information</a></li>
+            <li><a data-toggle="modal" data-target="#updateScreens" ng-disabled="!disableEdit">View/Edit Screen</a></li>
+            <li><a ng-click="delete()" ng-disabled="!disableEdit">Delete Center</a></li>
+        </ul>
+    </div><br/>
     <div id="centerGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
-    <a ng-click="onEdit()" class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateCenter" ng-disabled="!disableEdit">edit</a>
-    <a ng-click="delete()" class="btn btn-small btn-danger" ng-disabled="!disableEdit">delete</a>
     <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createCenter">create</a>
 </div>
 
@@ -132,7 +141,11 @@
                             </div>
                             <div id="editScreensPnBdy" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div id="editScreensGrid" ui-grid-selection ui-grid="editScreensGridOpts" class="grid"></div><br>
+                                    <div class="list-group" width="50%">
+                                        <a class="list-group-item" ng-repeat="screen in selectedItem.screens">
+                                            {{screen.name}}
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
                                     <button type="button" class="btn btn-default" ng-click="addScreen()" >Add Screen</button>
@@ -149,3 +162,55 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="updateScreens" class="modal" role="dialog" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Screens</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
+                    <div class="form-group" ng-repeat="screen in selectedItem.screens">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="screen.name" size="60">
+                            <div ng-repeat="show in screen.shows">
+                                <timepicker></timepicker>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#editScreensPnBdy">Screens</a>
+                                </h4>
+                            </div>
+                            <div id="editScreensPnBdy" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="list-group" width="50%">
+                                        <a class="list-group-item" ng-repeat="screen in selectedItem.screens">
+                                            {{screen.name}}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" class="btn btn-default" ng-click="addScreen()" >Add Screen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

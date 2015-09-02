@@ -11,7 +11,8 @@ app.controller('CentersCtrl',
             {name : 'Name', field : 'name'},
             {name : 'Address', field : 'address1'},
             {name : 'Phone', field : 'phone'},
-            {name : 'Email', field : 'email'}
+            {name : 'Email', field : 'email'},
+            {name : 'Screens', cellFilter : 'formatScreens:row.entity', cellTemplate : "<span class='ui-grid-cell-contents' ng-repeat='screen in row.entity.screens'>{{screen.name}}</span>"}
         ];
         var screensColumnDef = [
             {name : 'Id', field : 'id'},
@@ -54,7 +55,8 @@ app.controller('CentersCtrl',
         };
 
         $scope.addScreen = function(){
-            $scope.editScreensGridOpts.data.push($scope.clearNewCenter);
+            //$scope.editScreensGridOpts.data.push($scope.clearNewCenter);
+            $scope.selectedItem.screens.push({});
         };
 
         $scope.load = function(){
@@ -84,16 +86,16 @@ app.controller('CentersCtrl',
         }
 
         $scope.delete = function(){
-            console.log("deleteCentre : ",$scope.selectedItem);
+            console.log("deleteCenter : ",$scope.selectedItem);
             centersFactory.delete({ id : $scope.selectedItem.id }, function(data){
                 $scope.load();
             });
         }
 
         $scope.onEdit = function(){
-            $interval( function() {
+            /*$interval( function() {
                 $scope.editScreenGridApi.core.handleWindowResize();
-            }, 10, 500);
+            }, 10, 500);*/
         }
 
         $scope.clearNewCenter = function(){
@@ -120,8 +122,18 @@ app.filter('formatShows', function () {
     return function (value, row) {
         var shows = "", index;
         for	(index = 0; index < row.shows.length; index++) {
-            shows += row.shows[index].time;
+            shows += "," + row.shows[index].time;
         }
         return shows;
+    };
+});
+
+app.filter('formatScreens', function () {
+    return function (value, row) {
+        var screens = "", index;
+        for	(index = 0; index < row.screens.length; index++) {
+            screens += row.screens[index].name + (row.screens[index].shows.length);
+        }
+        return screens;
     };
 });
