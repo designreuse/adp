@@ -25,7 +25,6 @@ public class DashboardResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DashboardResource.class);
 
-    @Inject
     public DashboardResource() {
 
     }

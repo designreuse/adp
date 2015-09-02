@@ -6,7 +6,7 @@
     <class name="com.interval.dao.models.OrderStatus" table="ORDER_STATUS" schema="PUBLIC" catalog="PUBLIC">
         <id name="id" type="java.lang.Integer">
             <column name="ID"/>
-            <generator class="identity"/>
+            <generator class="assigned"/>
         </id>
         <property name="name" type="string">
             <column name="NAME" length="60"/>
