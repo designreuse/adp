@@ -53,6 +53,10 @@ app.controller('CentersCtrl',
             }
         };
 
+        $scope.addScreen = function(){
+            $scope.editScreensGridOpts.data.push($scope.clearNewCenter);
+        };
+
         $scope.load = function(){
             centersFactory.query(function(data){
                 $scope.centers = data;
