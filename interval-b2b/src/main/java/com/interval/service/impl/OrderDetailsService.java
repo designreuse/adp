@@ -107,6 +107,16 @@ public class OrderDetailsService implements Service<RESTOrderDetail> {
 		orderItemSet.add(orderItem);
 		return orderItemSet;
 	}
+
+	public RESTOrderDetail getByCenter(final String centerId){
+		OrderDetail orderDetail = orderDetailDao.getByCenter(centerId);
+		return null;
+	}
+
+	public RESTOrderDetail getByUser(final String userId){
+		OrderDetail orderDetail = orderDetailDao.getByUser(userId);
+		return null;
+	}
 	
 
 }

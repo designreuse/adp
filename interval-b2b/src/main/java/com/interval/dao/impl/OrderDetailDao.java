@@ -21,12 +21,9 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 
 	@Override
 	public OrderDetail get(final String orderDetailId) {
-		OrderDetail orderDetail = null;
-		try{
-			orderDetail = (OrderDetail)sessionFactory.getCurrentSession().get(OrderDetail.class, Integer.parseInt(orderDetailId));
-		}catch (NumberFormatException exc){
-
-		}
+		OrderDetail orderDetail;
+		final int id = getId(orderDetailId);
+		orderDetail = (OrderDetail)sessionFactory.getCurrentSession().get(OrderDetail.class, id);
 		return orderDetail;
 	}
 
@@ -35,7 +32,6 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		final Criteria criteria = sessionFactory.getCurrentSession()
 				.createCriteria(OrderDetail.class);
 		List<OrderDetail> orderDetailList = criteria.list();
-		System.out.println("orderDetailList size : " + orderDetailList.size());
 		return orderDetailList;
 	}
 
@@ -45,5 +41,25 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		if(orderDetail != null) {
 			sessionFactory.getCurrentSession().delete(orderDetail);
 		}
+	}
+
+	public OrderDetail getByCenter(final String centerId){
+		List<OrderDetail> orderDetailList = null;
+		final int id = getId(centerId);
+		if(id > 0){
+			final String query = "select * from OrderDetail od where od.show.screen.center.id=" + id;
+			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
+		}
+		return (orderDetailList != null && orderDetailList.size() > 0) ? orderDetailList.get(0) : null;
+	}
+
+	public OrderDetail getByUser(final String userId){
+		List<OrderDetail> orderDetailList = null;
+		final int id = getId(userId);
+		if(id > 0){
+			final String query = "select * from OrderDetail od where od.user.id=" + id;
+			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
+		}
+		return (orderDetailList != null && orderDetailList.size() > 0) ? orderDetailList.get(0) : null;
 	}
 }

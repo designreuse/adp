@@ -24,12 +24,9 @@ public class CategoryDao extends BaseDao<Category> {
 
     @Override
     public Category get(final String categoryId) {
-        Category category = null;
-        try{
-            category = (Category)sessionFactory.getCurrentSession().get(Category.class, Integer.parseInt(categoryId));
-        }catch (NumberFormatException exc){
-
-        }
+        Category category;
+        final int id = getId(categoryId);
+        category = (Category)sessionFactory.getCurrentSession().get(Category.class, id);
         return category;
     }
 

@@ -22,12 +22,9 @@ public class CenterDao extends BaseDao<Center> {
 
     @Override
     public Center get(final String centerId) {
-        Center center = null;
-        try{
-            center = (Center)sessionFactory.getCurrentSession().get(Center.class, Integer.parseInt(centerId));
-        }catch (NumberFormatException exc){
-
-        }
+        Center center;
+        final int id = getId(centerId);
+        center = (Center)sessionFactory.getCurrentSession().get(Center.class, id);
         return center;
     }
 

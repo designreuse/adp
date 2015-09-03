@@ -22,12 +22,9 @@ public class ProductDao extends BaseDao<Product> {
 
     @Override
     public Product get(final String productId) {
-        Product product = null;
-        try {
-            product = (Product) sessionFactory.getCurrentSession().get(Product.class, Integer.parseInt(productId));
-        } catch (NumberFormatException exc) {
-
-        }
+        Product product;
+        final int id = getId(productId);
+        product = (Product) sessionFactory.getCurrentSession().get(Product.class, id);
         return product;
     }
 

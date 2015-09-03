@@ -23,12 +23,9 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
 
     @Override
     public OrderStatus get(final String orderStatusId) {
-        OrderStatus orderStatus = null;
-        try{
-            orderStatus = (OrderStatus)sessionFactory.getCurrentSession().get(OrderStatus.class, Integer.parseInt(orderStatusId));
-        }catch (NumberFormatException exc){
-
-        }
+        OrderStatus orderStatus;
+        final int id = getId(orderStatusId);
+        orderStatus = (OrderStatus)sessionFactory.getCurrentSession().get(OrderStatus.class, id);
         return orderStatus;
     }
 

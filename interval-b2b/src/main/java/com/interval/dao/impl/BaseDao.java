@@ -14,6 +14,16 @@ public class BaseDao<T> implements Dao<T>{
     @Autowired
     protected SessionFactory sessionFactory;
 
+    public int getId(final String key){
+        int id = 0;
+        try{
+           id = Integer.parseInt(key);
+        }catch (NumberFormatException exc){
+
+        }
+        return id;
+    }
+
     @Override
     public void create(T t) {
 

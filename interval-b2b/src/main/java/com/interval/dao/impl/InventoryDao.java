@@ -22,12 +22,9 @@ public class InventoryDao extends BaseDao<Inventory> {
 
     @Override
     public Inventory get(final String inventoryId) {
-        Inventory inventory = null;
-        try {
-            inventory = (Inventory) sessionFactory.getCurrentSession().get(Inventory.class, Integer.parseInt(inventoryId));
-        } catch (NumberFormatException exc) {
-
-        }
+        Inventory inventory;
+        final int id = getId(inventoryId);
+        inventory = (Inventory) sessionFactory.getCurrentSession().get(Inventory.class, id);
         return inventory;
     }
 
