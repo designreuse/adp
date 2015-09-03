@@ -2,6 +2,8 @@ package com.interval.service.impl;
 
 import com.interval.dao.impl.CenterDao;
 import com.interval.dao.models.Center;
+import com.interval.dao.models.Screen;
+import com.interval.dao.models.Show;
 import com.interval.rest.models.RESTCenter;
 import com.interval.service.Service;
 import com.interval.transformers.CenterTransformer;
@@ -30,7 +32,14 @@ public class CenterService implements Service<RESTCenter> {
 
     @Override
     public RESTCenter update(RESTCenter restCenter) {
-        centerDao.update(CenterTransformer.transformCenter(restCenter));
+        Center center = CenterTransformer.transformCenter(restCenter);
+        for(Screen screen : center.getScreens()){
+            for(Show show : screen.getShows()){
+                show.setScreen(screen);
+            }
+            screen.setCenter(center);
+        }
+        centerDao.update(center);
         return restCenter;
     }
 

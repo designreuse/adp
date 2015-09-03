@@ -61,7 +61,7 @@ public class OrderDetailsService implements Service<RESTOrderDetail> {
 		orderDetail.setTotal(restOrderDetail.getTotal());
 		orderDetail.setShow(toShow(restOrderDetail.getShowId(),restOrderDetail.getScreenId()));
 		orderDetail.setOrderStatus(toOrderStatus(restOrderDetail.getOrderStatus()));
-		orderDetail.setUser(toUser(restOrderDetail.getOrderItem().getUserId()));
+		orderDetail.setUser(toUser(0));
 		orderDetail.setOrderItems(toSetOrderItem(restOrderDetail.getOrderItem(),orderDetail));
 		return orderDetail;
 	}

@@ -162,9 +162,12 @@
                             <div id="updateScreensPnBdy" class="panel-collapse">
                                 <div class="panel-body">
                                     <div class="form-group" ng-repeat="screen in selectedItem.screens">
-                                        <div class="col-sm-10">
-                                            <input type="text" ng-model="screen.name" size="60"
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" ng-model="screen.name" size="60"
                                                    ng-click="onEditScreen(screen)">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a ng-click="deleteScreen(screen)" class="btn btn-small btn-danger">delete</a>
                                         </div>
                                     </div>
                                 </div>
@@ -184,8 +187,12 @@
                             <div id="updateShowsPnBdy" class="panel-collapse">
                                 <div class="panel-body">
                                     <div class="form-group" ng-repeat="show in selectedScreen.shows">
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" ng-model="show.time" size="60">
+                                        <div class="col-sm-3">
+                                            <!--<input type="text" class="form-control" ng-model="show.time" size="60">-->
+                                            <timepicker ng-model="show.time" hour-step="1" minute-step="15"></timepicker>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a ng-click="deleteShow(show)" class="btn btn-small btn-danger">delete</a>
                                         </div>
                                     </div>
                                 </div>

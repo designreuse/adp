@@ -94,7 +94,6 @@ public class OrderResource {
             RESTProduct product = new RESTProduct();
             product.setId(10);
             orderItem.setQuantity(5);
-            orderItem.setUserId(0);
             orderItem.setProduct(product);
             orderDetails.setOrderItem(orderItem);
 

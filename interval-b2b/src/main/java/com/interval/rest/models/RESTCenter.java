@@ -18,7 +18,7 @@ public class RESTCenter {
     private String phone;
     private String email;
     private Date createdTime;
-    private String updatedTime;
+    private Date updatedTime;
     private Set<RESTScreen> screens;
 
     public Integer getId() {
@@ -109,11 +109,11 @@ public class RESTCenter {
         this.createdTime = createdTime;
     }
 
-    public String getUpdatedTime() {
+    public Date getUpdatedTime() {
         return updatedTime;
     }
 
-    public void setUpdatedTime(String updatedTime) {
+    public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
 

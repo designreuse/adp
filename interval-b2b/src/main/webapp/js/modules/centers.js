@@ -106,12 +106,20 @@ app.controller('CentersCtrl',
         }
 
         $scope.addScreen = function(){
-            $scope.selectedItem.screens.push({});
+            $scope.selectedItem.screens.push({createdTime : new Date(), updatedTime : new Date()});
         };
 
         $scope.addShow = function(){
-            $scope.selectedScreen.shows.push({});
+            $scope.selectedScreen.shows.push({createdTime : new Date(), updatedTime : new Date()});
         };
+
+        $scope.deleteScreen = function(screen){
+
+        }
+
+        $scope.deleteShow = function(show){
+
+        }
 
         $scope.load();
 
