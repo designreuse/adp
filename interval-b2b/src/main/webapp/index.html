@@ -24,6 +24,7 @@
     <script src="js/app.js"></script>
     <script src="js/modules/centers.js"></script>
     <script src="js/modules/categories.js"></script>
+    <script src="js/modules/orderstatus.js"></script>
 </head>
 
 <body ng-app="app">
@@ -70,6 +71,9 @@
                 </li>
                 <li ng-class="navClass('inventory')">
                     <a href="" ng-click="loadInventory()">Inventory</a>
+                </li>
+                <li ng-class="navClass('orderstatus')">
+                    <a href="" ng-click="loadOrderStatus()">OrderStatus</a>
                 </li>
                 <li ng-class="navClass('sales')">
                     <a href="" ng-click="loadSales()">Sales</a>

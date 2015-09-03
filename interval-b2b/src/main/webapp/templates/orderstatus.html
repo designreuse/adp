@@ -1,0 +1,47 @@
+<div class="table-responsive">
+    <div id="orderStatusGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div>
+    <br>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateStatus"
+       ng-disabled="!disableEdit">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger" ng-disabled="!disableEdit">delete</a>
+    <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createStatus">create</a>
+</div>
+
+<!-- Modal -->
+<div id="createStatus" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        ng-click="clearNewOrderStatus()">&times;</button>
+                <h4 class="modal-title">Create Order Status</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" ng-model="newOrderStatus.name"
+                                   placeholder="Enter Order Status">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="description"
+                                   ng-model="newOrderStatus.description" placeholder="Enter Status description">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewOrderStatus()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

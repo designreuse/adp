@@ -26,6 +26,11 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
                 templateUrl: '/templates/centers.html',
                 controller: 'CentersCtrl'
             });
+        $routeProvider.when('/orderStatus',
+            {
+                templateUrl: '/templates/orderstatus.html',
+                controller: 'OrderStatusCtrl'
+            });
         $routeProvider.when('/dashboard',
             {
                 templateUrl: '/templates/dashboard.html',
@@ -85,6 +90,11 @@ app.controller('NavCtrl',
             $scope.pageHeader = "Centers";
             $location.url('/centers');
         };
+
+        $scope.loadOrderStatus = function () {
+            $scope.pageHeader = "OrderStatus";
+            $location.url('/orderStatus');
+        }
 
     }]);
 
