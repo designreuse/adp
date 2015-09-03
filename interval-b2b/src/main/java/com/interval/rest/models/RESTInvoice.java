@@ -6,17 +6,17 @@ import java.util.Date;
  * Created by USER on 11-08-2015.
  */
 public class RESTInvoice {
-    private int id;
+    private Integer id;
     private int orderId;
     private int userId;
     private Date createdTime;
     private Date updatedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by USER on 11-08-2015.
  */
 public class RESTProduct {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private byte[] image;
@@ -15,11 +15,11 @@ public class RESTProduct {
     private RESTCategory category;
     private RESTInventory inventory;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

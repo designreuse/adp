@@ -7,7 +7,7 @@ import java.util.Set;
  * Created by USER on 11-08-2015.
  */
 public class RESTCenter {
-    private int id;
+    private Integer id;
     private String name;
     private String address1;
     private String address2;
@@ -21,11 +21,11 @@ public class RESTCenter {
     private String updatedTime;
     private Set<RESTScreen> screens;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

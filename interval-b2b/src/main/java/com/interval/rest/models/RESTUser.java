@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by USER on 11-08-2015.
  */
 public class RESTUser {
-    private int id;
+    private Integer id;
     private String email;
     private String phone;
     private String firstName;
@@ -14,11 +14,11 @@ public class RESTUser {
     private Date createdTime;
     private Date updatedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

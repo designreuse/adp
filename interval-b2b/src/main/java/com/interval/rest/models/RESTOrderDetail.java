@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by USER on 11-08-2015.
  */
 public class RESTOrderDetail {
-    private int id;
+    private Integer id;
     private Double total;
     private Double subTotal;
     private Integer lineItemCount;
@@ -20,11 +20,11 @@ public class RESTOrderDetail {
     private Integer screenId;
     private Integer orderStatus;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -92,35 +92,35 @@ public class RESTOrderDetail {
         this.taxTotal = taxTotal;
     }
 
-	public RESTOrderItem getOrderItem() {
-		return orderItem;
-	}
+    public RESTOrderItem getOrderItem() {
+        return orderItem;
+    }
 
-	public void setOrderItem(RESTOrderItem orderItem) {
-		this.orderItem = orderItem;
-	}
+    public void setOrderItem(RESTOrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
 
-	public Integer getShowId() {
-		return showId;
-	}
+    public Integer getShowId() {
+        return showId;
+    }
 
-	public void setShowId(Integer showId) {
-		this.showId = showId;
-	}
+    public void setShowId(Integer showId) {
+        this.showId = showId;
+    }
 
-	public Integer getScreenId() {
-		return screenId;
-	}
+    public Integer getScreenId() {
+        return screenId;
+    }
 
-	public void setScreenId(Integer screenId) {
-		this.screenId = screenId;
-	}
+    public void setScreenId(Integer screenId) {
+        this.screenId = screenId;
+    }
 
-	public Integer getOrderStatus() {
-		return orderStatus;
-	}
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
 
-	public void setOrderStatus(Integer orderStatus) {
-		this.orderStatus = orderStatus;
-	}
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

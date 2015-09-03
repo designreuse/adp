@@ -7,15 +7,31 @@ import com.interval.dao.models.Vendor;
  * Created by USER on 11-08-2015.
  */
 public class RESTVendorCenter {
-    private int id;
+    private Integer id;
     private Center centerByCenterId;
     private Vendor vendorByVendorId;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Center getCenterByCenterId() {
+        return centerByCenterId;
+    }
+
+    public void setCenterByCenterId(Center centerByCenterId) {
+        this.centerByCenterId = centerByCenterId;
+    }
+
+    public Vendor getVendorByVendorId() {
+        return vendorByVendorId;
+    }
+
+    public void setVendorByVendorId(Vendor vendorByVendorId) {
+        this.vendorByVendorId = vendorByVendorId;
     }
 }

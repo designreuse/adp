@@ -7,17 +7,17 @@ import java.util.Set;
  * Created by User on 8/15/2015.
  */
 public class RESTScreen {
-    private int id;
+    private Integer id;
     private String name;
     private Date createdTime;
     private Date updatedTime;
     private Set<RESTShow> shows;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

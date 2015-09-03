@@ -6,16 +6,16 @@ import java.util.Date;
  * Created by User on 8/15/2015.
  */
 public class RESTShow {
-    private int id;
+    private Integer id;
     private Date time;
     private Date createdTime;
     private Date updatedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

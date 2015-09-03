@@ -6,17 +6,18 @@ import java.util.Date;
  * Created by USER on 11-08-2015.
  */
 public class RESTOrderStatus {
-    private int id;
+
+    private Integer id;
     private String name;
     private String description;
     private Date createdTime;
     private Date updatedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

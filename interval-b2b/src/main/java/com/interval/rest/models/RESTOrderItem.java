@@ -4,16 +4,17 @@ package com.interval.rest.models;
  * Created by USER on 11-08-2015.
  */
 public class RESTOrderItem {
-    private int userId;
+
+    private Integer id;
     private Integer quantity;
     private RESTProduct product;
 
-    public int getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getQuantity() {
