@@ -16,17 +16,23 @@ public class Category implements java.io.Serializable {
 	private String description;
 	private Date createdTime;
 	private Date updatedTime;
+	private boolean active;
 	private Set<Product> products = new HashSet<Product>(0);
 
 	public Category() {
 	}
 
+	public Category(boolean active) {
+		this.active = active;
+	}
+
 	public Category(String name, String description, Date createdTime,
-			Date updatedTime, Set<Product> products) {
+			Date updatedTime, boolean active, Set<Product> products) {
 		this.name = name;
 		this.description = description;
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
+		this.active = active;
 		this.products = products;
 	}
 
@@ -68,6 +74,14 @@ public class Category implements java.io.Serializable {
 
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public boolean isActive() {
+		return this.active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public Set<Product> getProducts() {

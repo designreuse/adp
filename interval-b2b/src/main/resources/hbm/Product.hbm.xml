@@ -29,6 +29,9 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26"/>
         </property>
+	    <property name="active" type="boolean">
+            <column name="ACTIVE" not-null="true" />
+        </property>
         <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false"
              cascade="save-update,delete">
             <key>
