@@ -5,6 +5,7 @@ app.controller('CentersCtrl',
         $scope.centers = null;
         $scope.gridApi = {};
         $scope.selectedItem = {};
+        $scope.selectedScreen = {};
         $scope.disableEdit = false;
         var columnDef = [
             {name : 'Id', field : 'id'},
@@ -54,11 +55,6 @@ app.controller('CentersCtrl',
             }
         };
 
-        $scope.addScreen = function(){
-            //$scope.editScreensGridOpts.data.push($scope.clearNewCenter);
-            $scope.selectedItem.screens.push({});
-        };
-
         $scope.load = function(){
             centersFactory.query(function(data){
                 $scope.centers = data;
@@ -92,19 +88,30 @@ app.controller('CentersCtrl',
             });
         }
 
-        $scope.onEdit = function(){
-            /*$interval( function() {
-                $scope.editScreenGridApi.core.handleWindowResize();
-            }, 10, 500);*/
-        }
-
         $scope.clearNewCenter = function(){
             $scope.newCenter = {};
         }
 
         $scope.clearSelectedCenter = function(){
             $scope.selectedItem = {};
+            $scope.selectedScreen = {};
         }
+
+        $scope.onEditScreen = function(screen){
+            console.log(screen);
+            $scope.selectedScreen = screen;
+            if(!$scope.selectedScreen.shows){
+                $scope.selectedScreen.shows = [];
+            }
+        }
+
+        $scope.addScreen = function(){
+            $scope.selectedItem.screens.push({});
+        };
+
+        $scope.addShow = function(){
+            $scope.selectedScreen.shows.push({});
+        };
 
         $scope.load();
 

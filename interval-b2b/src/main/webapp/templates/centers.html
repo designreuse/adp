@@ -132,27 +132,6 @@
                             <input type="text" class="form-control" id="centerEmail" ng-model="selectedItem.email" placeholder="Enter Center Email">
                         </div>
                     </div>
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#editScreensPnBdy">Screens</a>
-                                </h4>
-                            </div>
-                            <div id="editScreensPnBdy" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="list-group" width="50%">
-                                        <a class="list-group-item" ng-repeat="screen in selectedItem.screens">
-                                            {{screen.name}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <button type="button" class="btn btn-default" ng-click="addScreen()" >Add Screen</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -173,28 +152,20 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
-                    <div class="form-group" ng-repeat="screen in selectedItem.screens">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" ng-model="screen.name" size="60">
-                            <div ng-repeat="show in screen.shows">
-                                <timepicker></timepicker>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--div class="panel-group">
+                    <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#editScreensPnBdy">Screens</a>
+                                    <a data-target="#updateScreensPnBdy">Screens</a>
                                 </h4>
                             </div>
-                            <div id="editScreensPnBdy" class="panel-collapse collapse">
+                            <div id="updateScreensPnBdy" class="panel-collapse">
                                 <div class="panel-body">
-                                    <div class="list-group" width="50%">
-                                        <a class="list-group-item" ng-repeat="screen in selectedItem.screens">
-                                            {{screen.name}}
-                                        </a>
+                                    <div class="form-group" ng-repeat="screen in selectedItem.screens">
+                                        <div class="col-sm-10">
+                                            <input type="text" ng-model="screen.name" size="60"
+                                                   ng-click="onEditScreen(screen)">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="panel-footer">
@@ -202,7 +173,28 @@
                                 </div>
                             </div>
                         </div>
-                    </div-->
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-target="#updateShowsPnBdy">Shows</a>
+                                </h4>
+                            </div>
+                            <div id="updateShowsPnBdy" class="panel-collapse">
+                                <div class="panel-body">
+                                    <div class="form-group" ng-repeat="show in selectedScreen.shows">
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" ng-model="show.time" size="60">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" class="btn btn-default" ng-click="addShow()" >Add Show</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
