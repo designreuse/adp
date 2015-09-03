@@ -113,12 +113,12 @@ app.controller('CentersCtrl',
             $scope.selectedScreen.shows.push({createdTime : new Date(), updatedTime : new Date()});
         };
 
-        $scope.deleteScreen = function(screen){
-
+        $scope.deleteScreen = function(index){
+            $scope.selectedItem.screens.splice(index,1);
         }
 
-        $scope.deleteShow = function(show){
-
+        $scope.deleteShow = function(index){
+            $scope.selectedScreen.shows.splice(index,1);
         }
 
         $scope.load();
