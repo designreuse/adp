@@ -31,6 +31,11 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
                 templateUrl: '/templates/orderstatus.html',
                 controller: 'OrderStatusCtrl'
             });
+        $routeProvider.when('/inventory',
+            {
+                templateUrl: '/templates/inventory.html',
+                controller: 'InventoryCtrl'
+            });
         $routeProvider.when('/dashboard',
             {
                 templateUrl: '/templates/dashboard.html',
@@ -94,6 +99,11 @@ app.controller('NavCtrl',
         $scope.loadOrderStatus = function () {
             $scope.pageHeader = "OrderStatus";
             $location.url('/orderStatus');
+        }
+
+        $scope.loadInventory = function () {
+            $scope.pageHeader = "Inventory";
+            $location.url('/inventory');
         }
 
     }]);

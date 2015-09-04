@@ -1,0 +1,106 @@
+<div class="table-responsive">
+    <div id="categoryGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateInventory" ng-disabled="!disableEdit">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger" ng-disabled="!disableEdit">delete</a>
+    <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createInventory">create</a>
+</div>
+
+<!-- Modal -->
+<div id="createInventory" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearNewInventory()">&times;</button>
+                <h4 class="modal-title">Create Inventory</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availability">Product:</label>
+                        <div class="col-sm-6">
+                            <select id="product" class="form-control" ng-model="newInventory.product.id">
+                                <option ng-repeat="category in categories" value="{{category.id}}">
+                                    {{category.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availableQuantity">Available Quantity:</label>
+                        <div class="col-sm-3">
+                            <input type="number" id="availableQuantity" ng-model="newInventory.availableQuantity"
+                                   class="form-control" min="1" max="99">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="safetyStock">Safety Stock:</label>
+                        <div class="col-sm-3">
+                            <input type="number" id="safetyStock" ng-model="newInventory.safetyStock"
+                                   class="form-control" min="1" max="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availability">Availability:</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="form-control" id="availability" ng-model="newInventory.availability">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewInventory()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="updateInventory" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Inventory</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availability">Product:</label>
+                        <div class="col-sm-1">
+                            <select id="updProduct" ng-model="selectedItem.product.id">
+                                <option ng-repeat="category in categories" value="{{category.id}}">
+                                    {{category.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availableQuantity">Available Quantity:</label>
+                        <div class="col-sm-3">
+                            <input type="number" id="updAvailableQuantity" ng-model="selectedItem.availableQuantity"
+                                   class="form-control" min="1" max="99">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="safetyStock">Safety Stock:</label>
+                        <div class="col-sm-3">
+                            <input type="number" id="updSafetyStock" ng-model="selectedItem.safetyStock"
+                                   class="form-control" min="1" max="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="availability">Availability:</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="form-control" id="updAvailability" ng-model="selectedItem.availability">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
