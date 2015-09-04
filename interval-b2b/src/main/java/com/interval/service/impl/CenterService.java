@@ -7,6 +7,7 @@ import com.interval.dao.models.Show;
 import com.interval.rest.models.RESTCenter;
 import com.interval.service.Service;
 import com.interval.transformers.CenterTransformer;
+import org.springframework.util.CollectionUtils;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -40,6 +41,12 @@ public class CenterService implements Service<RESTCenter> {
             screen.setCenter(center);
         }
         centerDao.update(center);
+        if(!CollectionUtils.isEmpty(restCenter.getDeleteShowList())){
+            centerDao.deleteShows(center.getId(), restCenter.getDeleteShowList());
+        }
+        if(!CollectionUtils.isEmpty(restCenter.getDeleteScreenList())){
+            centerDao.deleteScreens(center.getId(), restCenter.getDeleteScreenList());
+        }
         return restCenter;
     }
 

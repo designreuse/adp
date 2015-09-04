@@ -110,14 +110,28 @@ app.controller('CentersCtrl',
         };
 
         $scope.addShow = function(){
-            $scope.selectedScreen.shows.push({createdTime : new Date(), updatedTime : new Date()});
+            $scope.selectedScreen.shows.push({createdTime : new Date(), updatedTime : new Date(), time : new Date()});
         };
 
         $scope.deleteScreen = function(index){
+            if(!$scope.selectedItem.deleteScreenList){
+                $scope.selectedItem.deleteScreenList = [];
+            }
+            var screen = $scope.selectedItem.screens[index];
+            if(screen && screen.id){
+                $scope.selectedItem.deleteScreenList.push(screen.id);
+            }
             $scope.selectedItem.screens.splice(index,1);
         }
 
         $scope.deleteShow = function(index){
+            if(!$scope.selectedItem.deleteShowList){
+                $scope.selectedItem.deleteShowList = [];
+            }
+            var show = $scope.selectedScreen.shows[index];
+            if(show && show.id){
+                $scope.selectedItem.deleteShowList.push(show.id);
+            }
             $scope.selectedScreen.shows.splice(index,1);
         }
 

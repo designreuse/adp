@@ -43,4 +43,20 @@ public class CenterDao extends BaseDao<Center> {
         }
     }
 
+    public void deleteScreens(final int centerId, List<String> screens){
+        StringBuilder showQuery = new StringBuilder("delete from Show where screen_id in (");
+        showQuery.append(screens.toString().replaceAll("\\[", "").replaceAll("\\]", "")).append(")");
+        sessionFactory.getCurrentSession().createQuery(showQuery.toString()).executeUpdate();
+
+        StringBuilder screenQuery = new StringBuilder("delete from Screen where id in (");
+        screenQuery.append(screens.toString().replaceAll("\\[", "").replaceAll("\\]", "")).append(")");
+        sessionFactory.getCurrentSession().createQuery(screenQuery.toString()).executeUpdate();
+    }
+
+    public void deleteShows(final int centerId, List<String> shows){
+        StringBuilder query = new StringBuilder("delete from Show where id in (");
+        query.append(shows.toString().replaceAll("\\[", "").replaceAll("\\]", "")).append(")");
+        sessionFactory.getCurrentSession().createQuery(query.toString()).executeUpdate();
+    }
+
 }

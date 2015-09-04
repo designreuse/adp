@@ -1,5 +1,6 @@
 package com.interval.dao.impl;
 
+import com.interval.common.CommonUtil;
 import com.interval.dao.Dao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,7 @@ public class BaseDao<T> implements Dao<T>{
     protected SessionFactory sessionFactory;
 
     public int getId(final String key){
-        int id = 0;
-        try{
-           id = Integer.parseInt(key);
-        }catch (NumberFormatException exc){
-
-        }
-        return id;
+        return CommonUtil.convertToInt(key);
     }
 
     @Override

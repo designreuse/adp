@@ -1,6 +1,7 @@
 package com.interval.rest.models;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +21,8 @@ public class RESTCenter {
     private Date createdTime;
     private Date updatedTime;
     private Set<RESTScreen> screens;
+    private List<String> deleteScreenList;
+    private List<String> deleteShowList;
 
     public Integer getId() {
         return id;
@@ -123,5 +126,21 @@ public class RESTCenter {
 
     public void setScreens(Set<RESTScreen> screens) {
         this.screens = screens;
+    }
+
+    public List<String> getDeleteScreenList() {
+        return deleteScreenList;
+    }
+
+    public void setDeleteScreenList(List<String> deleteScreenList) {
+        this.deleteScreenList = deleteScreenList;
+    }
+
+    public List<String> getDeleteShowList() {
+        return deleteShowList;
+    }
+
+    public void setDeleteShowList(List<String> deleteShowList) {
+        this.deleteShowList = deleteShowList;
     }
 }
