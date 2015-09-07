@@ -1,0 +1,57 @@
+<div class="table-responsive">
+    <div id="categoryGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div>
+    <br>
+    <a class="btn btn-small btn-primary" data-toggle="modal" data-target="#updateProduct" ng-disabled="!disableEdit">edit</a>
+    <a ng-click="delete()" class="btn btn-small btn-danger" ng-disabled="!disableEdit">delete</a>
+    <a class="btn btn-small btn-info" data-toggle="modal" data-target="#createProduct">create</a>
+</div>
+
+<!-- Modal -->
+<div id="createProduct" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearNewProduct()">&times;</button>
+                <h4 class="modal-title">Create Product</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Category:</label>
+
+                        <div class="col-sm-6">
+                            <select id="product" class="form-control" ng-model="newProduct.category.id">
+                                <option ng-repeat="category in categories" value="{{category.id}}">
+                                    {{category.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Description:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name"
+                                   ng-model="newProduct.name" placeholder="Enter Status description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="description"
+                                   ng-model="newProduct.description" placeholder="Enter Status description">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewProduct()">Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
