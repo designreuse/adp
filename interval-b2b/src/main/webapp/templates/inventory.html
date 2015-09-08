@@ -19,8 +19,8 @@
                         <label class="control-label col-sm-2" for="availability">Product:</label>
                         <div class="col-sm-6">
                             <select id="product" class="form-control" ng-model="newInventory.product.id">
-                                <option ng-repeat="category in categories" value="{{category.id}}">
-                                    {{category.name}}
+                                <option ng-repeat="product in products" value="{{product.id}}">
+                                    {{product.name}}
                                 </option>
                             </select>
                         </div>
@@ -69,8 +69,8 @@
                         <label class="control-label col-sm-2" for="availability">Product:</label>
                         <div class="col-sm-1">
                             <select id="updProduct" ng-model="selectedItem.product.id">
-                                <option ng-repeat="category in categories" value="{{category.id}}">
-                                    {{category.name}}
+                                <option ng-repeat="product in products" value="{{product.id}}">
+                                    {{product.name}}
                                 </option>
                             </select>
                         </div>

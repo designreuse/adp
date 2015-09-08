@@ -1,9 +1,10 @@
 app.controller('InventoryCtrl',
-    function ($scope, inventoryFactory, categoriesFactory) {
+    function ($scope, inventoryFactory, categoriesFactory, productFactory) {
         console.log('inside inventory controller');
         $scope.newInventory = {};
         $scope.inventories = null;
         $scope.categories = null;
+        $scope.products = null;
         $scope.gridApi = {};
         $scope.selectedItem = {};
         $scope.disableEdit = false;
@@ -78,8 +79,15 @@ app.controller('InventoryCtrl',
             });
         }
 
+        $scope.loadProducts = function(){
+            productFactory.query(function(data){
+                $scope.products = data;
+            });
+        }
+
         $scope.load();
         $scope.loadCategories();
+        $scope.loadProducts();
     }
 );
 
