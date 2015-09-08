@@ -20,6 +20,7 @@ public class Product implements java.io.Serializable {
 	private Date createdTime;
 	private Date updatedTime;
 	private boolean active;
+	private double price;
 	private Set<InventoryTransaction> inventoryTransactions = new HashSet<InventoryTransaction>(
 			0);
 	private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
@@ -28,17 +29,19 @@ public class Product implements java.io.Serializable {
 	public Product() {
 	}
 
-	public Product(Center center, Category category, boolean active) {
+	public Product(Center center, Category category, boolean active,
+			double price) {
 		this.center = center;
 		this.category = category;
 		this.active = active;
+		this.price = price;
 	}
 
 	public Product(Center center, Category category, String name,
 			String description, byte[] image, Date createdTime,
-			Date updatedTime, boolean active,
+			Date updatedTime, boolean active, double price,
 			Set<InventoryTransaction> inventoryTransactions,
-			Set<OrderItem> orderItems, Set<Inventory> inventories) {
+			Set<Inventory> inventories, Set<OrderItem> orderItems) {
 		this.center = center;
 		this.category = category;
 		this.name = name;
@@ -47,6 +50,7 @@ public class Product implements java.io.Serializable {
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
 		this.active = active;
+		this.price = price;
 		this.inventoryTransactions = inventoryTransactions;
 		this.orderItems = orderItems;
 		this.inventories = inventories;
@@ -122,6 +126,14 @@ public class Product implements java.io.Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public Set<InventoryTransaction> getInventoryTransactions() {

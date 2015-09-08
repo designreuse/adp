@@ -32,6 +32,9 @@
 	    <property name="active" type="boolean">
             <column name="ACTIVE" not-null="true" />
         </property>
+	<property name="price" type="double">
+            <column name="PRICE" precision="64" scale="0" not-null="true" />
+        </property>
         <set name="inventoryTransactions" table="INVENTORY_TRANSACTION" inverse="true" lazy="false"
              cascade="save-update,delete">
             <key>
