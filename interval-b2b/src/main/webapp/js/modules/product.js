@@ -1,5 +1,5 @@
 app.controller('ProductCtrl',
-    function ($scope, productFactory, categoriesFactory) {
+    function ($scope, productFactory, categoriesFactory, centersFactory) {
         console.log('inside product controller');
         $scope.newProduct = {};
         $scope.products = null;
@@ -76,8 +76,15 @@ app.controller('ProductCtrl',
             });
         }
 
+        $scope.loadCenters = function () {
+            centersFactory.query(function (data) {
+                $scope.centers = data;
+            });
+        }
+
         $scope.load();
         $scope.loadCategories();
+        $scope.loadCenters();
     }
 );
 
