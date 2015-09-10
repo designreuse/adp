@@ -23,61 +23,127 @@
                 <h4 class="modal-title">Create Center</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" name="createCenterForm"role="form" ng-submit="create()" novalidate>
+                <form angular-validator-submit=create() class="form-horizontal" name="createCenterForm"  novalidate angular-validator>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" ng-model="newCenter.name" placeholder="Enter Center name" required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   ng-model="newCenter.name"
+                                   placeholder="Enter Center name"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="address1">Address Line 1:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="address1" ng-model="newCenter.address1" placeholder="Enter Center address Line 1.." required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="address1"
+                                   name="address1"
+                                   ng-model="newCenter.address1"
+                                   placeholder="Enter Center address Line 1.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="address2">Address Line 2:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="address2" ng-model="newCenter.address2" placeholder="Enter Center address Line2.." required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="address2"
+                                   ng-model="newCenter.address2"
+                                   placeholder="Enter Center address Line2..">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="city">City</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="city" ng-model="newCenter.city" placeholder="Enter city.." required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="city"
+                                   name="city"
+                                   ng-model="newCenter.city"
+                                   placeholder="Enter city.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="state">State</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="state" ng-model="newCenter.state" placeholder="Enter state.." required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="state"
+                                   name="state"
+                                   ng-model="newCenter.state"
+                                   placeholder="Enter state.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="country">Country</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="country" ng-model="newCenter.country" placeholder="Enter country.." required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="country"
+                                   name="country"
+                                   ng-model="newCenter.country"
+                                   placeholder="Enter country.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error': createCenterForm.phone.$invalid && createCenterForm.phone.$dirty }">
+                    <div class="form-group">
                         <label class="control-label col-sm-2" for="phone">Phone:</label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="phone" name="phone" ng-model="newCenter.phone" placeholder="Enter Center Phone" required>
+                            <input type="tel"
+                                   class="form-control"
+                                   id="phone"
+                                   name="phone"
+                                   ng-model="newCenter.phone"
+                                   placeholder="Enter Center Phone"
+                                   ng-pattern="/^\d{10}$/"
+                                   required-message="'Required Field'"
+                                   invalid-message="'Please enter a valid phone number'"
+                                   required>
                         </div>
                     </div>
 
-                    <div class="form-group" ng-class="{ 'has-error': createCenterForm.email.$invalid && createCenterForm.email.$dirty }">
+                    <div class="form-group">
                         <label class="control-label col-sm-2" for="email">Email:</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" ng-model="newCenter.email" placeholder="Enter Center Email" required>
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   ng-model="newCenter.email"
+                                   placeholder="Enter Center Email"
+                                   ng-pattern="/^[^@]+@[^@]+\.[^@]+$/"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   invalid-message="'Please enter a valid email'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="create()" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
+
             </div>
         </div>
     </div>
