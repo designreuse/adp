@@ -143,4 +143,5 @@ public class RESTCenter {
     public void setDeleteShowList(List<String> deleteShowList) {
         this.deleteShowList = deleteShowList;
     }
+
 }
