@@ -18,6 +18,7 @@ public class RESTVendor {
     private String email;
     private Date createdTime;
     private Date updatedTime;
+    private RESTCenter center;
 
     public Integer getId() {
         return id;
@@ -113,5 +114,13 @@ public class RESTVendor {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public RESTCenter getCenter() {
+        return center;
+    }
+
+    public void setCenter(RESTCenter center) {
+        this.center = center;
     }
 }
