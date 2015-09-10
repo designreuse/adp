@@ -23,7 +23,7 @@
                 <h4 class="modal-title">Create Center</h4>
             </div>
             <div class="modal-body">
-                <form angular-validator-submit=create() class="form-horizontal" name="createCenterForm"  novalidate angular-validator>
+                <form angular-validator-submit="create()" class="form-horizontal" name="createCenterForm"  novalidate angular-validator>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Name:</label>
                         <div class="col-sm-10">
@@ -58,6 +58,7 @@
                             <input type="text"
                                    class="form-control"
                                    id="address2"
+                                   name="address2"
                                    ng-model="newCenter.address2"
                                    placeholder="Enter Center address Line2..">
                         </div>
@@ -138,7 +139,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="createCenterForm.$invalid">Save</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
                         </div>
                     </div>
