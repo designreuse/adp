@@ -21,7 +21,6 @@ public class RESTCenter {
     private Date createdTime;
     private Date updatedTime;
     private Set<RESTScreen> screens;
-    private Set<RESTVendor> vendors;
     private List<String> deleteScreenList;
     private List<String> deleteShowList;
 
@@ -145,11 +144,4 @@ public class RESTCenter {
         this.deleteShowList = deleteShowList;
     }
 
-    public Set<RESTVendor> getVendors() {
-        return vendors;
-    }
-
-    public void setVendors(Set<RESTVendor> vendors) {
-        this.vendors = vendors;
-    }
 }
