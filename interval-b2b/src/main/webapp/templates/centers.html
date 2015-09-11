@@ -16,17 +16,17 @@
 
 <!-- Modal -->
 <div id="createCenter" class="modal" role="dialog" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" ng-click="clearNewCenter()">&times;</button>
                 <h4 class="modal-title">Create Center</h4>
             </div>
             <div class="modal-body">
-                <form angular-validator-submit=create() class="form-horizontal" name="createCenterForm"  novalidate angular-validator>
-                    <div class="form-group">
+                <form angular-validator-submit=create() class="form-horizontal" name="createCenterForm"  angular-validator>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="name">Name:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="name"
@@ -38,9 +38,9 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="address1">Address Line 1:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="address1"
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="address2">Address Line 2:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="address2"
@@ -62,9 +62,9 @@
                                    placeholder="Enter Center address Line2..">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="city">City</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="city"
@@ -76,9 +76,9 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="state">State</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="state"
@@ -90,9 +90,9 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="country">Country</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="text"
                                    class="form-control"
                                    id="country"
@@ -104,9 +104,9 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="phone">Phone:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="tel"
                                    class="form-control"
                                    id="phone"
@@ -114,15 +114,16 @@
                                    ng-model="newCenter.phone"
                                    placeholder="Enter Center Phone"
                                    ng-pattern="/^\d{10}$/"
+                                   validate-on="dirty"
                                    required-message="'Required Field'"
                                    invalid-message="'Please enter a valid phone number'"
                                    required>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="email">Email:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <input type="email"
                                    class="form-control"
                                    id="email"
@@ -138,7 +139,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">Save</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
                         </div>
                     </div>
@@ -151,43 +152,135 @@
 
 <!-- Modal -->
 <div id="updateCenter" class="modal" role="dialog" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Update Center</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
-                    <div class="form-group">
+                <form class="form-horizontal" name="updateCenterForm" role="form" ng-submit="update()" novalidate angular-validator>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="centerName">Name:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="centerName" ng-model="selectedItem.name" placeholder="Enter Center name">
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerName"
+                                   name="centerName"
+                                   ng-model="newCenter.name"
+                                   placeholder="Enter Center name"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-2" for="centerAddress1">Address Line 1:</label>
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerAddress1"
+                                   name="centerAddress1"
+                                   ng-model="newCenter.address1"
+                                   placeholder="Enter Center address Line 1.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="centerAddress">Address:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="centerAddress" ng-model="selectedItem.address1" placeholder="Enter Center Address">
+                        <label class="control-label col-sm-2" for="centerAddress2">Address Line 2:</label>
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerAddress2"
+                                   name="centerAddress2"
+                                   ng-model="newCenter.address2"
+                                   placeholder="Enter Center address Line2..">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-2" for="centerCity">City</label>
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerCity"
+                                   name="centerCity"
+                                   ng-model="newCenter.city"
+                                   placeholder="Enter city.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-2" for="centerState">State</label>
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerState"
+                                   name="centerState"
+                                   ng-model="newCenter.state"
+                                   placeholder="Enter state.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-2" for="centerCountry">Country</label>
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   id="centerCountry"
+                                   name="centerCountry"
+                                   ng-model="newCenter.country"
+                                   placeholder="Enter country.."
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="centerPhone">Phone:</label>
-                        <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="centerPhone" ng-model="selectedItem.phone" placeholder="Enter Center Phone">
+                        <div class="col-sm-8">
+                            <input type="tel"
+                                   class="form-control"
+                                   id="centerPhone"
+                                   name="centerPhone"
+                                   ng-model="newCenter.phone"
+                                   placeholder="Enter Center Phone"
+                                   ng-pattern="/^\d{10}$/"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   invalid-message="'Please enter a valid phone number'"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-2" for="centerEmail">Email:</label>
+                        <div class="col-sm-8">
+                            <input type="email"
+                                   class="form-control"
+                                   id="centerEmail"
+                                   name="centerEmail"
+                                   ng-model="newCenter.email"
+                                   placeholder="Enter Center Email"
+                                   ng-pattern="/^[^@]+@[^@]+\.[^@]+$/"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   invalid-message="'Please enter a valid email'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="centerEmail">Email:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="centerEmail" ng-model="selectedItem.email" placeholder="Enter Center Email">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -212,17 +305,15 @@
                             </div>
                             <div id="updateScreensPnBdy" class="panel-collapse">
                                 <div class="panel-body">
-                                    <ul>
-                                        <li class="form-group" ng-repeat="screen in selectedItem.screens" id="screen{{screen.id}}">
-                                            <div class="col-sm-3">
-                                                <input type="text" class="form-control" ng-model="screen.name" size="60"
-                                                       ng-click="onEditScreen(screen)">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <a ng-click="deleteScreen($index)" class="btn btn-small btn-danger">delete</a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <div class="form-group col-xs-4" ng-repeat="screen in selectedItem.screens" id="screen{{screen.id}}">
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" ng-model="screen.name" size="60"
+                                                   ng-click="onEditScreen(screen)">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <a ng-click="deleteScreen($index)" class="glyphicon glyphicon-remove red"></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
                                     <button type="button" class="btn btn-default" ng-click="addScreen()" >Add Screen</button>
@@ -239,16 +330,14 @@
                             </div>
                             <div id="updateShowsPnBdy" class="panel-collapse">
                                 <div class="panel-body">
-                                    <ul>
-                                        <li class="col-xs-5" ng-repeat="show in selectedScreen.shows" id="show{{show.id}}">
-                                            <div class="col-sm-7">
-                                                <timepicker ng-model="show.time" hour-step="1" minute-step="15"></timepicker>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <a ng-click="deleteShow($index)" class="btn btn-small btn-danger">delete</a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <div class="col-xs-4" ng-repeat="show in selectedScreen.shows" id="show{{show.id}}">
+                                        <div class="col-sm-9">
+                                            <timepicker ng-model="show.time" hour-step="1" minute-step="15"></timepicker>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a ng-click="deleteShow($index)" class="glyphicon glyphicon-remove red"></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
                                     <button type="button" class="btn btn-default" ng-click="addShow()" >Add Show</button>
