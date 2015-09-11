@@ -102,7 +102,7 @@ app.controller('NavCtrl',
         };
 
         $scope.loadOrderStatus = function () {
-            $scope.pageHeader = "OrderStatus";
+            $scope.pageHeader = "Order Status";
             $location.url('/orderStatus');
         }
 
