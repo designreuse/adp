@@ -14,6 +14,7 @@ public class RESTProduct {
     private Date updatedTime;
     private RESTCategory category;
     private RESTInventory inventory;
+    private RESTCenter center;
 
     public Integer getId() {
         return id;
@@ -77,5 +78,13 @@ public class RESTProduct {
 
     public void setInventory(RESTInventory inventory) {
         this.inventory = inventory;
+    }
+
+    public RESTCenter getCenter() {
+        return center;
+    }
+
+    public void setCenter(final RESTCenter center) {
+        this.center = center;
     }
 }
