@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="availability">Product:</label>
+                        <label class="control-label col-sm-2" for="product">Product:</label>
                         <div class="col-sm-6">
                             <select id="product" class="form-control" ng-model="newInventory.product.id">
                                 <option ng-repeat="product in products" value="{{product.id}}">
@@ -66,9 +66,9 @@
             <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="availability">Product:</label>
+                        <label class="control-label col-sm-2" for="updProduct">Product:</label>
                         <div class="col-sm-1">
-                            <select id="updProduct" ng-model="selectedItem.product.id">
+                            <select id="updProduct" ng-model="selectedItem.product.id" convert-to-number>
                                 <option ng-repeat="product in products" value="{{product.id}}">
                                     {{product.name}}
                                 </option>
@@ -76,21 +76,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="availableQuantity">Available Quantity:</label>
+                        <label class="control-label col-sm-2" for="updAvailableQuantity">Available Quantity:</label>
                         <div class="col-sm-3">
                             <input type="number" id="updAvailableQuantity" ng-model="selectedItem.availableQuantity"
                                    class="form-control" min="1" max="99">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="safetyStock">Safety Stock:</label>
+                        <label class="control-label col-sm-2" for="updSafetyStock">Safety Stock:</label>
                         <div class="col-sm-3">
                             <input type="number" id="updSafetyStock" ng-model="selectedItem.safetyStock"
                                    class="form-control" min="1" max="10">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="availability">Availability:</label>
+                        <label class="control-label col-sm-2" for="updAvailability">Availability:</label>
                         <div class="col-sm-1">
                             <input type="checkbox" class="form-control" id="updAvailability" ng-model="selectedItem.availability">
                         </div>
