@@ -10,7 +10,8 @@ app.controller('ProductCtrl',
         var columnDef = [
             {name: 'Id', field: 'id'},
             {name: 'Name', field: 'name'},
-            {name: 'Description', field: 'description'}
+            {name: 'Description', field: 'description'},
+            {name: 'Active', field: 'active'}
         ];
 
         $scope.gridOpts = {
