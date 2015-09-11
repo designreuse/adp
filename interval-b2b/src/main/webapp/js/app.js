@@ -1,4 +1,4 @@
-var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selection","ui.bootstrap"])
+var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator"])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
         $routeProvider.when('/home',
