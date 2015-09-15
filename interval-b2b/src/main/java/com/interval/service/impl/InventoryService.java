@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by User on 8/21/2015.
  */
-public class InventoryService implements Service<RESTInventory> {
+public class InventoryService extends BaseService<RESTInventory> {
 
     private final InventoryDao inventoryDao;
 

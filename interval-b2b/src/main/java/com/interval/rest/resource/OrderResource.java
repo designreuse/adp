@@ -48,6 +48,7 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByFilter(@PathParam("id") final String id,
                                       @QueryParam("type") final String type){
+        orderDetailsService.get(id, type);
         return Response.ok().build();
     }
 
@@ -86,13 +87,13 @@ public class OrderResource {
             orderDetails.setSubTotal(50.00);
             orderDetails.setTaxTotal(8.12);
             orderDetails.setTotal(58.12);
-            orderDetails.setShowId(0);
-            orderDetails.setScreenId(0);
-            orderDetails.setOrderStatus(1);
+            orderDetails.setShowId(14);
+            orderDetails.setScreenId(5);
+            orderDetails.setOrderStatus(3);
 
             RESTOrderItem orderItem = new RESTOrderItem();
             RESTProduct product = new RESTProduct();
-            product.setId(10);
+            product.setId(3);
             orderItem.setQuantity(5);
             orderItem.setProduct(product);
             orderDetails.setOrderItem(orderItem);

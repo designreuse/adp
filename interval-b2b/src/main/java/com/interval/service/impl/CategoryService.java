@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by User on 8/12/2015.
  */
-public class CategoryService implements Service<RESTCategory> {
+public class CategoryService extends BaseService<RESTCategory> {
 
     private final CategoryDao categoryDao;
 

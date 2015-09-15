@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by User on 8/15/2015.
  */
-public class OrderStatusService implements Service<RESTOrderStatus> {
+public class OrderStatusService extends BaseService<RESTOrderStatus> {
 
     private final OrderStatusDao orderStatusDao;
 

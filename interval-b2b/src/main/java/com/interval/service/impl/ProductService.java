@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by USER on 24-08-2015.
  */
-public class ProductService implements Service<RESTProduct> {
+public class ProductService extends BaseService<RESTProduct> {
 
     private final ProductDao productDao;
 

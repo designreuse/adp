@@ -168,7 +168,7 @@
                                    class="form-control"
                                    id="centerName"
                                    name="centerName"
-                                   ng-model="newCenter.name"
+                                   ng-model="selectedItem.name"
                                    placeholder="Enter Center name"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -182,7 +182,7 @@
                                    class="form-control"
                                    id="centerAddress1"
                                    name="centerAddress1"
-                                   ng-model="newCenter.address1"
+                                   ng-model="selectedItem.address1"
                                    placeholder="Enter Center address Line 1.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -196,7 +196,7 @@
                                    class="form-control"
                                    id="centerAddress2"
                                    name="centerAddress2"
-                                   ng-model="newCenter.address2"
+                                   ng-model="selectedItem.address2"
                                    placeholder="Enter Center address Line2..">
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                                    class="form-control"
                                    id="centerCity"
                                    name="centerCity"
-                                   ng-model="newCenter.city"
+                                   ng-model="selectedItem.city"
                                    placeholder="Enter city.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -221,7 +221,7 @@
                                    class="form-control"
                                    id="centerState"
                                    name="centerState"
-                                   ng-model="newCenter.state"
+                                   ng-model="selectedItem.state"
                                    placeholder="Enter state.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -235,7 +235,7 @@
                                    class="form-control"
                                    id="centerCountry"
                                    name="centerCountry"
-                                   ng-model="newCenter.country"
+                                   ng-model="selectedItem.country"
                                    placeholder="Enter country.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -249,7 +249,7 @@
                                    class="form-control"
                                    id="centerPhone"
                                    name="centerPhone"
-                                   ng-model="newCenter.phone"
+                                   ng-model="selectedItem.phone"
                                    placeholder="Enter Center Phone"
                                    ng-pattern="/^\d{10}$/"
                                    validate-on="dirty"
@@ -266,7 +266,7 @@
                                    class="form-control"
                                    id="centerEmail"
                                    name="centerEmail"
-                                   ng-model="newCenter.email"
+                                   ng-model="selectedItem.email"
                                    placeholder="Enter Center Email"
                                    ng-pattern="/^[^@]+@[^@]+\.[^@]+$/"
                                    validate-on="dirty"
@@ -326,7 +326,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-group" ng-show="isCheckboxSelected($index)">
+                    <div class="panel-group" ng-show="!isCheckboxSelected($index)">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">

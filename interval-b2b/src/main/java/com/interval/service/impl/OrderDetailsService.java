@@ -12,7 +12,7 @@ import com.interval.rest.models.RESTOrderDetail;
 import com.interval.rest.models.RESTOrderItem;
 import com.interval.service.Service;
 
-public class OrderDetailsService implements Service<RESTOrderDetail> {
+public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 	
 	 private final OrderDetailDao orderDetailDao;
 
@@ -108,15 +108,17 @@ public class OrderDetailsService implements Service<RESTOrderDetail> {
 		return orderItemSet;
 	}
 
-	public RESTOrderDetail getByCenter(final String centerId){
-		OrderDetail orderDetail = orderDetailDao.getByCenter(centerId);
-		return null;
+	@Override
+	public RESTOrderDetail get(String id, String type) {
+		OrderDetail orderDetail;
+		if(type != null){
+			if(type.equalsIgnoreCase("user")){
+				orderDetail = orderDetailDao.getByUser(id);
+			}else if(type.equalsIgnoreCase("center")){
+				orderDetail = orderDetailDao.getByCenter(id);
+			}
+		}
+		return super.get(id, type);
 	}
-
-	public RESTOrderDetail getByUser(final String userId){
-		OrderDetail orderDetail = orderDetailDao.getByUser(userId);
-		return null;
-	}
-	
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by User on 8/14/2015.
  */
-public class CenterService implements Service<RESTCenter> {
+public class CenterService extends BaseService<RESTCenter> {
 
     private final CenterDao centerDao;
 

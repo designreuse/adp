@@ -47,7 +47,7 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		List<OrderDetail> orderDetailList = null;
 		final int id = getId(centerId);
 		if(id > 0){
-			final String query = "select * from OrderDetail od where od.show.screen.center.id=" + id;
+			final String query = "from OrderDetail od where od.show.screen.center.id=" + id;
 			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
 		}
 		return (orderDetailList != null && orderDetailList.size() > 0) ? orderDetailList.get(0) : null;
@@ -57,7 +57,7 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		List<OrderDetail> orderDetailList = null;
 		final int id = getId(userId);
 		if(id > 0){
-			final String query = "select * from OrderDetail od where od.user.id=" + id;
+			final String query = "from OrderDetail od where od.user.id=" + id;
 			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
 		}
 		return (orderDetailList != null && orderDetailList.size() > 0) ? orderDetailList.get(0) : null;
