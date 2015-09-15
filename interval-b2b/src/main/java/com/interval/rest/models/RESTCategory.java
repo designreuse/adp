@@ -1,5 +1,7 @@
 package com.interval.rest.models;
 
+import java.util.Date;
+
 /**
  * Created by USER on 11-08-2015.
  */
@@ -7,6 +9,9 @@ public class RESTCategory {
     private Integer id;
     private String name;
     private String description;
+    private Date createdTime;
+    private Date updatedTime;
+    private boolean active;
 
     public Integer getId() {
         return id;
@@ -30,5 +35,29 @@ public class RESTCategory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

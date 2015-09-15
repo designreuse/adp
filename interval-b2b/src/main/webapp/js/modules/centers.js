@@ -9,17 +9,11 @@ app.controller('CentersCtrl',
         $scope.disableEdit = false;
         $scope.checkboxSelection = '0';
         var columnDef = [
-            {name : 'Id', field : 'id'},
             {name : 'Name', field : 'name'},
             {name : 'Address', field : 'address1'},
             {name : 'Phone', field : 'phone'},
             {name : 'Email', field : 'email'},
             {name : 'Screens', cellFilter : 'formatScreens:row.entity', cellTemplate : "<span class='ui-grid-cell-contents' ng-repeat='screen in row.entity.screens'>{{screen.name}}</span>"}
-        ];
-        var screensColumnDef = [
-            {name : 'Id', field : 'id'},
-            {name : 'Name', field : 'name'},
-            {name : 'Shows', cellFilter : 'formatShows:row.entity'}
         ];
 
         $scope.gridOpts = {
@@ -34,24 +28,9 @@ app.controller('CentersCtrl',
                     $scope.disableEdit = row.isSelected;
                     if(row.isSelected){
                         $scope.selectedItem = row.entity;
-                        $scope.editScreensGridOpts.data = $scope.selectedItem.screens;
                     }else{
                         $scope.clearSelectedCenter();
                     }
-                });
-            }
-        };
-
-        $scope.editScreensGridOpts = {
-            columnDefs : screensColumnDef,
-            data : $scope.selectedItem.screens,
-            enableRowSelection: true,
-            enableSelectAll: false,
-            multiSelect : false,
-            onRegisterApi : function (gridApi) {
-                $scope.editScreenGridApi = gridApi;
-                gridApi.selection.on.rowSelectionChanged($scope,function(row){
-
                 });
             }
         };

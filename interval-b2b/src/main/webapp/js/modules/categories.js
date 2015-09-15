@@ -7,9 +7,9 @@ app.controller('CategoriesCtrl',
         $scope.selectedItem = {};
         $scope.disableEdit = false;
         var columnDef = [
-            {name : 'Id', field : 'id'},
             {name : 'Name', field : 'name'},
-            {name : 'Description', field : 'description'}
+            {name : 'Description', field : 'description'},
+            {name : 'Active', field : 'active', cellFilter : 'formatBoolean:row.entity.active'}
         ];
 
         $scope.gridOpts = {
@@ -80,4 +80,3 @@ app.factory("categoriesFactory", function ($resource) {
             'update': { method:'PUT' }
         });
 })
-

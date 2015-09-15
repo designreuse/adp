@@ -156,3 +156,15 @@ app.directive('convertToNumber', function() {
     };
 });
 
+app.filter('formatBoolean', function () {
+    return function (value, fieldVal) {
+        var value = "";
+        if(fieldVal == true){
+            value = "Yes";
+        }else if(fieldVal == false){
+            value = "No";
+        }
+        return value;
+    };
+});
+

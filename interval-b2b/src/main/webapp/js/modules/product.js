@@ -8,10 +8,9 @@ app.controller('ProductCtrl',
         $scope.selectedItem = {};
         $scope.disableEdit = false;
         var columnDef = [
-            {name: 'Id', field: 'id'},
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'},
-            {name: 'Active', field: 'active'}
+            {name: 'Active', field: 'active', cellFilter : 'formatBoolean:row.entity.active'}
         ];
 
         $scope.gridOpts = {

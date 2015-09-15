@@ -9,7 +9,6 @@ app.controller('InventoryCtrl',
         $scope.selectedItem = {};
         $scope.disableEdit = false;
         var columnDef = [
-            {name : 'Id', field : 'id'},
             {name : 'Product', field : 'product.name'},
             {name : 'Available Quantity', field : 'availableQuantity'},
             {name : 'Safety Stock', field : 'safetyStock'},
