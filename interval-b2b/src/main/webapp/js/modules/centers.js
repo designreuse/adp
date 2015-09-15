@@ -7,6 +7,7 @@ app.controller('CentersCtrl',
         $scope.selectedItem = {};
         $scope.selectedScreen = {};
         $scope.disableEdit = false;
+        $scope.checkboxSelection = '0';
         var columnDef = [
             {name : 'Id', field : 'id'},
             {name : 'Name', field : 'name'},
@@ -97,9 +98,10 @@ app.controller('CentersCtrl',
             $scope.selectedScreen = {};
         }
 
-        $scope.onEditScreen = function(screen){
+        $scope.onEditScreen = function(screen,index){
             console.log(screen);
             $scope.selectedScreen = screen;
+            $scope.checkboxSelection = index;
             if(!$scope.selectedScreen.shows){
                 $scope.selectedScreen.shows = [];
             }
@@ -136,6 +138,12 @@ app.controller('CentersCtrl',
         }
 
         $scope.load();
+
+        $scope.isCheckboxSelected = function(index) {
+            console.log("checkboxSelection : ", $scope.checkboxSelection);
+            console.log("index : ", index);
+            return index === $scope.checkboxSelection;
+        };
 
     }
 );
