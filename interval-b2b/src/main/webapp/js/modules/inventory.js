@@ -12,7 +12,7 @@ app.controller('InventoryCtrl',
             {name : 'Product', field : 'product.name'},
             {name : 'Available Quantity', field : 'availableQuantity'},
             {name : 'Safety Stock', field : 'safetyStock'},
-            {name : 'Availability', field : 'availability'}
+            {name : 'Availability', field : 'availability',cellFilter : 'formatBoolean:row.entity.availability'}
         ];
 
         $scope.gridOpts = {

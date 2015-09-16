@@ -10,6 +10,7 @@ app.controller('ProductCtrl',
         var columnDef = [
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'},
+            {name: 'Price', field: 'price'},
             {name: 'Active', field: 'active', cellFilter : 'formatBoolean:row.entity.active'}
         ];
 

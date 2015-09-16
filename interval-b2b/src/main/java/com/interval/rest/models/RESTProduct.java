@@ -13,6 +13,7 @@ public class RESTProduct {
     private Date createdTime;
     private Date updatedTime;
     private boolean active;
+    private double price;
     private RESTCategory category;
     private RESTInventory inventory;
     private RESTCenter center;
@@ -95,5 +96,13 @@ public class RESTProduct {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
