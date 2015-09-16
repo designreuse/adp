@@ -30,10 +30,9 @@ public class OrderDetail implements java.io.Serializable {
 	public OrderDetail() {
 	}
 
-	public OrderDetail(User user, OrderStatus orderStatus, Show show) {
+	public OrderDetail(User user, OrderStatus orderStatus) {
 		this.user = user;
 		this.orderStatus = orderStatus;
-		this.show = show;
 	}
 
 	public OrderDetail(User user, OrderStatus orderStatus, Show show,
