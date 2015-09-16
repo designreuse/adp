@@ -24,7 +24,7 @@
                 <h4 class="modal-title">Create Center</h4>
             </div>
             <div class="modal-body">
-                <form angular-validator-submit=create() class="form-horizontal" name="createCenterForm"  angular-validator>
+                <form class="form-horizontal" name="createCenterForm"  angular-validator>
                     <div class="form-group required">
                         <label class="control-label col-sm-2" for="name">Name:</label>
                         <div class="col-sm-8">
@@ -138,14 +138,13 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">Save</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
-                        </div>
-                    </div>
                 </form>
-
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
@@ -275,13 +274,13 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">Update</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
