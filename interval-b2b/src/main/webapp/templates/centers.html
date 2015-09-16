@@ -142,8 +142,10 @@
             </div>
             <div class="modal-footer">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">
+                        <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">
+                        <span class="glyphicon glyphicon-remove" style="padding-right: 3px"></span>Cancel</button>
                 </div>
             </div>
         </div>
@@ -159,7 +161,7 @@
                 <h4 class="modal-title">Update Center</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" name="updateCenterForm" role="form" ng-submit="update()" novalidate angular-validator>
+                <form class="form-horizontal" name="updateCenterForm" role="form"  novalidate angular-validator>
                     <div class="form-group required">
                         <label class="control-label col-sm-2" for="centerName">Name:</label>
                         <div class="col-sm-8">
@@ -167,7 +169,7 @@
                                    class="form-control"
                                    id="centerName"
                                    name="centerName"
-                                   ng-model="selectedItem.name"
+                                   ng-model="editItem.name"
                                    placeholder="Enter Center name"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -181,7 +183,7 @@
                                    class="form-control"
                                    id="centerAddress1"
                                    name="centerAddress1"
-                                   ng-model="selectedItem.address1"
+                                   ng-model="editItem.address1"
                                    placeholder="Enter Center address Line 1.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -195,7 +197,7 @@
                                    class="form-control"
                                    id="centerAddress2"
                                    name="centerAddress2"
-                                   ng-model="selectedItem.address2"
+                                   ng-model="editItem.address2"
                                    placeholder="Enter Center address Line2..">
                         </div>
                     </div>
@@ -206,7 +208,7 @@
                                    class="form-control"
                                    id="centerCity"
                                    name="centerCity"
-                                   ng-model="selectedItem.city"
+                                   ng-model="editItem.city"
                                    placeholder="Enter city.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -220,7 +222,7 @@
                                    class="form-control"
                                    id="centerState"
                                    name="centerState"
-                                   ng-model="selectedItem.state"
+                                   ng-model="editItem.state"
                                    placeholder="Enter state.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -234,7 +236,7 @@
                                    class="form-control"
                                    id="centerCountry"
                                    name="centerCountry"
-                                   ng-model="selectedItem.country"
+                                   ng-model="editItem.country"
                                    placeholder="Enter country.."
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -248,7 +250,7 @@
                                    class="form-control"
                                    id="centerPhone"
                                    name="centerPhone"
-                                   ng-model="selectedItem.phone"
+                                   ng-model="editItem.phone"
                                    placeholder="Enter Center Phone"
                                    ng-pattern="/^\d{10}$/"
                                    validate-on="dirty"
@@ -265,7 +267,7 @@
                                    class="form-control"
                                    id="centerEmail"
                                    name="centerEmail"
-                                   ng-model="selectedItem.email"
+                                   ng-model="editItem.email"
                                    placeholder="Enter Center Email"
                                    ng-pattern="/^[^@]+@[^@]+\.[^@]+$/"
                                    validate-on="dirty"
@@ -278,8 +280,9 @@
             </div>
             <div class="modal-footer">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearSelectedItem()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -305,7 +308,7 @@
                             </div>
                             <div id="updateScreensPnBdy" class="panel-collapse">
                                 <div class="panel-body">
-                                    <div class="form-group col-xs-4" ng-repeat="screen in selectedItem.screens" id="screen{{$index}}">
+                                    <div class="form-group col-xs-4" ng-repeat="screen in editItem.screens" id="screen{{$index}}">
                                         <div class="col-sm-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -352,7 +355,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -8,6 +8,7 @@ app.controller('CentersCtrl',
         $scope.selectedScreen = {};
         $scope.disableEdit = false;
         $scope.checkboxSelection = '0';
+        $scope.editItem = {};
         var columnDef = [
             {name : 'Name', field : 'name'},
             {name : 'Address', field : 'address1'},
@@ -27,7 +28,8 @@ app.controller('CentersCtrl',
                 gridApi.selection.on.rowSelectionChanged($scope,function(row){
                     $scope.disableEdit = row.isSelected;
                     if(row.isSelected){
-                        $scope.selectedItem = row.entity;
+                        $scope.selectedItem = (row.entity);
+                        $scope.editItem = angular.copy($scope.selectedItem);
                     }else{
                         $scope.clearSelectedCenter();
                     }
@@ -55,8 +57,8 @@ app.controller('CentersCtrl',
         }
 
         $scope.update = function(){
-            console.log("updateCenter : ",$scope.selectedItem);
-            centersFactory.update($scope.selectedItem, function(data){
+            console.log("updateCenter : ",$scope.editItem);
+            centersFactory.update($scope.editItem, function(data){
                 $scope.load();
             });
         }
@@ -77,6 +79,10 @@ app.controller('CentersCtrl',
             $scope.selectedScreen = {};
         }
 
+        $scope.clearSelectedItem = function(){
+            $scope.editItem = angular.copy($scope.selectedItem);
+        }
+
         $scope.onEditScreen = function(screen,index){
             console.log(screen);
             $scope.selectedScreen = screen;
@@ -87,7 +93,7 @@ app.controller('CentersCtrl',
         }
 
         $scope.addScreen = function(){
-            $scope.selectedItem.screens.push({createdTime : new Date(), updatedTime : new Date()});
+            $scope.editItem.screens.push({createdTime : new Date(), updatedTime : new Date()});
         };
 
         $scope.addShow = function(){
@@ -95,23 +101,23 @@ app.controller('CentersCtrl',
         };
 
         $scope.deleteScreen = function(index){
-            if(!$scope.selectedItem.deleteScreenList){
-                $scope.selectedItem.deleteScreenList = [];
+            if(!$scope.editItem.deleteScreenList){
+                $scope.editItem.deleteScreenList = [];
             }
-            var screen = $scope.selectedItem.screens[index];
+            var screen = $scope.editItem.screens[index];
             if(screen && screen.id){
-                $scope.selectedItem.deleteScreenList.push(screen.id);
+                $scope.editItem.deleteScreenList.push(screen.id);
             }
-            $scope.selectedItem.screens.splice(index,1);
+            $scope.editItem.screens.splice(index,1);
         }
 
         $scope.deleteShow = function(index){
-            if(!$scope.selectedItem.deleteShowList){
-                $scope.selectedItem.deleteShowList = [];
+            if(!$scope.editItem.deleteShowList){
+                $scope.editItem.deleteShowList = [];
             }
             var show = $scope.selectedScreen.shows[index];
             if(show && show.id){
-                $scope.selectedItem.deleteShowList.push(show.id);
+                $scope.editItem.deleteShowList.push(show.id);
             }
             $scope.selectedScreen.shows.splice(index,1);
         }
@@ -119,8 +125,6 @@ app.controller('CentersCtrl',
         $scope.load();
 
         $scope.isCheckboxSelected = function(index) {
-            console.log("checkboxSelection : ", $scope.checkboxSelection);
-            console.log("index : ", index);
             return index === $scope.checkboxSelection;
         };
 
