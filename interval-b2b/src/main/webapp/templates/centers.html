@@ -143,9 +143,8 @@
             <div class="modal-footer">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="createCenterForm.$invalid" ng-click="create()">
-                        <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">
-                        <span class="glyphicon glyphicon-remove" style="padding-right: 3px"></span>Cancel</button>
+                        <span class="glyphicon glyphicon-floppy-disk" style="padding-right: 3px"></span>Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewCenter()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -157,7 +156,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
                 <h4 class="modal-title">Update Center</h4>
             </div>
             <div class="modal-body">
@@ -282,7 +281,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">
                         <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearSelectedItem()">Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -294,7 +293,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
                 <h4 class="modal-title">Update Screens</h4>
             </div>
             <div class="modal-body">
@@ -355,9 +354,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="update()" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel</button>
             </div>
         </div>
     </div>

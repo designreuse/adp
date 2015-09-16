@@ -79,7 +79,7 @@ app.controller('CentersCtrl',
             $scope.selectedScreen = {};
         }
 
-        $scope.clearSelectedItem = function(){
+        $scope.clearEditItem = function(){
             $scope.editItem = angular.copy($scope.selectedItem);
         }
 
