@@ -17,10 +17,10 @@
                 <h4 class="modal-title">Create Inventory</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="product">Product:</label>
-                        <div class="col-sm-6">
+                <form class="form-horizontal" name="createInventoryForm" role="form" ng-submit="create()" novalidate angular-validator>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="product">Product:</label>
+                        <div class="col-sm-9">
                             <select id="product" class="form-control" ng-model="newInventory.product.id">
                                 <option ng-repeat="product in products" value="{{product.id}}">
                                     {{product.name}}
@@ -28,30 +28,50 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="availableQuantity">Available Quantity:</label>
-                        <div class="col-sm-3">
-                            <input type="number" id="availableQuantity" ng-model="newInventory.availableQuantity"
-                                   class="form-control" min="1" max="99">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="availableQuantity">Available Quantity:</label>
+                        <div class="col-sm-9">
+                            <input type="number"
+                                   id="availableQuantity"
+                                   name="availableQuantity"
+                                   ng-model="newInventory.availableQuantity"
+                                   class="form-control"
+                                   min="1"
+                                   max="99"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="safetyStock">Safety Stock:</label>
+                        <div class="col-sm-9">
+                            <input type="number"
+                                   id="safetyStock"
+                                   name="safetyStock"
+                                   ng-model="newInventory.safetyStock"
+                                   class="form-control"
+                                   min="1"
+                                   max="10"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="safetyStock">Safety Stock:</label>
-                        <div class="col-sm-3">
-                            <input type="number" id="safetyStock" ng-model="newInventory.safetyStock"
-                                   class="form-control" min="1" max="10">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="availability">Availability:</label>
+                        <label class="control-label col-sm-3" for="availability">Availability:</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="form-control" id="availability" ng-model="newInventory.availability">
+                            <input type="checkbox"
+                                   class="form-control"
+                                   name="availability"
+                                   id="availability"
+                                   ng-model="newInventory.availability">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal" ng-disabled="createInventoryForm.$invalid">
                     <span class="glyphicon glyphicon-floppy-disk" style="padding-right: 3px"></span>Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewInventory()">Cancel</button>
             </div>
@@ -68,9 +88,9 @@
                 <h4 class="modal-title">Update Inventory</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="updProduct">Product:</label>
+                <form class="form-horizontal" name="updateInventoryForm" role="form" ng-submit="update()" novalidate angular-validator>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="updProduct">Product:</label>
                         <div class="col-sm-1">
                             <select id="updProduct" ng-model="selectedItem.product.id" convert-to-number>
                                 <option ng-repeat="product in products" value="{{product.id}}">
@@ -79,30 +99,50 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="updAvailableQuantity">Available Quantity:</label>
-                        <div class="col-sm-3">
-                            <input type="number" id="updAvailableQuantity" ng-model="selectedItem.availableQuantity"
-                                   class="form-control" min="1" max="99">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="updAvailableQuantity">Available Quantity:</label>
+                        <div class="col-sm-9">
+                            <input type="number"
+                                   id="updAvailableQuantity"
+                                   name="updAvailableQuantity"
+                                   ng-model="selectedItem.availableQuantity"
+                                   class="form-control"
+                                   min="1" 
+                                   max="99"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="updSafetyStock">Safety Stock:</label>
-                        <div class="col-sm-3">
-                            <input type="number" id="updSafetyStock" ng-model="selectedItem.safetyStock"
-                                   class="form-control" min="1" max="10">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="updSafetyStock">Safety Stock:</label>
+                        <div class="col-sm-9">
+                            <input type="number"
+                                   id="updSafetyStock"
+                                   name="updSafetyStock"
+                                   ng-model="selectedItem.safetyStock"
+                                   class="form-control"
+                                   min="1"
+                                   max="10"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="updAvailability">Availability:</label>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-3" for="updAvailability">Availability:</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="form-control" id="updAvailability" ng-model="selectedItem.availability">
+                            <input type="checkbox"
+                                   class="form-control"
+                                   id="updAvailability"
+                                   ng-model="selectedItem.availability">
+
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-disabled="updateInventoryForm.$invalid">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>

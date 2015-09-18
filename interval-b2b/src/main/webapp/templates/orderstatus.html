@@ -18,27 +18,38 @@
                 <h4 class="modal-title">Create Order Status</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
-                    <div class="form-group">
+                <form class="form-horizontal" name="createStatusForm" role="form" ng-submit="create()" novalidate angular-validator>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="name">Name:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" ng-model="newOrderStatus.name"
-                                   placeholder="Enter Order Status">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   ng-model="newOrderStatus.name"
+                                   placeholder="Enter Order Status"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="description">Description:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="description"
-                                   ng-model="newOrderStatus.description" placeholder="Enter Status description">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="description"
+                                   ng-model="newOrderStatus.description" 
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal" ng-disabled="createStatusForm.$invalid">
                     <span class="glyphicon glyphicon-floppy-disk" style="padding-right: 3px"></span>Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewOrderStatus()">
                     Cancel
@@ -57,27 +68,38 @@
                 <h4 class="modal-title">Update Order Status</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
-                    <div class="form-group">
+                <form class="form-horizontal" name="updateStatusForm" role="form" ng-submit="update()" novalidate angular-validator>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="name">Name:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="statusName" ng-model="selectedItem.name"
-                                   placeholder="Enter Order Status">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="statusName"
+                                   name="statusName"
+                                   ng-model="selectedItem.name"
+                                   placeholder="Enter Order Status"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="description">Description:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="statusDescription"
-                                   ng-model="selectedItem.description" placeholder="Enter Status description">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="statusDescription"
+                                   ng-model="selectedItem.description"
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-disabled="updateStatusForm.$invalid">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>

@@ -18,10 +18,9 @@
                 <h4 class="modal-title">Create Product</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" ng-submit="create()" novalidate>
-                    <div class="form-group">
+                <form class="form-horizontal" name="createProductForm" role="form" ng-submit="create()" novalidate angular-validator>
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Category:</label>
-
                         <div class="col-sm-6">
                             <select id="product" class="form-control" ng-model="newProduct.category.id">
                                 <option ng-repeat="category in categories" value="{{category.id}}">
@@ -30,9 +29,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Center:</label>
-
                         <div class="col-sm-6">
                             <select id="center" class="form-control" ng-model="newProduct.center.id">
                                 <option ng-repeat="center in centers" value="{{center.id}}">
@@ -41,28 +39,46 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                     <label class="control-label col-sm-2" for="name">Description:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name"
-                                   ng-model="newProduct.name" placeholder="Enter Status description">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="name"
+                                   name="name"
+                                   ng-model="newProduct.name" 
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="description">Description:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="description"
-                                   ng-model="newProduct.description" placeholder="Enter Status description">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="description"
+                                   name="description"
+                                   ng-model="newProduct.description" 
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="price">Price:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="price"
-                                   ng-model="newProduct.price" placeholder="Enter Price">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="price"
+                                   name="price"
+                                   ng-model="newProduct.price" 
+                                   placeholder="Enter Price"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>                                    
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,7 +109,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Category:</label>
                         <div class="col-sm-6">
                             <select id="updProductCat" class="form-control" ng-model="selectedItem.category.id" convert-to-number>
@@ -103,7 +119,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Center:</label>
                         <div class="col-sm-6">
                             <select id="updProductCent" class="form-control" ng-model="selectedItem.center.id" convert-to-number>
@@ -113,27 +129,46 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="name">Description:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="updProductName"
-                                   ng-model="selectedItem.name" placeholder="Enter Status description">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="updProductName"
+                                   name="updProductName"
+                                   ng-model="selectedItem.name" 
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="description">Description:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="updProductDescription"
-                                   ng-model="selectedItem.description" placeholder="Enter Status description">
+                            <input type="text"
+                                   class="form-control" 
+                                   id="updProductDescription"
+                                   name="updProductDescription"
+                                   ng-model="selectedItem.description"
+                                   placeholder="Enter Status description"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2" for="price">Price:</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="updProductPrice"
-                                   ng-model="selectedItem.price" placeholder="Enter Price">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="updProductPrice"
+                                   name="updProductPrice"
+                                   ng-model="selectedItem.price" 
+                                   placeholder="Enter Price"
+                                   validate-on="dirty"
+                                   required-message="'Required Field'"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
