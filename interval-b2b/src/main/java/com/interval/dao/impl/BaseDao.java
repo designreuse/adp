@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by User on 8/12/2015.
@@ -43,4 +44,8 @@ public class BaseDao<T> implements Dao<T>{
     public void delete(String id) {
    }
 
+    @Override
+    public void updateById(String id, Map<String, Object> keyValueMap) {
+
+    }
 }

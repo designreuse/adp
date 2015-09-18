@@ -3,57 +3,57 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
 
         $routeProvider.when('/home',
             {
-                templateUrl: '/templates/home.html',
+                templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             });
         $routeProvider.when('/about',
             {
-                templateUrl: '/templates/about.html',
+                templateUrl: 'templates/about.html',
                 controller: 'AboutCtrl'
             });
         $routeProvider.when('/contact',
             {
-                templateUrl: '/templates/contact.html',
+                templateUrl: 'templates/contact.html',
                 controller: 'ContactCtrl'
             });
         $routeProvider.when('/categories',
             {
-                templateUrl: '/templates/categories.html',
+                templateUrl: 'templates/categories.html',
                 controller: 'CategoriesCtrl'
             });
         $routeProvider.when('/centers',
             {
-                templateUrl: '/templates/centers.html',
+                templateUrl: 'templates/centers.html',
                 controller: 'CentersCtrl'
             });
         $routeProvider.when('/orderStatus',
             {
-                templateUrl: '/templates/orderstatus.html',
+                templateUrl: 'templates/orderstatus.html',
                 controller: 'OrderStatusCtrl'
             });
         $routeProvider.when('/product',
             {
-                templateUrl: '/templates/product.html',
+                templateUrl: 'templates/product.html',
                 controller: 'ProductCtrl'
             });
         $routeProvider.when('/inventory',
             {
-                templateUrl: '/templates/inventory.html',
+                templateUrl: 'templates/inventory.html',
                 controller: 'InventoryCtrl'
             });
         $routeProvider.when('/dashboard',
             {
-                templateUrl: '/templates/dashboard.html',
+                templateUrl: 'templates/dashboard.html',
                 controller: 'DashboardCtrl'
             });
         $routeProvider.when('/sales',
             {
-                templateUrl: '/templates/sales.html',
+                templateUrl: 'templates/sales.html',
                 controller: 'SalesCtrl'
             });
         $routeProvider.when('/services',
             {
-                templateUrl: '/templates/services.html',
+                templateUrl: 'templates/services.html',
                 controller: 'ServicesCtrl'
             });
         $routeProvider.otherwise(

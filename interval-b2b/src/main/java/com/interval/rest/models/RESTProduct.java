@@ -9,7 +9,7 @@ public class RESTProduct {
     private Integer id;
     private String name;
     private String description;
-    private byte[] image;
+    private String image;
     private Date createdTime;
     private Date updatedTime;
     private boolean active;
@@ -42,11 +42,11 @@ public class RESTProduct {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

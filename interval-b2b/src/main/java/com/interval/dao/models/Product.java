@@ -16,7 +16,7 @@ public class Product implements java.io.Serializable {
 	private Category category;
 	private String name;
 	private String description;
-	private byte[] image;
+	private String image;
 	private Date createdTime;
 	private Date updatedTime;
 	private boolean active;
@@ -38,7 +38,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	public Product(Center center, Category category, String name,
-			String description, byte[] image, Date createdTime,
+			String description, String image, Date createdTime,
 			Date updatedTime, boolean active, double price,
 			Set<InventoryTransaction> inventoryTransactions,
 			Set<Inventory> inventories, Set<OrderItem> orderItems) {
@@ -96,11 +96,11 @@ public class Product implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return this.image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

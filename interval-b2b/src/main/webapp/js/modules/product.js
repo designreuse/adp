@@ -52,7 +52,13 @@ app.controller('ProductCtrl',
         }
 
         $scope.update = function () {
-            productFactory.update($scope.selectedItem, function (data) {
+            var image = document.getElementById('updImage').files[0],formData = new FormData();
+            formData.append('imageFile', image);
+            formData.append('imageFileName', image.name);
+            formData.append('imageFileType', image.type);
+            formData.append('product',  angular.toJson($scope.selectedItem));
+
+            productFactory.uploadImage({id: $scope.selectedItem.id},formData, function (data) {
                 $scope.load();
             });
         }
@@ -92,7 +98,8 @@ app.controller('ProductCtrl',
 app.factory("productFactory", function ($resource) {
     return $resource('v1/product/:id', null,
         {
-            'update': { method: 'PUT' }
+            'update': { method: 'PUT' },
+            'uploadImage' : {method: 'POST', headers: {'Content-Type' : undefined}}
         });
 })
 
