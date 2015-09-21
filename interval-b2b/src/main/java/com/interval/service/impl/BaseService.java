@@ -5,7 +5,7 @@ import com.interval.service.Service;
 import java.util.List;
 
 /**
- * Created by Muthuraj on 9/15/2015.
+ * Created by User on 9/15/2015.
  */
 public class BaseService<T> implements Service<T> {
 
@@ -35,7 +35,7 @@ public class BaseService<T> implements Service<T> {
     }
 
     @Override
-    public T get(String id, String type) {
+    public List<T> get(String id, String type) {
         return null;
     }
 }

@@ -20,6 +20,9 @@ import com.interval.service.Service;
 import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by User on 27-07-2015.
  */
@@ -48,8 +51,29 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByFilter(@PathParam("id") final String id,
                                       @QueryParam("type") final String type){
-        orderDetailsService.get(id, type);
-        return Response.ok().build();
+        List<RESTOrderDetail> orderDetails;
+        if(type != null){
+            orderDetails = (List<RESTOrderDetail>)orderDetailsService.get(id, type);
+        }else{
+            RESTOrderDetail orderDetail = (RESTOrderDetail)orderDetailsService.get(id);
+            orderDetails = new ArrayList<RESTOrderDetail>();
+            orderDetails.add(orderDetail);
+        }
+        return Response.ok(orderDetails).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response create(@Context final HttpContext requestContext) {
+        String request = requestContext.getRequest().getEntity(String.class);
+        RESTOrderDetail updatedRestOrderDetails = null;
+        try {
+            RESTOrderDetail restOrderDetails = UnMarshaller.unmarshallJSON(RESTOrderDetail.class, request);
+            updatedRestOrderDetails = (RESTOrderDetail) orderDetailsService.create(restOrderDetails);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.ok().entity(updatedRestOrderDetails).build();
     }
 
     @PUT
@@ -57,58 +81,27 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@Context final HttpContext requestContext){
         String request = requestContext.getRequest().getEntity(String.class);
-
-        return Response.ok().entity(null).build();
+        RESTOrderDetail orderDetailsResult = new RESTOrderDetail();
+        try {
+        	RESTOrderDetail orderDetails = UnMarshaller.unmarshallJSON(RESTOrderDetail.class, request);
+        	orderDetailsResult = (RESTOrderDetail) orderDetailsService.update(orderDetails);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.ok().entity(orderDetailsResult).build();
     }
-
-    @PUT
+    
+    
+    @DELETE
     @Path("/{orderId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateStatus(@PathParam("orderId") final String orderId,
-                                 @Context final HttpContext requestContext){
-        String request = requestContext.getRequest().getEntity(String.class);
-
+    public Response delete(@PathParam("orderId") final String orderId){
+        orderDetailsService.delete(orderId);
         return Response.ok().entity(null).build();
     }
 
-    @GET
-    @Path("/create")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response createOrder(@Context final HttpContext requestContext) {
-        String request = requestContext.getRequest().getEntity(String.class);
-        String temp = Constants.EMPTY_STRING;
-        try {
-            //RESTOrderItem orderItems = UnMarshaller.unmarshallJSON(RESTOrderDetail.class, request);
-            RESTOrderDetail orderDetails = new RESTOrderDetail();
-            orderDetails.setLineItemCount(5);
-            orderDetails.setDiscountTotal(0.00);
-            orderDetails.setPromoCode(Constants.EMPTY_STRING);
-            orderDetails.setSubTotal(50.00);
-            orderDetails.setTaxTotal(8.12);
-            orderDetails.setTotal(58.12);
-            orderDetails.setShowId(14);
-            orderDetails.setScreenId(5);
-            orderDetails.setOrderStatus(3);
 
-            RESTOrderItem orderItem = new RESTOrderItem();
-            RESTProduct product = new RESTProduct();
-            product.setId(3);
-            orderItem.setQuantity(5);
-            orderItem.setProduct(product);
-            orderDetails.setOrderItem(orderItem);
-
-            orderDetailsService.create(orderDetails);
-
-
-            temp = "Product ID" + orderDetails.getLineItemCount();
-            temp = temp.concat("Quantity : " + orderDetails.getDiscountTotal().toString());
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return Response.ok().entity(temp).build();
-    }
 
 }
 

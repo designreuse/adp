@@ -1,6 +1,8 @@
 package com.interval.rest.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by USER on 11-08-2015.
@@ -15,10 +17,12 @@ public class RESTOrderDetail {
     private Date createdTime;
     private Date updatedTime;
     private Double taxTotal;
-    private RESTOrderItem orderItem;
-    private Integer showId;
-    private Integer screenId;
-    private Integer orderStatus;
+    private String seatNo;
+    private RESTShow show;
+    private RESTUser user;
+    private Set<RESTInvoice> invoices = new HashSet<RESTInvoice>(0);
+	private Set<RESTOrderItem> orderItems = new HashSet<RESTOrderItem>(0);
+    private RESTOrderStatus orderStatus;
 
     public Integer getId() {
         return id;
@@ -92,35 +96,52 @@ public class RESTOrderDetail {
         this.taxTotal = taxTotal;
     }
 
-    public RESTOrderItem getOrderItem() {
-        return orderItem;
-    }
+	public RESTOrderStatus getOrderStatus() {
+		return orderStatus;
+	}
 
-    public void setOrderItem(RESTOrderItem orderItem) {
-        this.orderItem = orderItem;
-    }
+	public void setOrderStatus(RESTOrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
-    public Integer getShowId() {
-        return showId;
-    }
+	public Set<RESTInvoice> getInvoices() {
+		return invoices;
+	}
 
-    public void setShowId(Integer showId) {
-        this.showId = showId;
-    }
+	public void setInvoices(Set<RESTInvoice> invoices) {
+		this.invoices = invoices;
+	}
 
-    public Integer getScreenId() {
-        return screenId;
-    }
+	public Set<RESTOrderItem> getOrderItems() {
+		return orderItems;
+	}
 
-    public void setScreenId(Integer screenId) {
-        this.screenId = screenId;
-    }
+	public void setOrderItems(Set<RESTOrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
 
-    public Integer getOrderStatus() {
-        return orderStatus;
-    }
+	public String getSeatNo() {
+		return seatNo;
+	}
 
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+	public void setSeatNo(String seatNo) {
+		this.seatNo = seatNo;
+	}
+
+	public RESTUser getUser() {
+		return user;
+	}
+
+	public void setUser(RESTUser user) {
+		this.user = user;
+	}
+
+	public RESTShow getShow() {
+		return show;
+	}
+
+	public void setShow(RESTShow show) {
+		this.show = show;
+	}
+
 }

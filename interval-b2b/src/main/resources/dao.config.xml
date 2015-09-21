@@ -9,5 +9,6 @@
     <bean id="OrderDetailDao" class="com.interval.dao.impl.OrderDetailDao" />
     <bean id="inventoryDao" class="com.interval.dao.impl.InventoryDao" />
     <bean id="productDao" class="com.interval.dao.impl.ProductDao"/>
+    <bean id="orderItemDao" class="com.interval.dao.impl.OrderItemDao"/>
 
 </beans>

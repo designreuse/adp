@@ -17,5 +17,5 @@ public interface Service<T> {
 
     public void delete(final String id);
 
-    public T get(final String id, final String type);
+    public List<T> get(final String id, final String type);
 }
