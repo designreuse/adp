@@ -8,6 +8,7 @@ app.controller('InventoryCtrl',
         $scope.gridApi = {};
         $scope.selectedItem = {};
         $scope.disableEdit = false;
+        $scope.editItem = {};
         var columnDef = [
             {name : 'Product', field : 'product.name'},
             {name : 'Available Quantity', field : 'availableQuantity'},
@@ -27,6 +28,7 @@ app.controller('InventoryCtrl',
                     $scope.disableEdit = row.isSelected;
                     if(row.isSelected){
                         $scope.selectedItem = row.entity;
+                        $scope.editItem = angular.copy($scope.selectedItem);
                     }else{
                         $scope.clearSelectedInventory();
                     }
@@ -53,7 +55,7 @@ app.controller('InventoryCtrl',
         }
 
         $scope.update = function(){
-            inventoryFactory.update($scope.selectedItem, function(data){
+            inventoryFactory.update($scope.editItem, function(data){
                 $scope.load();
             });
         }
@@ -82,6 +84,10 @@ app.controller('InventoryCtrl',
             productFactory.query(function(data){
                 $scope.products = data;
             });
+        }
+
+        $scope.clearEditItem = function(){
+            $scope.editItem = angular.copy($scope.selectedItem);
         }
 
         $scope.load();

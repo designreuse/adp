@@ -6,6 +6,7 @@ app.controller('OrderStatusCtrl',
         $scope.gridApi = {};
         $scope.selectedItem = {};
         $scope.disableEdit = false;
+        $scope.editItem = {}
         var columnDef = [
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'}
@@ -23,6 +24,7 @@ app.controller('OrderStatusCtrl',
                     $scope.disableEdit = row.isSelected;
                     if (row.isSelected) {
                         $scope.selectedItem = row.entity;
+                        $scope.editItem = angular.copy(scope.selectedItem);
                     } else {
                         $scope.clearSelectedOrderStatus();
                     }
@@ -49,7 +51,7 @@ app.controller('OrderStatusCtrl',
         }
 
         $scope.update = function () {
-            orderStatusFactory.update($scope.selectedItem, function (data) {
+            orderStatusFactory.update($scope.editItem, function (data) {
                 $scope.load();
             });
         }
@@ -66,6 +68,9 @@ app.controller('OrderStatusCtrl',
 
         $scope.clearSelectedOrderStatus = function () {
             $scope.selectedItem = {};
+        }
+        $scope.clearEditItem = function(){
+            $scope.editItem = angular.copy($scope.selectedItem);
         }
 
         $scope.load();

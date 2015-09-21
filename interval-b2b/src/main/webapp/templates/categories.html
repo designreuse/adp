@@ -71,7 +71,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" ng-click="clearEditItem()" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Update Category</h4>
             </div>
             <div class="modal-body">
@@ -83,7 +83,7 @@
                                    class="form-control"
                                    id="catName"
                                    name="catName"
-                                   ng-model="selectedItem.name"
+                                   ng-model="editItem.name"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
                                    placeholder="Enter category name">
@@ -96,7 +96,7 @@
                                    class="form-control"
                                    id="catDescription"
                                    name="catDescription"
-                                   ng-model="selectedItem.description"
+                                   ng-model="editItem.description"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
                                    placeholder="Enter category description">
@@ -105,7 +105,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="catActive">Active:</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="form-control" id="catActive" ng-model="selectedItem.active">
+                            <input type="checkbox" class="form-control" id="catActive" ng-model="editItem.active">
                         </div>
                     </div>
                 </form>
@@ -113,7 +113,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-disabled="updateCategoryForm.$invalid">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" ng-click="clearEditItem()" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

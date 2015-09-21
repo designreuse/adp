@@ -6,6 +6,7 @@ app.controller('CategoriesCtrl',
         $scope.gridApi = {};
         $scope.selectedItem = {};
         $scope.disableEdit = false;
+        $scope.editItem = {};
         var columnDef = [
             {name : 'Name', field : 'name'},
             {name : 'Description', field : 'description'},
@@ -24,6 +25,7 @@ app.controller('CategoriesCtrl',
                     $scope.disableEdit = row.isSelected;
                     if(row.isSelected){
                         $scope.selectedItem = row.entity;
+                        $scope.editItem = angular.copy($scope.selectedItem);
                     }else{
                         $scope.clearSelectedCategory();
                     }
@@ -50,7 +52,7 @@ app.controller('CategoriesCtrl',
         }
 
         $scope.update = function(){
-            categoriesFactory.update($scope.selectedItem, function(data){
+            categoriesFactory.update($scope.editItem, function(data){
                 $scope.load();
             });
         }
@@ -67,6 +69,10 @@ app.controller('CategoriesCtrl',
 
         $scope.clearSelectedCategory = function(){
             $scope.selectedItem = {};
+        }
+
+        $scope.clearEditItem = function(){
+            $scope.editItem = angular.copy($scope.selectedItem);
         }
 
         $scope.load();

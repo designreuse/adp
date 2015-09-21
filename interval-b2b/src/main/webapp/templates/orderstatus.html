@@ -20,8 +20,8 @@
             <div class="modal-body">
                 <form class="form-horizontal" name="createStatusForm" role="form" ng-submit="create()" novalidate angular-validator>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="name">Name:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="name">Name:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control"
                                    id="name"
@@ -34,8 +34,8 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="description">Description:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control"
                                    id="description"
@@ -64,19 +64,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
                 <h4 class="modal-title">Update Order Status</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" name="updateStatusForm" role="form" ng-submit="update()" novalidate angular-validator>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="name">Name:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="name">Name:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="statusName"
                                    name="statusName"
-                                   ng-model="selectedItem.name"
+                                   ng-model="editItem.name"
                                    placeholder="Enter Order Status"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -84,12 +84,12 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="description">Description:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="statusDescription"
-                                   ng-model="selectedItem.description"
+                                   ng-model="editItem.description"
                                    placeholder="Enter Status description"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -101,7 +101,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-disabled="updateStatusForm.$invalid">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel</button>
             </div>
         </div>
     </div>

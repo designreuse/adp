@@ -84,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
                 <h4 class="modal-title">Update Inventory</h4>
             </div>
             <div class="modal-body">
@@ -92,7 +92,7 @@
                     <div class="form-group required">
                         <label class="control-label col-sm-3" for="updProduct">Product:</label>
                         <div class="col-sm-1">
-                            <select id="updProduct" ng-model="selectedItem.product.id" convert-to-number>
+                            <select id="updProduct" ng-model="editItem.product.id" convert-to-number>
                                 <option ng-repeat="product in products" value="{{product.id}}">
                                     {{product.name}}
                                 </option>
@@ -105,7 +105,7 @@
                             <input type="number"
                                    id="updAvailableQuantity"
                                    name="updAvailableQuantity"
-                                   ng-model="selectedItem.availableQuantity"
+                                   ng-model="editItem.availableQuantity"
                                    class="form-control"
                                    min="1" 
                                    max="99"
@@ -120,7 +120,7 @@
                             <input type="number"
                                    id="updSafetyStock"
                                    name="updSafetyStock"
-                                   ng-model="selectedItem.safetyStock"
+                                   ng-model="editItem.safetyStock"
                                    class="form-control"
                                    min="1"
                                    max="10"
@@ -135,7 +135,7 @@
                             <input type="checkbox"
                                    class="form-control"
                                    id="updAvailability"
-                                   ng-model="selectedItem.availability">
+                                   ng-model="editItem.availability">
 
                         </div>
                     </div>
@@ -144,7 +144,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-disabled="updateInventoryForm.$invalid">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel</button>
             </div>
         </div>
     </div>

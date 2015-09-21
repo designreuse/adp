@@ -20,8 +20,8 @@
             <div class="modal-body">
                 <form class="form-horizontal" name="createProductForm" role="form" ng-submit="create()" novalidate angular-validator>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2">Category:</label>
-                        <div class="col-sm-6">
+                        <label class="control-label col-sm-3">Category:</label>
+                        <div class="col-sm-9">
                             <select id="product" class="form-control" ng-model="newProduct.category.id">
                                 <option ng-repeat="category in categories" value="{{category.id}}">
                                     {{category.name}}
@@ -30,8 +30,8 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2">Center:</label>
-                        <div class="col-sm-6">
+                        <label class="control-label col-sm-3">Center:</label>
+                        <div class="col-sm-9">
                             <select id="center" class="form-control" ng-model="newProduct.center.id">
                                 <option ng-repeat="center in centers" value="{{center.id}}">
                                     {{center.name}}
@@ -40,8 +40,8 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                    <label class="control-label col-sm-2" for="name">Description:</label>
-                        <div class="col-sm-10">
+                    <label class="control-label col-sm-3" for="name">Description:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="name"
@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="description">Description:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="description"
@@ -68,21 +68,23 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="price">Price:</label>
-                        <div class="col-sm-10">
-                            <input type="text" 
+                        <label class="control-label col-sm-3" for="price">Price:</label>
+                        <div class="col-sm-9">
+                            <input type="text"
                                    class="form-control" 
                                    id="price"
                                    name="price"
                                    ng-model="newProduct.price" 
                                    placeholder="Enter Price"
+                                   ng-pattern="/^\d{1,8}(?:\.\d{1,4})?$/"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
+                                   invalid-message="'Invalid Value'"
                                    required>                                    
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="active">Active:</label>
+                        <label class="control-label col-sm-3" for="active">Active:</label>
                         <div class="col-sm-1">
                             <input type="checkbox" class="form-control" id="active" ng-model="newProduct.active">
                         </div>
@@ -96,7 +98,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal" ng-disabled="createProductForm.$invalid">
                     <span class="glyphicon glyphicon-floppy-disk" style="padding-right: 3px"></span>Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewProduct()">Cancel
                 </button>
@@ -110,15 +112,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="clearNewProduct()">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
                 <h4 class="modal-title">Update Product</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" ng-submit="update()" novalidate>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2">Category:</label>
-                        <div class="col-sm-6">
-                            <select id="updProductCat" class="form-control" ng-model="selectedItem.category.id" convert-to-number>
+                        <label class="control-label col-sm-3">Category:</label>
+                        <div class="col-sm-9">
+                            <select id="updProductCat" class="form-control" ng-model="editItem.category.id" convert-to-number>
                                 <option ng-repeat="category in categories" value="{{category.id}}">
                                     {{category.name}}
                                 </option>
@@ -126,9 +128,9 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2">Center:</label>
-                        <div class="col-sm-6">
-                            <select id="updProductCent" class="form-control" ng-model="selectedItem.center.id" convert-to-number>
+                        <label class="control-label col-sm-3">Center:</label>
+                        <div class="col-sm-9">
+                            <select id="updProductCent" class="form-control" ng-model="editItem.center.id" convert-to-number>
                                 <option ng-repeat="center in centers" value="{{center.id}}">
                                     {{center.name}}
                                 </option>
@@ -136,51 +138,53 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="name">Description:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="name">Name:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="updProductName"
                                    name="updProductName"
-                                   ng-model="selectedItem.name" 
-                                   placeholder="Enter Status description"
+                                   ng-model="editItem.name" 
+                                   placeholder="Enter Product Name"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
                                    required>
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="description">Description:</label>
+                        <div class="col-sm-9">
                             <input type="text"
                                    class="form-control" 
                                    id="updProductDescription"
                                    name="updProductDescription"
-                                   ng-model="selectedItem.description"
-                                   placeholder="Enter Status description"
+                                   ng-model="editItem.description"
+                                   placeholder="Enter Product description"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
                                    required>
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2" for="price">Price:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3" for="price">Price:</label>
+                        <div class="col-sm-9">
                             <input type="text" 
                                    class="form-control" 
                                    id="updProductPrice"
                                    name="updProductPrice"
-                                   ng-model="selectedItem.price" 
+                                   ng-model="editItem.price" 
                                    placeholder="Enter Price"
+                                   ng-pattern="/^\d{1,8}(?:\.\d{1,4})?$/"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
+                                   invalid-message="'Invalid Field'"
                                    required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="active">Active:</label>
+                        <label class="control-label col-sm-3" for="active">Active:</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="form-control" id="updProductActive" ng-model="selectedItem.active">
+                            <input type="checkbox" class="form-control" id="updProductActive" ng-model="editItem.active">
                         </div>
                     </div>
                     <div class="form-group">
@@ -190,14 +194,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <img src="{{selectedItem.image}}">
+                        <img src="{{editItem.image}}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal">
                     <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearNewProduct()">Cancel
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel
                 </button>
             </div>
         </div>

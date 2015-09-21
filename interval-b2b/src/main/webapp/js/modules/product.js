@@ -7,6 +7,7 @@ app.controller('ProductCtrl',
         $scope.gridApi = {};
         $scope.selectedItem = {};
         $scope.disableEdit = false;
+        $scope.editItem = {};
         var columnDef = [
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'},
@@ -26,6 +27,7 @@ app.controller('ProductCtrl',
                     $scope.disableEdit = row.isSelected;
                     if (row.isSelected) {
                         $scope.selectedItem = row.entity;
+                        $scope.editItem = angular.copy($scope.selectedItem);
                     } else {
                         $scope.clearSelectedProduct();
                     }
@@ -56,9 +58,9 @@ app.controller('ProductCtrl',
             formData.append('imageFile', image);
             formData.append('imageFileName', image.name);
             formData.append('imageFileType', image.type);
-            formData.append('product',  angular.toJson($scope.selectedItem));
+            formData.append('product',  angular.toJson($scope.editItem));
 
-            productFactory.uploadImage({id: $scope.selectedItem.id},formData, function (data) {
+            productFactory.uploadImage({id: $scope.editItem.id},formData, function (data) {
                 $scope.load();
             });
         }
@@ -88,7 +90,9 @@ app.controller('ProductCtrl',
                 $scope.centers = data;
             });
         }
-
+        $scope.clearEditItem = function(){
+            $scope.editItem = angular.copy($scope.selectedItem);
+        }
         $scope.load();
         $scope.loadCategories();
         $scope.loadCenters();
