@@ -50,7 +50,7 @@
             </key>
             <one-to-many class="com.interval.dao.models.Invoice" />
         </set>
-        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select" cascade="save-update,delete">
+        <set name="orderItems" table="ORDER_ITEM" inverse="true" lazy="false" fetch="select" cascade="save-update,delete-orphan">
             <key>
                 <column name="ORDER_ID" not-null="true" />
             </key>
