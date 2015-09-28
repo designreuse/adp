@@ -20,6 +20,11 @@ public class BaseService<T> implements Service<T> {
     }
 
     @Override
+    public void update(String id, String type) {
+
+    }
+
+    @Override
     public T get(String id) {
         return null;
     }

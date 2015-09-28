@@ -75,6 +75,17 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 	}
 
 	@Override
+	public void update(String id, String type) {
+		if(id != null && type != null && type.equalsIgnoreCase("remove items")){
+			OrderDetail orderDetail = orderDetailDao.get(id);
+			orderDetail.getOrderItems().clear();
+			updateLineItemPrice(orderDetail);
+			updateTotals(orderDetail);
+			orderDetailDao.update(orderDetail);
+		}
+	}
+
+	@Override
 	public RESTOrderDetail update(RESTOrderDetail restOrderDetail) {
 		
 		OrderDetail orderDetails = new OrderDetail();
@@ -150,9 +161,9 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 	}
 
 	private void updateLineItemPrice(OrderDetail orderDetail){
+		int lineItemCount = 0;
+		double lineItemCost = 0.0, orderSubTotal = 0.0;
 		if(orderDetail != null && !CollectionUtils.isEmpty(orderDetail.getOrderItems())){
-			int lineItemCount = 0;
-			double lineItemCost = 0.0, orderSubTotal = 0.0;
 			for(OrderItem item : orderDetail.getOrderItems()){
 				if (null != item){
 					Product product = productDao.get(item.getProduct().getId().toString());
@@ -163,9 +174,9 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 					item.setOrderDetail(orderDetail);
 				}
 			}
-			orderDetail.setLineItemCount(lineItemCount);
-			orderDetail.setSubTotal(orderSubTotal);
 		}
+		orderDetail.setLineItemCount(lineItemCount);
+		orderDetail.setSubTotal(orderSubTotal);
 	}
 
 	private void updateTotals(OrderDetail orderDetail){

@@ -90,7 +90,15 @@ public class OrderResource {
         }
         return Response.ok().entity(orderDetailsResult).build();
     }
-    
+
+    @POST
+    @Path("/{orderId}/removeItems")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response removeItems(@PathParam("orderId") final String orderId){
+        orderDetailsService.update(orderId, "remove items");
+        return Response.ok().entity(null).build();
+    }
     
     @DELETE
     @Path("/{orderId}")
@@ -100,8 +108,6 @@ public class OrderResource {
         orderDetailsService.delete(orderId);
         return Response.ok().entity(null).build();
     }
-
-
 
 }
 
