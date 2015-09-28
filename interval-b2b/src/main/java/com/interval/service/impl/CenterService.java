@@ -69,4 +69,14 @@ public class CenterService extends BaseService<RESTCenter> {
     public void delete(final String centerId) {
         centerDao.delete(centerId);
     }
+
+    @Override
+    public List<RESTCenter> search(String query) {
+        List<RESTCenter> centerList = new ArrayList<RESTCenter>();
+        List<Center> centers = centerDao.search(query);
+        for (Center center : centers) {
+            centerList.add(CenterTransformer.transformRESTCenter(center));
+        }
+        return centerList;
+    }
 }

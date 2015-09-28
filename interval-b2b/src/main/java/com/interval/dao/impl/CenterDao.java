@@ -59,4 +59,17 @@ public class CenterDao extends BaseDao<Center> {
         sessionFactory.getCurrentSession().createQuery(query.toString()).executeUpdate();
     }
 
+    @Override
+    public List<Center> search(String query) {
+        StringBuilder queryStr = new StringBuilder("from Center c where ");
+        queryStr.append("lower(c.name) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.address1) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.address2) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.city) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.state) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.zip) like lower('").append("%").append(query).append("%").append("')").append(" or ")
+                .append("lower(c.country) like lower('").append("%").append(query).append("%").append("')");
+
+        return sessionFactory.getCurrentSession().createQuery(queryStr.toString()).list();
+    }
 }

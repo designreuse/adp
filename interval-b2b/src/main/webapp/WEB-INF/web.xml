@@ -10,6 +10,16 @@
         <param-value>classpath:RESTAppConfig.xml</param-value>
     </context-param>
 
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.interval.application.CORSFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <url-pattern>/v1/*</url-pattern>
+    </filter-mapping>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

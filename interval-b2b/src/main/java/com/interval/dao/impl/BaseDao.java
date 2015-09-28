@@ -48,4 +48,9 @@ public class BaseDao<T> implements Dao<T>{
     public void updateById(String id, Map<String, Object> keyValueMap) {
 
     }
+
+    @Override
+    public List<T> search(String query) {
+        return null;
+    }
 }

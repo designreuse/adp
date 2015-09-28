@@ -42,6 +42,14 @@ public class CenterResource {
         return Response.ok().entity(centerList).build();
     }
 
+    @GET
+    @Path("search")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response search(@QueryParam("query") final String query) {
+        final List<RESTCenter> centerList = (List<RESTCenter>)centerService.search(query);
+        return Response.ok().entity(centerList).build();
+    }
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

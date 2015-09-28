@@ -43,4 +43,9 @@ public class BaseService<T> implements Service<T> {
     public List<T> get(String id, String type) {
         return null;
     }
+
+    @Override
+    public List<T> search(String query) {
+        return null;
+    }
 }

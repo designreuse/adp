@@ -20,4 +20,6 @@ public interface Service<T> {
     public void delete(final String id);
 
     public List<T> get(final String id, final String type);
+
+    public List<T> search(final String query);
 }
