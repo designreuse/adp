@@ -1,6 +1,5 @@
 package com.interval.dao.impl;
 
-import com.interval.dao.models.Category;
 import com.interval.dao.models.OrderStatus;
 import org.hibernate.Criteria;
 

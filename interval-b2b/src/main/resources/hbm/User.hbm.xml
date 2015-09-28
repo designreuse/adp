@@ -20,6 +20,9 @@
         <property name="lastName" type="string">
             <column name="LAST_NAME" length="60"/>
         </property>
+        <property name="password" type="string">
+            <column name="password" length="12"/>
+        </property>
         <property name="createdTime" type="timestamp">
             <column name="CREATED_TIME" length="26"/>
         </property>

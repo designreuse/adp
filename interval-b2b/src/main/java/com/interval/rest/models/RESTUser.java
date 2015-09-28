@@ -11,6 +11,7 @@ public class RESTUser {
     private String phone;
     private String firstName;
     private String lastName;
+    private String password;
     private Date createdTime;
     private Date updatedTime;
 
@@ -68,5 +69,13 @@ public class RESTUser {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

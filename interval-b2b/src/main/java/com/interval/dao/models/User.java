@@ -16,6 +16,7 @@ public class User implements java.io.Serializable {
 	private String phone;
 	private String firstName;
 	private String lastName;
+    private String password;
 	private Date createdTime;
 	private Date updatedTime;
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
@@ -23,12 +24,13 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(String email, String phone, String firstName, String lastName,
+	public User(String email, String phone, String firstName, String lastName, String password,
 			Date createdTime, Date updatedTime, Set<OrderDetail> orderDetails) {
 		this.email = email;
 		this.phone = phone;
 		this.firstName = firstName;
 		this.lastName = lastName;
+        this.password = password;
 		this.createdTime = createdTime;
 		this.updatedTime = updatedTime;
 		this.orderDetails = orderDetails;
@@ -98,4 +100,11 @@ public class User implements java.io.Serializable {
 		this.orderDetails = orderDetails;
 	}
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
