@@ -43,6 +43,14 @@ public class CenterResource {
     }
 
     @GET
+    @Path("{centerId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCenterDetails(@PathParam("centerId") final String centerId) {
+        final RESTCenter center = (RESTCenter)centerService.get(centerId);
+        return Response.ok().entity(center).build();
+    }
+
+    @GET
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response search(@QueryParam("query") final String query) {
@@ -85,8 +93,8 @@ public class CenterResource {
     @DELETE
     @Path("{centerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(@PathParam("centerId") final String categoryId) {
-        centerService.delete(categoryId);
+    public Response delete(@PathParam("centerId") final String centerId) {
+        centerService.delete(centerId);
         return Response.ok().entity(null).build();
     }
 }
