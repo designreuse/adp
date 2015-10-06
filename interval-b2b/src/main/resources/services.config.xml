@@ -11,6 +11,7 @@
     <bean id="orderDetailsService" class="com.interval.service.impl.OrderDetailsService" autowire="constructor" />
     <bean id="inventoryService" class="com.interval.service.impl.InventoryService" autowire="constructor"/>
     <bean id="productService" class="com.interval.service.impl.ProductService" autowire="constructor"/>
+    <bean id="authenticator" class="com.interval.application.Authenticator" autowire="constructor"/>
     <bean id="profileService" class="com.interval.service.impl.ProfileService" autowire="constructor"/>
 
 </beans>

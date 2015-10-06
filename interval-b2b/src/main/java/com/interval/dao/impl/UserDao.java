@@ -38,4 +38,9 @@ public class UserDao extends BaseDao<User>{
             sessionFactory.getCurrentSession().delete(user);
         }
     }
+
+    @Override
+    public List<User> search(String query){
+        return sessionFactory.getCurrentSession().createQuery(query.toString()).list();
+    }
 }

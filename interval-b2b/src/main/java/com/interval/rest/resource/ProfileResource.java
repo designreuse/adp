@@ -1,5 +1,6 @@
 package com.interval.rest.resource;
 
+import com.interval.application.Authenticator;
 import com.interval.common.UnMarshaller;
 import com.interval.rest.models.RESTUser;
 import com.interval.service.Service;
@@ -10,9 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -25,10 +24,12 @@ public class ProfileResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProfileResource.class);
     private final Service profileService;
+    private final Authenticator authenticator;
 
     @Inject
-    public ProfileResource(Service profileService) {
+    public ProfileResource(Service profileService, Authenticator authenticator) {
         this.profileService = profileService;
+        this.authenticator = authenticator;
     }
 
     @GET
@@ -82,4 +83,48 @@ public class ProfileResource {
         profileService.delete(userID);
         return Response.ok(null).build();
     }
+    @POST
+    @Path( "login" )
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces( MediaType.TEXT_PLAIN)
+    public String login(@Context final HttpContext requestContext) {
+        String request = requestContext.getRequest().getEntity(String.class);
+        String auth_token;
+        try {
+            RESTUser restUser = UnMarshaller.unmarshallJSON(RESTUser.class, request);
+                auth_token = authenticator.login(restUser.getEmail(), restUser.getPassword());
+        } catch (Exception exc) {
+            LOGGER.error("exception occurred while logging in", exc);
+            return Response.Status.INTERNAL_SERVER_ERROR.toString();
+        }
+        return auth_token;
+    }
+
+    @POST
+    @Path( "logout" )
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces( MediaType.APPLICATION_JSON )
+    public Response logout(@Context final HttpHeaders httpHeaders) {
+
+        try {
+            if(httpHeaders.getRequestHeader("auth_token") != null){
+                String auth_token = httpHeaders.getRequestHeader("auth_token").get(0);
+                authenticator.logout(auth_token);
+                return getNoCacheResponseBuilder( Response.Status.NO_CONTENT).build();
+            }
+        } catch (Exception exc) {
+            LOGGER.error("exception occurred while logging out", exc);
+            return getNoCacheResponseBuilder(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return getNoCacheResponseBuilder(Response.Status.INTERNAL_SERVER_ERROR).build();
+    }
+
+    private Response.ResponseBuilder getNoCacheResponseBuilder( Response.Status status ) {
+        CacheControl cc = new CacheControl();
+        cc.setNoCache( true );
+        cc.setMaxAge( -1 );
+        cc.setMustRevalidate( true );
+        return Response.status( status ).cacheControl( cc );
+    }
+
 }

@@ -20,5 +20,11 @@
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26" not-null="true" />
         </property>
+        <set name="users" table="USER" inverse="true" lazy="false" cascade="save-update,delete">
+            <key>
+                <column name="ROLE_ID" not-null="true"/>
+            </key>
+            <one-to-many class="com.interval.dao.models.User"/>
+        </set>
     </class>
 </hibernate-mapping>

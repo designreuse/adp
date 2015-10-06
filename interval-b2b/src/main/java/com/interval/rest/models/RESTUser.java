@@ -14,6 +14,8 @@ public class RESTUser {
     private String password;
     private Date createdTime;
     private Date updatedTime;
+    private RESTRole role;
+    private String token;
 
     public Integer getId() {
         return id;
@@ -77,5 +79,21 @@ public class RESTUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public RESTRole getRole() {
+        return role;
+    }
+
+    public void setRole(RESTRole role) {
+        this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
