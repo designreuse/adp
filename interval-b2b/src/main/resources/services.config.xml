@@ -13,5 +13,6 @@
     <bean id="productService" class="com.interval.service.impl.ProductService" autowire="constructor"/>
     <bean id="authenticator" class="com.interval.application.Authenticator" autowire="constructor"/>
     <bean id="profileService" class="com.interval.service.impl.ProfileService" autowire="constructor"/>
+    <bean id="commonService" class="com.interval.service.impl.CommonService" autowire="constructor"/>
 
 </beans>
