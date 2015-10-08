@@ -31,7 +31,7 @@ public class ProductResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductResource.class);
 
-    private static final String IMAGE_UPLOAD_DIR = "E:\\Muthuraj\\app\\images\\";
+    private static final String IMAGE_UPLOAD_DIR = "E:\\User\\app\\images\\";
 
     private final Service productService;
 
