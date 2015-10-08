@@ -61,6 +61,7 @@ public class ProfileResource {
         }
         return Response.ok().entity(null).build();
     }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -83,6 +84,7 @@ public class ProfileResource {
         profileService.delete(userID);
         return Response.ok(null).build();
     }
+
     @POST
     @Path( "login" )
     @Consumes(MediaType.APPLICATION_JSON)
@@ -92,7 +94,7 @@ public class ProfileResource {
         String auth_token;
         try {
             RESTUser restUser = UnMarshaller.unmarshallJSON(RESTUser.class, request);
-                auth_token = authenticator.login(restUser.getEmail(), restUser.getPassword());
+            auth_token = authenticator.login(restUser.getEmail(), restUser.getPassword());
         } catch (Exception exc) {
             LOGGER.error("exception occurred while logging in", exc);
             return Response.Status.INTERNAL_SERVER_ERROR.toString();
