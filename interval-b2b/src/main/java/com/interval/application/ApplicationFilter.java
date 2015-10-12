@@ -36,7 +36,7 @@ public class ApplicationFilter implements ContainerRequestFilter {
             String access_token = requestCtx.getHeaderValue("access_token");
             // if it isn't valid, just kick them out.
             if ( !authenticator.isAuthTokenValid( username, access_token ) ) {
-                throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+                //throw new WebApplicationException(Response.Status.UNAUTHORIZED);
             }
         }
         return requestCtx;

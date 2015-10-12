@@ -88,8 +88,7 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 	@Override
 	public RESTOrderDetail update(RESTOrderDetail restOrderDetail) {
 		
-		OrderDetail orderDetails = new OrderDetail();
-        orderDetails = orderDetailDao.get(restOrderDetail.getId().toString());
+		OrderDetail orderDetails =orderDetailDao.get(restOrderDetail.getId().toString());
         RESTOrderItem restOrderItem = null;
 		Iterator iter = restOrderDetail.getOrderItems().iterator();
 		restOrderItem = (RESTOrderItem) iter.next();
@@ -132,19 +131,30 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 				 orderDetails.setLineItemCount(orderDetails.getLineItemCount()+deltaQuantity);
 				 orderDetails.setSubTotal(orderDetails.getSubTotal()+deltaPrice);
 				 orderDetails.setTotal(orderDetails.getTotal()+deltaPrice);
+				 orderDetails.getOrderItems().add(orderItem);
+				 orderItem.setOrderDetail(orderDetails);
+				 orderDetails.getOrderItems().add(orderItem);
 			}
 			 else if (null != userEnterQuantity && userEnterQuantity == 0)
 			 {
 				 deltaPrice = orderItem.getQuantity() * product.getPrice();
+				 orderDetails.getOrderItems().clear();
 				 orderDetails.setLineItemCount(orderDetails.getLineItemCount()- orderItem.getQuantity());
 				 orderDetails.setSubTotal(orderDetails.getSubTotal()- deltaPrice);
 				 orderDetails.setTotal(orderDetails.getTotal()- deltaPrice);
-				 orderItemDao.delete(orderItem.getId().toString());
-				 orderDetails.getOrderItems().remove(orderItem);
+				 /*Iterator<OrderItem> ordItemsIter = orderDetails.getOrderItems().iterator();
+				 while (ordItemsIter.hasNext())
+				 {
+					 OrderItem ordItemTemp = ordItemsIter.next();
+					 if (ordItemTemp.getId()== orderItem.getId())
+					 {
+						 ordItemsIter.remove();
+					 }
+				 }*/
+				 //orderItemDao.delete(orderItem.getId().toString());
+				 
 			 }
-			 orderDetails.getOrderItems().add(orderItem);
-			 orderItem.setOrderDetail(orderDetails);
-			 orderDetails.getOrderItems().add(orderItem);
+			 
 			 
 		}
 		 if (null != restOrderDetail.getShow().getId() && null != restOrderDetail.getSeatNo())
@@ -154,10 +164,21 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 			  orderDetails.setShow(show);
 		 }
 		 
+		 if (null!= restOrderDetail.getOrderStatus() && null != restOrderDetail.getOrderStatus().getId())
+		 {
+			 updateOrderStatus(orderDetails,restOrderDetail.getOrderStatus().getId());
+		 }
 	
 		 orderDetailDao.update(orderDetails);
 		RESTOrderDetail updatedRestOrderDetails = OrderDetailTransformer.transformRESTOrderDetail(orderDetails);
 		 return updatedRestOrderDetails;
+	}
+	
+	private void updateOrderStatus(OrderDetail orderDetail,Integer orderStatusId)
+	{
+		OrderStatus orderStatus = new OrderStatus();
+		orderStatus.setId(orderStatusId);
+		orderDetail.setOrderStatus(orderStatus);
 	}
 
 	private void updateLineItemPrice(OrderDetail orderDetail){

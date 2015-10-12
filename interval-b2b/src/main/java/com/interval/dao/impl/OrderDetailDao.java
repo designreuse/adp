@@ -1,5 +1,6 @@
 package com.interval.dao.impl;
 
+import com.interval.dao.query.OrderQueryBuilder;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 
@@ -47,8 +48,7 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		List<OrderDetail> orderDetailList = null;
 		final int id = getId(centerId);
 		if(id > 0){
-			final String query = "from OrderDetail od where od.show.screen.center.id=" + id;
-			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
+			orderDetailList = sessionFactory.getCurrentSession().createQuery(OrderQueryBuilder.getByCenter(centerId)).list();
 		}
 		return orderDetailList;
 	}
@@ -57,8 +57,7 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		List<OrderDetail> orderDetailList = null;
 		final int id = getId(userId);
 		if(id > 0){
-			final String query = "from OrderDetail od where od.user.id=" + id;
-			orderDetailList = sessionFactory.getCurrentSession().createQuery(query).list();
+			orderDetailList = sessionFactory.getCurrentSession().createQuery(OrderQueryBuilder.getByUser(userId)).list();
 		}
 		return orderDetailList;
 	}

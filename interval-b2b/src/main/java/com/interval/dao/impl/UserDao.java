@@ -11,7 +11,7 @@ public class UserDao extends BaseDao<User>{
 
     @Override
     public void create(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        sessionFactory.getCurrentSession().save(user);
     }
 
     @Override

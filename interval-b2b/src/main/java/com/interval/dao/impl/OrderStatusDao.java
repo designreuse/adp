@@ -12,7 +12,7 @@ public class OrderStatusDao extends BaseDao<OrderStatus> {
 
     @Override
     public void create(OrderStatus orderStatus) {
-        sessionFactory.getCurrentSession().saveOrUpdate(orderStatus);
+        sessionFactory.getCurrentSession().save(orderStatus);
     }
 
     @Override

@@ -45,12 +45,17 @@ public class BaseDao<T> implements Dao<T>{
    }
 
     @Override
-    public void updateById(String id, Map<String, Object> keyValueMap) {
+    public List<T> search(String query) {
+        return null;
+    }
+
+    @Override
+    public void execute(String query) {
 
     }
 
     @Override
-    public List<T> search(String query) {
-        return null;
+    public void executeSQL(String query) {
+
     }
 }

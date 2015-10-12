@@ -44,21 +44,4 @@ public class ProductDao extends BaseDao<Product> {
         }
     }
 
-    @Override
-    public void updateById(String id, Map<String, Object> keyValueMap) {
-        final int productId = getId(id);
-        if(productId > 0){
-            final StringBuffer query = new StringBuffer("update Product set ");
-            for(Map.Entry<String, Object> entry : keyValueMap.entrySet()){
-                Object object = entry.getValue();
-                query.append(entry.getKey()).append("=");
-                if(object instanceof String){
-                    query.append("'").append(entry.getValue()).append("'");
-                }else{
-                    query.append(entry.getValue());
-                }
-            }
-        }
-    }
-
 }

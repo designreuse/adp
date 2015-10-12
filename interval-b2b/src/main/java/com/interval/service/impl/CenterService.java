@@ -4,6 +4,7 @@ import com.interval.dao.impl.CenterDao;
 import com.interval.dao.models.Center;
 import com.interval.dao.models.Screen;
 import com.interval.dao.models.Show;
+import com.interval.dao.query.CenterQueryBuilder;
 import com.interval.rest.models.RESTCenter;
 import com.interval.service.Service;
 import com.interval.transformers.CenterTransformer;
@@ -42,10 +43,13 @@ public class CenterService extends BaseService<RESTCenter> {
         }
         centerDao.update(center);
         if(!CollectionUtils.isEmpty(restCenter.getDeleteShowList())){
-            centerDao.deleteShows(center.getId(), restCenter.getDeleteShowList());
+            centerDao.executeSQL(CenterQueryBuilder.updateOrderShowByShow(restCenter.getDeleteShowList()));
+            centerDao.executeSQL(CenterQueryBuilder.deleteShows(restCenter.getDeleteShowList()));
         }
         if(!CollectionUtils.isEmpty(restCenter.getDeleteScreenList())){
-            centerDao.deleteScreens(center.getId(), restCenter.getDeleteScreenList());
+            centerDao.executeSQL(CenterQueryBuilder.updateOrderShowByScreen(restCenter.getDeleteScreenList()));
+            centerDao.executeSQL(CenterQueryBuilder.deleteShowByScreens(restCenter.getDeleteScreenList()));
+            centerDao.executeSQL(CenterQueryBuilder.deleteScreens(restCenter.getDeleteScreenList()));
         }
         return restCenter;
     }
@@ -73,7 +77,7 @@ public class CenterService extends BaseService<RESTCenter> {
     @Override
     public List<RESTCenter> search(String query) {
         List<RESTCenter> centerList = new ArrayList<RESTCenter>();
-        List<Center> centers = centerDao.search(query);
+        List<Center> centers = centerDao.search(CenterQueryBuilder.search(query));
         for (Center center : centers) {
             centerList.add(CenterTransformer.transformRESTCenter(center));
         }

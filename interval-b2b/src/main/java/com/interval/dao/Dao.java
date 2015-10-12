@@ -18,7 +18,9 @@ public interface Dao<T> {
 
     public void delete(String id);
 
-    public void updateById(final String id, final Map<String, Object> keyValueMap);
-
     public List<T> search(final String query);
+
+    public void execute(String query);
+
+    public void executeSQL(String query);
 }

@@ -47,7 +47,6 @@ public class CategoryService extends BaseService<RESTCategory> {
     @Override
     public RESTCategory get(final String categoryId) {
         Category category = categoryDao.get(categoryId);
-
         return CategoryTransformer.transformRESTCategory(category);
     }
 
