@@ -14,6 +14,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,22 @@ public class InventoryResource {
     @Inject
     public InventoryResource(final Service inventoryService) {
         this.inventoryService = inventoryService;
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInventoryByFilter(@PathParam("id") final String id,
+                                      @QueryParam("type") final String type){
+        List<RESTInventory> inventories;
+        if(type != null){
+            inventories = (List<RESTInventory>)inventoryService.get(id, type);
+        }else{
+            RESTInventory inventory = (RESTInventory)inventoryService.get(id);
+            inventories = new ArrayList<RESTInventory>();
+            inventories.add(inventory);
+        }
+        return Response.ok(inventories).build();
     }
 
     @GET

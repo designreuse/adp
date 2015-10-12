@@ -19,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,22 @@ public class ProductResource {
     @Inject
     public ProductResource(final Service productService) {
         this.productService = productService;
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductsByFilter(@PathParam("id") final String id,
+                                      @QueryParam("type") final String type){
+        List<RESTProduct> products;
+        if(type != null){
+            products = (List<RESTProduct>)productService.get(id, type);
+        }else{
+            RESTProduct product = (RESTProduct)productService.get(id);
+            products = new ArrayList<RESTProduct>();
+            products.add(product);
+        }
+        return Response.ok(products).build();
     }
 
     @GET

@@ -10,6 +10,7 @@ import com.interval.dao.impl.OrderDetailDao;
 import com.interval.dao.impl.OrderItemDao;
 import com.interval.dao.impl.ProductDao;
 import com.interval.dao.models.*;
+import com.interval.dao.query.OrderQueryBuilder;
 import com.interval.rest.models.RESTOrderDetail;
 import com.interval.rest.models.RESTOrderItem;
 import com.interval.transformers.OrderDetailTransformer;
@@ -51,9 +52,9 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
 		List<RESTOrderDetail> restOrderDetails = new ArrayList<RESTOrderDetail>();
 		if(type != null){
 			if(type.equalsIgnoreCase("user")){
-				orderDetailList = orderDetailDao.getByUser(id);
+				orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByUser(id));
 			}else if(type.equalsIgnoreCase("center")){
-				orderDetailList = orderDetailDao.getByCenter(id);
+				orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByCenter(id));
 			}
 			if(orderDetailList != null){
 				for(OrderDetail orderDetail : orderDetailList){

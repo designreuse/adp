@@ -3,7 +3,7 @@ package com.interval.dao.query;
 import java.util.List;
 
 /**
- * Created by Muthuraj on 10/12/2015.
+ * Created by User on 10/12/2015.
  */
 public class CenterQueryBuilder {
 

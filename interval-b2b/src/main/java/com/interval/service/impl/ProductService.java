@@ -2,6 +2,7 @@ package com.interval.service.impl;
 
 import com.interval.dao.impl.ProductDao;
 import com.interval.dao.models.Product;
+import com.interval.dao.query.ProductQueryBuilder;
 import com.interval.rest.models.RESTProduct;
 import com.interval.service.Service;
 import com.interval.transformers.ProductTransformer;
@@ -37,6 +38,23 @@ public class ProductService extends BaseService<RESTProduct> {
     @Override
     public RESTProduct get(final String productId) {
         return ProductTransformer.transformRESTProduct(productDao.get(productId));
+    }
+
+    @Override
+    public List<RESTProduct> get(String id, String type) {
+        List<Product> products = null;
+        List<RESTProduct> restProducts = new ArrayList<RESTProduct>();
+        if(type != null){
+            if(type.equalsIgnoreCase("center")){
+                products = productDao.search(ProductQueryBuilder.getProductsByCenter(id));
+            }
+            if(products != null){
+                for(Product product : products){
+                    restProducts.add(ProductTransformer.transformRESTProduct(product));
+                }
+            }
+        }
+        return restProducts;
     }
 
     @Override

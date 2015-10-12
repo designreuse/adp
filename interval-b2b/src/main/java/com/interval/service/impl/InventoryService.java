@@ -2,6 +2,7 @@ package com.interval.service.impl;
 
 import com.interval.dao.impl.InventoryDao;
 import com.interval.dao.models.Inventory;
+import com.interval.dao.query.InventoryQueryBuilder;
 import com.interval.rest.models.RESTInventory;
 import com.interval.service.Service;
 import com.interval.transformers.InventoryTransformer;
@@ -37,6 +38,23 @@ public class InventoryService extends BaseService<RESTInventory> {
     @Override
     public RESTInventory get(final String inventoryId) {
         return InventoryTransformer.transformRESTInventory(inventoryDao.get(inventoryId));
+    }
+
+    @Override
+    public List<RESTInventory> get(String id, String type) {
+        List<Inventory> inventories = null;
+        List<RESTInventory> restInventories = new ArrayList<RESTInventory>();
+        if(type != null){
+            if(type.equalsIgnoreCase("center")){
+                inventories = inventoryDao.search(InventoryQueryBuilder.getInventoryByCenter(id));
+            }
+            if(inventories != null){
+                for(Inventory inventory : inventories){
+                    restInventories.add(InventoryTransformer.transformRESTInventory(inventory));
+                }
+            }
+        }
+        return restInventories;
     }
 
     @Override

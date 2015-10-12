@@ -44,21 +44,9 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		}
 	}
 
-	public List<OrderDetail> getByCenter(final String centerId){
-		List<OrderDetail> orderDetailList = null;
-		final int id = getId(centerId);
-		if(id > 0){
-			orderDetailList = sessionFactory.getCurrentSession().createQuery(OrderQueryBuilder.getByCenter(centerId)).list();
-		}
-		return orderDetailList;
+	@Override
+	public List<OrderDetail> search(String query) {
+		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
 
-	public List<OrderDetail> getByUser(final String userId){
-		List<OrderDetail> orderDetailList = null;
-		final int id = getId(userId);
-		if(id > 0){
-			orderDetailList = sessionFactory.getCurrentSession().createQuery(OrderQueryBuilder.getByUser(userId)).list();
-		}
-		return orderDetailList;
-	}
 }

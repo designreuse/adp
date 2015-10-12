@@ -44,4 +44,8 @@ public class ProductDao extends BaseDao<Product> {
         }
     }
 
+    @Override
+    public List<Product> search(String query) {
+        return sessionFactory.getCurrentSession().createQuery(query).list();
+    }
 }

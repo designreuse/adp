@@ -43,4 +43,9 @@ public class InventoryDao extends BaseDao<Inventory> {
             sessionFactory.getCurrentSession().delete(inventory);
         }
     }
+
+    @Override
+    public List<Inventory> search(String query) {
+        return sessionFactory.getCurrentSession().createQuery(query).list();
+    }
 }
