@@ -8,6 +8,12 @@
             <column name="ID"/>
             <generator class="identity"/>
         </id>
+        <many-to-one name="role" class="com.interval.dao.models.Role" fetch="select">
+            <column name="ROLE_ID" />
+        </many-to-one>
+        <many-to-one name="vendor" class="com.interval.dao.models.Vendor" fetch="select">
+            <column name="VENDOR_ID" />
+        </many-to-one>
         <property name="email" type="string">
             <column name="EMAIL" length="60"/>
         </property>
@@ -20,14 +26,14 @@
         <property name="lastName" type="string">
             <column name="LAST_NAME" length="60"/>
         </property>
-        <property name="password" type="string">
-            <column name="password" length="12"/>
-        </property>
         <property name="createdTime" type="timestamp">
             <column name="CREATED_TIME" length="26"/>
         </property>
         <property name="updatedTime" type="timestamp">
             <column name="UPDATED_TIME" length="26"/>
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="12" not-null="true" />
         </property>
         <property name="token" type="string">
             <column name="TOKEN" length="60"/>
@@ -38,8 +44,5 @@
             </key>
             <one-to-many class="com.interval.dao.models.OrderDetail"/>
         </set>
-        <many-to-one name="role" class="com.interval.dao.models.Role" fetch="select" cascade="all">
-            <column name="ROLE_ID" not-null="true" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

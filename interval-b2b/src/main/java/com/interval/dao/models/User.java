@@ -11,120 +11,137 @@ import java.util.Set;
  */
 public class User implements java.io.Serializable {
 
-    private Integer id;
-    private String email;
-    private String phone;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private Date createdTime;
-    private Date updatedTime;
-    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
-    private Role role;
-    private String token;
+	private Integer id;
+	private Role role;
+	private Vendor vendor;
+	private String email;
+	private String phone;
+	private String firstName;
+	private String lastName;
+	private Date createdTime;
+	private Date updatedTime;
+	private String password;
+	private String token;
+	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 
-    public User() {
-    }
+	public User() {
+	}
 
-    public User(String email, String phone, String firstName, String lastName, String password,
-                Date createdTime, Date updatedTime, Set<OrderDetail> orderDetails, Role role, String token) {
-        this.email = email;
-        this.phone = phone;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.createdTime = createdTime;
-        this.updatedTime = updatedTime;
-        this.orderDetails = orderDetails;
-        this.role = role;
-        this.token = token;
-    }
+	public User(String password) {
+		this.password = password;
+	}
 
-    public Integer getId() {
-        return this.id;
-    }
+	public User(Role role, Vendor vendor, String email, String phone,
+			String firstName, String lastName, Date createdTime,
+			Date updatedTime, String password, String token,
+			Set<OrderDetail> orderDetails) {
+		this.role = role;
+		this.vendor = vendor;
+		this.email = email;
+		this.phone = phone;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.createdTime = createdTime;
+		this.updatedTime = updatedTime;
+		this.password = password;
+		this.token = token;
+		this.orderDetails = orderDetails;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return this.id;
+	}
 
-    public String getEmail() {
-        return this.email;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public Role getRole() {
+		return this.role;
+	}
 
-    public String getPhone() {
-        return this.phone;
-    }
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public Vendor getVendor() {
+		return this.vendor;
+	}
 
-    public String getFirstName() {
-        return this.firstName;
-    }
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getEmail() {
+		return this.email;
+	}
 
-    public String getLastName() {
-        return this.lastName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getPhone() {
+		return this.phone;
+	}
 
-    public Date getCreatedTime() {
-        return this.createdTime;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
+	public String getFirstName() {
+		return this.firstName;
+	}
 
-    public Date getUpdatedTime() {
-        return this.updatedTime;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
+	public String getLastName() {
+		return this.lastName;
+	}
 
-    public Set<OrderDetail> getOrderDetails() {
-        return this.orderDetails;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setOrderDetails(Set<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
+	public Date getCreatedTime() {
+		return this.createdTime;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public Date getUpdatedTime() {
+		return this.updatedTime;
+	}
 
-    public Role getRole() {
-        return role;
-    }
+	public void setUpdatedTime(Date updatedTime) {
+		this.updatedTime = updatedTime;
+	}
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	public String getPassword() {
+		return this.password;
+	}
 
-    public String getToken() {
-        return token;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public String getToken() {
+		return this.token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Set<OrderDetail> getOrderDetails() {
+		return this.orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 }

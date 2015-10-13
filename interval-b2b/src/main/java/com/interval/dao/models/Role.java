@@ -4,6 +4,7 @@ package com.interval.dao.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -16,17 +17,17 @@ public class Role implements Serializable {
 	private String description;
 	private Date createdTime;
 	private Date updatedTime;
-    private Set<User> users;
+	private Set<User> users = new HashSet<User>(0);
 
-    public Set<User> getUsers() {
-        return users;
-    }
+	public Role() {
+	}
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Role() {
+	public Role(String name, String description, Date createdTime,
+			Date updatedTime) {
+		this.name = name;
+		this.description = description;
+		this.createdTime = createdTime;
+		this.updatedTime = updatedTime;
 	}
 
 	public Role(String name, String description, Date createdTime,
@@ -76,6 +77,14 @@ public class Role implements Serializable {
 
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public Set<User> getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

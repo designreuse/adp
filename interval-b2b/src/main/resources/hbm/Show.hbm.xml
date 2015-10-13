@@ -22,7 +22,7 @@
         </property>
         <set name="orderDetails" table="ORDER_DETAIL" inverse="true" lazy="false" cascade="save-update">
             <key>
-                <column name="SHOW_ID" not-null="true"/>
+                <column name="SHOW_ID" />
             </key>
             <one-to-many class="com.interval.dao.models.OrderDetail"/>
         </set>
