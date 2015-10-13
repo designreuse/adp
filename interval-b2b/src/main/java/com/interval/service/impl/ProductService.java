@@ -4,11 +4,11 @@ import com.interval.dao.impl.ProductDao;
 import com.interval.dao.models.Product;
 import com.interval.dao.query.ProductQueryBuilder;
 import com.interval.rest.models.RESTProduct;
-import com.interval.service.Service;
 import com.interval.transformers.ProductTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,13 +25,17 @@ public class ProductService extends BaseService<RESTProduct> {
 
     @Override
     public RESTProduct create(RESTProduct restProduct) {
-        productDao.create(ProductTransformer.transformProduct(restProduct));
+        Product product = ProductTransformer.transformProduct(restProduct);
+        product.setCreatedTime(new Date());
+        productDao.create(product);
         return null;
     }
 
     @Override
     public RESTProduct update(RESTProduct restProduct) {
-        productDao.update(ProductTransformer.transformProduct(restProduct));
+        Product product = ProductTransformer.transformProduct(restProduct);
+        product.setUpdatedTime(new Date());
+        productDao.update(product);
         return restProduct;
     }
 

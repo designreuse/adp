@@ -3,11 +3,11 @@ package com.interval.service.impl;
 import com.interval.dao.impl.OrderStatusDao;
 import com.interval.dao.models.OrderStatus;
 import com.interval.rest.models.RESTOrderStatus;
-import com.interval.service.Service;
 import com.interval.transformers.OrderStatusTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,13 +24,17 @@ public class OrderStatusService extends BaseService<RESTOrderStatus> {
 
     @Override
     public RESTOrderStatus create(RESTOrderStatus restOrderStatus) {
-        orderStatusDao.create(OrderStatusTransformer.transformOrderStatus(restOrderStatus));
+        OrderStatus orderStatus = OrderStatusTransformer.transformOrderStatus(restOrderStatus);
+        orderStatus.setCreatedTime(new Date());
+        orderStatusDao.create(orderStatus);
         return null;
     }
 
     @Override
     public RESTOrderStatus update(RESTOrderStatus restOrderStatus) {
-        orderStatusDao.update(OrderStatusTransformer.transformOrderStatus(restOrderStatus));
+        OrderStatus orderStatus = OrderStatusTransformer.transformOrderStatus(restOrderStatus);
+        orderStatus.setUpdatedTime(new Date());
+        orderStatusDao.update(orderStatus);
         return restOrderStatus;
     }
 

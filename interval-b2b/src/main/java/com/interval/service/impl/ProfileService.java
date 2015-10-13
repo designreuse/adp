@@ -4,7 +4,6 @@ import com.interval.dao.impl.UserDao;
 import com.interval.dao.models.User;
 import com.interval.rest.models.RESTUser;
 import com.interval.transformers.UserTransformer;
-import org.apache.commons.collections.CollectionUtils;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -23,13 +22,17 @@ public class ProfileService extends BaseService<RESTUser> {
 
     @Override
     public RESTUser create(RESTUser restUser) {
-        userDao.create(UserTransformer.transformUser(restUser));
+        User user = UserTransformer.transformUser(restUser);
+        user.setCreatedTime(new Date());
+        userDao.create(user);
         return null;
     }
 
     @Override
     public RESTUser update(RESTUser restUser) {
-        userDao.update(UserTransformer.transformUser(restUser));
+        User user = UserTransformer.transformUser(restUser);
+        user.setUpdatedTime(new Date());
+        userDao.update(user);
         return restUser;
     }
 

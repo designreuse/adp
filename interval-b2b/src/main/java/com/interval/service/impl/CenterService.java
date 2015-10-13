@@ -6,12 +6,12 @@ import com.interval.dao.models.Screen;
 import com.interval.dao.models.Show;
 import com.interval.dao.query.CenterQueryBuilder;
 import com.interval.rest.models.RESTCenter;
-import com.interval.service.Service;
 import com.interval.transformers.CenterTransformer;
 import org.springframework.util.CollectionUtils;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,7 +28,9 @@ public class CenterService extends BaseService<RESTCenter> {
 
     @Override
     public RESTCenter create(RESTCenter restCenter) {
-        centerDao.create(CenterTransformer.transformCenter(restCenter));
+        Center center = CenterTransformer.transformCenter(restCenter);
+        center.setCreatedTime(new Date());
+        centerDao.create(center);
         return null;
     }
 
@@ -41,6 +43,7 @@ public class CenterService extends BaseService<RESTCenter> {
             }
             screen.setCenter(center);
         }
+        center.setUpdatedTime(new Date());
         centerDao.update(center);
         if(!CollectionUtils.isEmpty(restCenter.getDeleteShowList())){
             centerDao.executeSQL(CenterQueryBuilder.updateOrderShowByShow(restCenter.getDeleteShowList()));

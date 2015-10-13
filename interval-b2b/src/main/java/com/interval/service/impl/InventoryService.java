@@ -4,11 +4,11 @@ import com.interval.dao.impl.InventoryDao;
 import com.interval.dao.models.Inventory;
 import com.interval.dao.query.InventoryQueryBuilder;
 import com.interval.rest.models.RESTInventory;
-import com.interval.service.Service;
 import com.interval.transformers.InventoryTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,13 +25,17 @@ public class InventoryService extends BaseService<RESTInventory> {
 
     @Override
     public RESTInventory create(RESTInventory restInventory) {
-        inventoryDao.create(InventoryTransformer.transformInventory(restInventory));
+        Inventory inventory = InventoryTransformer.transformInventory(restInventory);
+        inventory.setCreatedTime(new Date());
+        inventoryDao.create(inventory);
         return null;
     }
 
     @Override
     public RESTInventory update(RESTInventory restInventory) {
-        inventoryDao.update(InventoryTransformer.transformInventory(restInventory));
+        Inventory inventory = InventoryTransformer.transformInventory(restInventory);
+        inventory.setUpdatedTime(new Date());
+        inventoryDao.update(inventory);
         return restInventory;
     }
 

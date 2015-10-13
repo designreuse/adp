@@ -3,11 +3,11 @@ package com.interval.service.impl;
 import com.interval.dao.impl.CategoryDao;
 import com.interval.dao.models.Category;
 import com.interval.rest.models.RESTCategory;
-import com.interval.service.Service;
 import com.interval.transformers.CategoryTransformer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,13 +24,17 @@ public class CategoryService extends BaseService<RESTCategory> {
 
     @Override
     public RESTCategory create(RESTCategory restCategory) {
-        categoryDao.create(CategoryTransformer.transformCategory(restCategory));
+        Category category = CategoryTransformer.transformCategory(restCategory);
+        category.setCreatedTime(new Date());
+        categoryDao.create(category);
         return null;
     }
 
     @Override
     public RESTCategory update(RESTCategory restCategory) {
-        categoryDao.update(CategoryTransformer.transformCategory(restCategory));
+        Category category = CategoryTransformer.transformCategory(restCategory);
+        category.setUpdatedTime(new Date());
+        categoryDao.update(category);
         return restCategory;
     }
 
