@@ -88,18 +88,18 @@ public class ProfileResource {
     @POST
     @Path( "login" )
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces( MediaType.TEXT_PLAIN)
-    public String login(@Context final HttpContext requestContext) {
+    @Produces( MediaType.APPLICATION_JSON)
+    public Response login(@Context final HttpContext requestContext) {
         String request = requestContext.getRequest().getEntity(String.class);
-        String auth_token;
+        RESTUser restUser;
         try {
-            RESTUser restUser = UnMarshaller.unmarshallJSON(RESTUser.class, request);
-            auth_token = authenticator.login(restUser.getEmail(), restUser.getPassword());
+            restUser = UnMarshaller.unmarshallJSON(RESTUser.class, request);
+            restUser = authenticator.login(restUser.getEmail(), restUser.getPassword());
         } catch (Exception exc) {
             LOGGER.error("exception occurred while logging in", exc);
-            return Response.Status.INTERNAL_SERVER_ERROR.toString();
+            return Response.serverError().build();
         }
-        return auth_token;
+        return Response.ok().entity(restUser).build();
     }
 
     @POST

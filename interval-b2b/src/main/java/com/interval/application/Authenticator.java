@@ -28,10 +28,11 @@ public final class Authenticator {
         this.profileService = profileService;
     }
 
-    public String login(String email, String password ) throws LoginException {
+    public RESTUser login(String email, String password) throws LoginException {
 
         final StringBuilder query = new StringBuilder("from User u where ");
-        query.append("u.email=").append("'").append(email).append("'");
+        query.append("u.email=").append("'").append(email).append("'").append(" ").append("and")
+                .append(" ").append("u.password=").append("'").append(password).append("'");
 
         final List<RESTUser> userList = profileService.search(query.toString());
 
@@ -44,7 +45,7 @@ public final class Authenticator {
                     String authToken = UUID.randomUUID().toString();
                     user.setToken(authToken);
                     profileService.update(user);
-                    return authToken;
+                    return user;
                 }
             }
         }

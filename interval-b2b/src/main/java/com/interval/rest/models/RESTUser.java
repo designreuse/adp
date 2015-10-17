@@ -1,5 +1,7 @@
 package com.interval.rest.models;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.Date;
 
 /**
@@ -16,6 +18,8 @@ public class RESTUser {
     private Date updatedTime;
     private RESTRole role;
     private String token;
+    private RESTVendor vendor;
+
 
     public Integer getId() {
         return id;
@@ -95,5 +99,13 @@ public class RESTUser {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public RESTVendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(RESTVendor vendor) {
+        this.vendor = vendor;
     }
 }

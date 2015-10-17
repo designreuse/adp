@@ -68,13 +68,25 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
             }
         );
     });
-app.controller('NavCtrl',
-    ['$scope', '$location', function ($scope, $location) {
+app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,USER_ROLES,AuthService) {
 
         $scope.showNav = false;
-
+        $scope.currentUser = {};
+        $scope.userRoles = USER_ROLES;
+        $scope.roleId = null;
+        $scope.vendor = null;
+       // $scope.isAuthorized = AuthService.isAuthorized;
+        $scope.setCurrentUser = function (user) {
+            $scope.currentUser = user;
+        };
         $scope.setShowNav = function (nav) {
             $scope.showNav = nav;
+        };
+        $scope.setRoleId = function (roleId) {
+            $scope.roleId = roleId;
+        };
+        $scope.setVendor = function (vendor) {
+            $scope.vendor = vendor;
         };
 
         $scope.navClass = function (page) {
