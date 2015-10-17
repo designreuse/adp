@@ -29,80 +29,82 @@
     <script src="js/modules/orderstatus.js"></script>
     <script src="js/modules/inventory.js"></script>
     <script src="js/modules/product.js"></script>
+    <script src="js/modules/login.js"></script>
 </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="NavCtrl">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-brand"><img src="img/logo.png" height="32" width="32"></div><div class="navbar-brand">Interval</div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid" ng-controller="NavCtrl">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li ng-class="navClass('home')">
-                    <a href="" ng-click="loadHome()">Home</a>
-                </li>
-                <li ng-class="navClass('dashboard')">
-                    <a href="" ng-click="loadDashboard()">Dashboard</a>
-                </li>
-                <li ng-class="navClass('categories')">
-                    <a href="" ng-click="loadCategories()">Categories</a>
-                </li>
-                <li ng-class="navClass('centers')">
-                    <a href="" ng-click="loadCenters()">Centers</a>
-                </li>
-                <li ng-class="navClass('inventory')">
-                    <a href="" ng-click="loadInventory()">Inventory</a>
-                </li>
-                <li ng-class="navClass('orderstatus')">
-                    <a href="" ng-click="loadOrderStatus()">Order Status</a>
-                </li>
-                <li ng-class="navClass('product')">
-                    <a href="" ng-click="loadProduct()">Product</a>
-                </li>
-                <li ng-class="navClass('sales')">
-                    <a href="" ng-click="loadSales()">Sales</a>
-                </li>
-                <li ng-class="navClass('about')">
-                    <a href="" ng-click="loadAbout()">About</a>
-                </li>
-                <li ng-class="navClass('services')">
-                    <a href="" ng-click="loadServices()">Services</a>
-                </li>
-                <li ng-class="navClass('contact')">
-                    <a href="" ng-click="loadContact()">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class="row">
-                <h1 class="page-header">{{ pageHeader }}</h1>
-                <div ng-view>
-                </div>
+<div ng-if="showNav">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand"><img src="img/logo.png" height="32" width="32"></div><div class="navbar-brand">Interval</div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
             </div>
         </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li ng-class="navClass('home')">
+                        <a href="" ng-click="loadHome()">Home</a>
+                    </li>
+                    <li ng-class="navClass('dashboard')">
+                        <a href="" ng-click="loadDashboard()">Dashboard</a>
+                    </li>
+                    <li ng-class="navClass('categories')">
+                        <a href="" ng-click="loadCategories()">Categories</a>
+                    </li>
+                    <li ng-class="navClass('centers')">
+                        <a href="" ng-click="loadCenters()">Centers</a>
+                    </li>
+                    <li ng-class="navClass('inventory')">
+                        <a href="" ng-click="loadInventory()">Inventory</a>
+                    </li>
+                    <li ng-class="navClass('orderstatus')">
+                        <a href="" ng-click="loadOrderStatus()">Order Status</a>
+                    </li>
+                    <li ng-class="navClass('product')">
+                        <a href="" ng-click="loadProduct()">Product</a>
+                    </li>
+                    <li ng-class="navClass('sales')">
+                        <a href="" ng-click="loadSales()">Sales</a>
+                    </li>
+                    <li ng-class="navClass('about')">
+                        <a href="" ng-click="loadAbout()">About</a>
+                    </li>
+                    <li ng-class="navClass('services')">
+                        <a href="" ng-click="loadServices()">Services</a>
+                    </li>
+                    <li ng-class="navClass('contact')">
+                        <a href="" ng-click="loadContact()">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row">
+        <h1 class="page-header">{{ pageHeader }}</h1>
+        <div ng-view></div>
     </div>
 </div>
 

@@ -56,16 +56,27 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
                 templateUrl: 'templates/services.html',
                 controller: 'ServicesCtrl'
             });
+        $routeProvider.when('/login',
+            {
+                templateUrl: 'templates/login.html',
+                controller: 'LoginCtrl'
+            });
         $routeProvider.otherwise(
             {
-                redirectTo: '/home',
-                controller: 'HomeCtrl'
+                redirectTo: '/login',
+                controller: 'LoginCtrl'
             }
         );
     });
-
 app.controller('NavCtrl',
     ['$scope', '$location', function ($scope, $location) {
+
+        $scope.showNav = false;
+
+        $scope.setShowNav = function (nav) {
+            $scope.showNav = nav;
+        };
+
         $scope.navClass = function (page) {
             var currentRoute = $location.path().substring(1) || 'home';
             return page === currentRoute ? 'active' : '';
