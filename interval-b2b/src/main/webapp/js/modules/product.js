@@ -8,6 +8,7 @@ app.controller('ProductCtrl',
         $scope.selectedItem = {};
         $scope.disableEdit = false;
         $scope.editItem = {};
+        $scope.centers = null;
         var columnDef = [
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'},
@@ -36,15 +37,29 @@ app.controller('ProductCtrl',
         };
 
         $scope.load = function () {
-            productFactory.query(function (data) {
-                $scope.products = data;
-                $scope.gridOpts.data = $scope.products;
-                //$scope.gridApi.core.refresh();
-                console.log("products : ", $scope.products);
-                $scope.clearSelectedProduct();
-                $scope.clearNewProduct();
-                $scope.disableEdit = false;
-            });
+
+            if($scope.roleId<1){
+                productFactory.query(function (data) {
+                    $scope.products = data;
+                    $scope.gridOpts.data = $scope.products;
+                    //$scope.gridApi.core.refresh();
+                    console.log("products : ", $scope.products);
+                    $scope.clearSelectedProduct();
+                    $scope.clearNewProduct();
+                    $scope.disableEdit = false;
+                });
+            }else{
+                productFactory.getProductByCenter({id: $scope.centerId, type:'center'}, function (data) {
+                    $scope.products = data;
+                    $scope.gridOpts.data = $scope.products;
+                    //$scope.gridApi.core.refresh();
+                    console.log("products : ", $scope.products);
+                    $scope.clearSelectedProduct();
+                    $scope.clearNewProduct();
+                    $scope.disableEdit = false;
+                    console.log("getting products for centerID: ", $scope.centerId)
+                });
+            }
         }
 
         $scope.create = function () {
@@ -86,9 +101,13 @@ app.controller('ProductCtrl',
         }
 
         $scope.loadCenters = function () {
-            centersFactory.query(function (data) {
-                $scope.centers = data;
-            });
+            if($scope.roleId<1){
+                centersFactory.query(function (data) {
+                    $scope.centers = data;
+                });
+            }else {
+                $scope.centers = angular.copy($scope.center);
+            }
         }
         $scope.clearEditItem = function(){
             $scope.editItem = angular.copy($scope.selectedItem);
@@ -100,10 +119,11 @@ app.controller('ProductCtrl',
 );
 
 app.factory("productFactory", function ($resource) {
-    return $resource('v1/product/:id', null,
+    return $resource('v1/product/:id?type=:type', null,
         {
             'update': { method: 'PUT' },
-            'uploadImage' : {method: 'POST', headers: {'Content-Type' : undefined}}
+            'uploadImage' : {method: 'POST', headers: {'Content-Type' : undefined}},
+            'getProductByCenter' : { method: 'GET' ,isArray:'true'}
         });
 })
 

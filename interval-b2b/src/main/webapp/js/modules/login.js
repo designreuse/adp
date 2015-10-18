@@ -3,6 +3,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope,AUTH_EVENTS,AuthService
             email: '',
             password: ''
         };
+        $scope.invalidCredentials=false;
     $scope.login = function (credentials) {
         AuthService.login(credentials).then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -10,8 +11,11 @@ app.controller('LoginCtrl', function ($scope, $rootScope,AUTH_EVENTS,AuthService
             $scope.setCurrentUser(user);
             $scope.setShowNav(true);
             $scope.setRoleId(user.role.id);
+            $scope.setCenterId(user.vendor.center.id);
+            $scope.setCenter(user.vendor.center);
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+            $scope.invalidCredentials=true;
         });
     };
 });

@@ -1,15 +1,27 @@
-<div ng-controller="LoginCtrl" class="container">
-    <modal title="Login form">
-        <form role="form" name="loginForm" novalidate>
+<div ng-controller="LoginCtrl" class="col-xs-8" style="padding-left:20%">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Please sign in</h3>
+        </div>
+        <div class="panel-body">
+            <span ng-if="invalidCredentials" class="text-danger">Invalid Credentials</span>
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" ng-model="credentials.email" class="form-control" id="email" placeholder="Enter email" />
+                <form role="form" name="loginForm" novalidate>
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" ng-model="credentials.email" class="form-control" id="email" placeholder="Enter email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" ng-model="credentials.password" class="form-control" id="password" placeholder="Password" />
+                        </div>
+                        <button type="submit" ng-click="login(credentials)" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-log-in" style="padding-right: 3px"></span>Sign In</button>
+                        </button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" ng-model="credentials.password" class="form-control" id="password" placeholder="Password" />
-            </div>
-            <button type="submit" ng-click="login(credentials)" class="btn btn-default">Submit</button>
-        </form>
-    </modal>
+        </div>
+    </div>
 </div>

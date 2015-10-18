@@ -96,6 +96,7 @@
                         <li ng-if="roleId<1" ng-class="navClass('contact')">
                             <a href="" ng-click="loadContact()">Contact</a>
                         </li>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -103,7 +104,7 @@
 </div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <div class="row">
-        <h1 class="page-header">{{ pageHeader }}</h1>
+        <h1 ng-if="showNav" class="page-header">{{ pageHeader }}</h1>
         <div ng-view></div>
     </div>
 </div>

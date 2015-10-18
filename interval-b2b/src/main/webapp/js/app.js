@@ -70,76 +70,80 @@ var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selec
     });
 app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,USER_ROLES,AuthService) {
 
-        $scope.showNav = false;
-        $scope.currentUser = {};
-        $scope.userRoles = USER_ROLES;
-        $scope.roleId = null;
-        $scope.vendor = null;
-       // $scope.isAuthorized = AuthService.isAuthorized;
-        $scope.setCurrentUser = function (user) {
-            $scope.currentUser = user;
-        };
-        $scope.setShowNav = function (nav) {
-            $scope.showNav = nav;
-        };
-        $scope.setRoleId = function (roleId) {
-            $scope.roleId = roleId;
-        };
-        $scope.setVendor = function (vendor) {
-            $scope.vendor = vendor;
-        };
+    $scope.showNav = false;
+    $scope.currentUser = {};
+    $scope.userRoles = USER_ROLES;
+    $scope.roleId = null;
+    $scope.centerId = null;
+    $scope.center = null;
+    // $scope.isAuthorized = AuthService.isAuthorized;
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+    };
+    $scope.setShowNav = function (nav) {
+        $scope.showNav = nav;
+    };
+    $scope.setRoleId = function (roleId) {
+        $scope.roleId = roleId;
+    };
+    $scope.setCenterId = function (centerId) {
+        $scope.centerId = centerId;
+    };
+    $scope.setCenter = function (center) {
+        $scope.center = center;
+    };
 
-        $scope.navClass = function (page) {
-            var currentRoute = $location.path().substring(1) || 'home';
-            return page === currentRoute ? 'active' : '';
-        };
+    $scope.navClass = function (page) {
+        var currentRoute = $location.path().substring(1) || 'home';
+        return page === currentRoute ? 'active' : '';
+    };
 
-        $scope.loadHome = function () {
-            $scope.pageHeader = "Home";
-            $location.url('/home');
-        };
+    $scope.loadHome = function () {
+        $scope.pageHeader = "Home";
+        $location.url('/home');
+    };
 
-        $scope.loadDashboard = function () {
-            $scope.pageHeader = "Dashboard";
-            $location.url('/dashboard');
-        };
+    $scope.loadDashboard = function () {
+        $scope.pageHeader = "Dashboard";
+        $location.url('/dashboard');
+    };
 
-        $scope.loadAbout = function () {
-            $scope.pageHeader = "About";
-            $location.url('/about');
-        };
+    $scope.loadAbout = function () {
+        $scope.pageHeader = "About";
+        $location.url('/about');
+    };
 
-        $scope.loadContact = function () {
-            $scope.pageHeader = "Contact";
-            $location.url('/contact');
-        };
+    $scope.loadContact = function () {
+        $scope.pageHeader = "Contact";
+        $location.url('/contact');
+    };
 
-        $scope.loadCategories = function () {
-            $scope.pageHeader = "Categories";
-            $location.url('/categories');
-        };
+    $scope.loadCategories = function () {
+        $scope.pageHeader = "Categories";
+        $location.url('/categories');
+    };
 
-        $scope.loadCenters = function () {
-            $scope.pageHeader = "Centers";
-            $location.url('/centers');
-        };
+    $scope.loadCenters = function () {
+        $scope.pageHeader = "Centers";
+        $location.url('/centers');
+    };
 
-        $scope.loadOrderStatus = function () {
-            $scope.pageHeader = "Order Status";
-            $location.url('/orderStatus');
-        }
+    $scope.loadOrderStatus = function () {
+        $scope.pageHeader = "Order Status";
+        $location.url('/orderStatus');
+    }
 
-        $scope.loadProduct = function () {
-            $scope.pageHeader = "Product";
-            $location.url('/product');
-        }
+    $scope.loadProduct = function () {
+        $scope.pageHeader = "Product";
+        $location.url('/product');
+    }
 
-        $scope.loadInventory = function () {
-            $scope.pageHeader = "Inventory";
-            $location.url('/inventory');
-        }
+    $scope.loadInventory = function () {
+        $scope.pageHeader = "Inventory";
+        $location.url('/inventory');
+    }
 
-    }]);
+}]);
 
 app.controller('AboutCtrl', function ($scope, $compile) {
     console.log('inside about controller');

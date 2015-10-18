@@ -40,13 +40,13 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                    <label class="control-label col-sm-3" for="name">Name:</label>
+                        <label class="control-label col-sm-3" for="name">Name:</label>
                         <div class="col-sm-9">
-                            <input type="text" 
-                                   class="form-control" 
+                            <input type="text"
+                                   class="form-control"
                                    id="name"
                                    name="name"
-                                   ng-model="newProduct.name" 
+                                   ng-model="newProduct.name"
                                    placeholder="Enter Status description"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -56,11 +56,11 @@
                     <div class="form-group required">
                         <label class="control-label col-sm-3" for="description">Description:</label>
                         <div class="col-sm-9">
-                            <input type="text" 
-                                   class="form-control" 
+                            <input type="text"
+                                   class="form-control"
                                    id="description"
                                    name="description"
-                                   ng-model="newProduct.description" 
+                                   ng-model="newProduct.description"
                                    placeholder="Enter Status description"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -71,16 +71,16 @@
                         <label class="control-label col-sm-3" for="price">Price:</label>
                         <div class="col-sm-9">
                             <input type="text"
-                                   class="form-control" 
+                                   class="form-control"
                                    id="price"
                                    name="price"
-                                   ng-model="newProduct.price" 
+                                   ng-model="newProduct.price"
                                    placeholder="Enter Price"
                                    ng-pattern="/^\d{1,8}(?:\.\d{1,4})?$/"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
                                    invalid-message="'Invalid Value'"
-                                   required>                                    
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -130,21 +130,26 @@
                     <div class="form-group required">
                         <label class="control-label col-sm-3">Center:</label>
                         <div class="col-sm-9">
-                            <select id="updProductCent" class="form-control" ng-model="editItem.center.id" convert-to-number>
-                                <option ng-repeat="center in centers" value="{{center.id}}">
-                                    {{center.name}}
-                                </option>
-                            </select>
+                            <div ng-if="roleId<1">
+                                <select id="updProductCent" class="form-control" ng-model="editItem.center.id" convert-to-number>
+                                    <option ng-repeat="center in centers" value="{{center.id}}">
+                                        {{center.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div ng-if="roleId>0">
+                                {{center.name}}
+                            </div>
                         </div>
                     </div>
                     <div class="form-group required">
                         <label class="control-label col-sm-3" for="name">Name:</label>
                         <div class="col-sm-9">
-                            <input type="text" 
-                                   class="form-control" 
+                            <input type="text"
+                                   class="form-control"
                                    id="updProductName"
                                    name="updProductName"
-                                   ng-model="editItem.name" 
+                                   ng-model="editItem.name"
                                    placeholder="Enter Product Name"
                                    validate-on="dirty"
                                    required-message="'Required Field'"
@@ -155,7 +160,7 @@
                         <label class="control-label col-sm-3" for="description">Description:</label>
                         <div class="col-sm-9">
                             <input type="text"
-                                   class="form-control" 
+                                   class="form-control"
                                    id="updProductDescription"
                                    name="updProductDescription"
                                    ng-model="editItem.description"
@@ -168,11 +173,11 @@
                     <div class="form-group required">
                         <label class="control-label col-sm-3" for="price">Price:</label>
                         <div class="col-sm-9">
-                            <input type="text" 
-                                   class="form-control" 
+                            <input type="text"
+                                   class="form-control"
                                    id="updProductPrice"
                                    name="updProductPrice"
-                                   ng-model="editItem.price" 
+                                   ng-model="editItem.price"
                                    placeholder="Enter Price"
                                    ng-pattern="/^\d{1,8}(?:\.\d{1,4})?$/"
                                    validate-on="dirty"
