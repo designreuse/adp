@@ -28,7 +28,7 @@ app.factory('AuthService', function ($http, Session) {
             .post('v1/profile/login', credentials)
             .then(function (res) {
                 user=res.data;
-                Session.create(user.id,user.email,user.role.id);
+                Session.createSession(user.id,user.email,user.role.id);
                 return user;
             });
     };
@@ -45,7 +45,7 @@ app.factory('AuthService', function ($http, Session) {
     return authService;
 });
 app.service('Session', function () {
-    this.create = function (sessionId, userId, userRole) {
+    this.createSession = function (sessionId, userId, userRole) {
         this.id = sessionId;
         this.userId = userId;
         this.userRole = userRole;

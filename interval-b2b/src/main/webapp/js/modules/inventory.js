@@ -36,70 +36,89 @@ app.controller('InventoryCtrl',
             }
         };
 
-        $scope.load = function(){
-            inventoryFactory.query(function(data){
-                $scope.inventories = data;
-                $scope.gridOpts.data = $scope.inventories;
-                //$scope.gridApi.core.refresh();
-                console.log("inventories : ",$scope.inventories);
-                $scope.clearSelectedInventory();
-                $scope.clearNewInventory();
-                $scope.disableEdit = false;
-            });
+        $scope.load = function() {
+            if ($scope.roleId < 1) {
+                inventoryFactory.query(function (data) {
+                    $scope.inventories = data;
+                    $scope.gridOpts.data = $scope.inventories;
+                    //$scope.gridApi.core.refresh();
+                    console.log("inventories : ", $scope.inventories);
+                    $scope.clearSelectedInventory();
+                    $scope.clearNewInventory();
+                    $scope.disableEdit = false;
+                });
+            } else {
+                inventoryFactory.getInventoryByCenter({id: $scope.centerId, type: 'center'}, function (data) {
+                    $scope.inventories = data;
+                    $scope.gridOpts.data = $scope.inventories;
+                    //$scope.gridApi.core.refresh();
+                    console.log("getting inventories by centerID:", $scope.centerId);
+                    console.log("inventories  : ", $scope.inventories);
+                    $scope.clearSelectedInventory();
+                    $scope.clearNewInventory();
+                    $scope.disableEdit = false;
+                });
+            }
         }
 
-        $scope.create = function(){
-            inventoryFactory.save($scope.newInventory, function(data){
+        $scope.create = function () {
+            inventoryFactory.save($scope.newInventory, function (data) {
                 $scope.load();
             });
         }
 
-        $scope.update = function(){
-            inventoryFactory.update($scope.editItem, function(data){
+        $scope.update = function () {
+            inventoryFactory.update($scope.editItem, function (data) {
                 $scope.load();
             });
         }
 
-        $scope.delete = function(){
-            inventoryFactory.delete({ id : $scope.selectedItem.id }, function(data){
+        $scope.delete = function () {
+            inventoryFactory.delete({id: $scope.selectedItem.id}, function (data) {
                 $scope.load();
             });
         }
 
-        $scope.clearNewInventory = function(){
+        $scope.clearNewInventory = function () {
             $scope.newInventory = {};
         }
 
-        $scope.clearSelectedInventory = function(){
+        $scope.clearSelectedInventory = function () {
             $scope.selectedItem = {};
         }
 
-        $scope.loadCategories = function(){
-            categoriesFactory.query(function(data){
+        $scope.loadCategories = function () {
+            categoriesFactory.query(function (data) {
                 $scope.categories = data;
             });
         }
 
-        $scope.loadProducts = function(){
-            productFactory.query(function(data){
-                $scope.products = data;
-            });
+        $scope.loadProducts = function () {
+            if ($scope.roleId < 1) {
+                productFactory.query(function (data) {
+                    $scope.products = data;
+                });
+            } else {
+                productFactory.getProductByCenter({id: $scope.centerId, type: 'center'}, function (data) {
+                    $scope.products = data;
+                });
+            }
         }
-
-        $scope.clearEditItem = function(){
+        $scope.clearEditItem = function () {
             $scope.editItem = angular.copy($scope.selectedItem);
         }
 
         $scope.load();
         $scope.loadCategories();
         $scope.loadProducts();
-    }
-);
+
+    });
 
 app.factory("inventoryFactory", function ($resource) {
-    return $resource('v1/inventory/:id', null,
+    return $resource('v1/inventory/:id?type=:type', null,
         {
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getInventoryByCenter' : { method: 'GET' ,isArray:'true'}
         });
 })
 

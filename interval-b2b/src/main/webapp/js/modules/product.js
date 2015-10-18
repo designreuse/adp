@@ -8,7 +8,7 @@ app.controller('ProductCtrl',
         $scope.selectedItem = {};
         $scope.disableEdit = false;
         $scope.editItem = {};
-        $scope.centers = null;
+        $scope.centers = [];
         var columnDef = [
             {name: 'Name', field: 'name'},
             {name: 'Description', field: 'description'},
@@ -106,7 +106,7 @@ app.controller('ProductCtrl',
                     $scope.centers = data;
                 });
             }else {
-                $scope.centers = angular.copy($scope.center);
+                $scope.centers.push($scope.center);
             }
         }
         $scope.clearEditItem = function(){
