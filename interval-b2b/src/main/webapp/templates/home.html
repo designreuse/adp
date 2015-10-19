@@ -1,1 +1,196 @@
-<div ng-controller="HomeCtrl" ng-model="currentUser">Welcome, {{currentUser.firstName}}</div>
+<div ng-controller="HomeCtrl" ng-model="currentUser">
+    <div class="panel-info">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Center Details</h4>
+            <div class="btn-group pull-right">
+                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateCenterInfo">
+                    <span class="glyphicon glyphicon-pencil" style="padding-right: 3px"></span>edit</a>
+                <button class="btn btn-info btn-sm" ng-click="addScreen()" >
+                    <span class="glyphicon glyphicon-plus" style="padding-right: 3px"></span>Add Screen</button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-4">
+                <dl class="dl-horizontal">
+                    <dt>Center Name : </dt><dd>{{center.name}}</dd>
+                    <dt>Address : </dt><dd>{{center.address1}} {{center.address2}} </dd>
+                    <dt>City : </dt><dd>{{center.city}}</dd>
+                </dl>
+            </div>
+            <div class="col-lg-4">
+                <dl class="dl-horizontal">
+                    <dt>State : </dt><dd>{{center.state}}</dd>
+                    <dt>Zip/Postal Code : </dt><dd>{{center.zip}}</dd>
+                    <dt>Country : </dt><dd>{{center.country}}</dd>
+                </dl>
+            </div>
+            <div class="col-lg-4">
+                <dl class="dl-horizontal">
+                    <dt>Phone : </dt><dd>{{center.phone}}</dd>
+                    <dt>Email : </dt><dd>{{center.email}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="screen in center.screens">
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Screen : {{screen.name}}</h4>
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateScreenInfo">
+                            <span class="glyphicon glyphicon-pencil" style="padding-right: 3px"></span>edit</a>
+                        <button class="btn btn-primary btn-sm" ng-click="addShow()" >
+                            <span class="glyphicon glyphicon-plus" style="padding-right: 3px"></span>Add Show</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="show in screen.shows" id="show{{show.id}}">
+                        <div class="col-sm-3">
+                            <timepicker ng-model="show.time" hour-step="1" minute-step="15"></timepicker>
+                            <a ng-click="deleteShow($index)" class="glyphicon glyphicon-remove red">Delete Show</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="updateCenterInfo" class="modal" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearEditItem()">&times;</button>
+                    <h4 class="modal-title">Update Center</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" name="updateCenterForm" role="form"  novalidate angular-validator>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerName">Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerName"
+                                       name="centerName"
+                                       ng-model="center.name"
+                                       placeholder="Enter Center name"
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerAddress1">Address Line 1:</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerAddress1"
+                                       name="centerAddress1"
+                                       ng-model="center.address1"
+                                       placeholder="Enter Center address Line 1.."
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="centerAddress2">Address Line 2:</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerAddress2"
+                                       name="centerAddress2"
+                                       ng-model="center.address2"
+                                       placeholder="Enter Center address Line2..">
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerCity">City</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerCity"
+                                       name="centerCity"
+                                       ng-model="center.city"
+                                       placeholder="Enter city.."
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerState">State</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerState"
+                                       name="centerState"
+                                       ng-model="center.state"
+                                       placeholder="Enter state.."
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerCountry">Country</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="centerCountry"
+                                       name="centerCountry"
+                                       ng-model="center.country"
+                                       placeholder="Enter country.."
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerPhone">Phone:</label>
+                            <div class="col-sm-9">
+                                <input type="tel"
+                                       class="form-control"
+                                       id="centerPhone"
+                                       name="centerPhone"
+                                       ng-model="center.phone"
+                                       placeholder="Enter Center Phone"
+                                       ng-pattern="/^\d{10}$/"
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       invalid-message="'Please enter a valid phone number'"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="centerEmail">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email"
+                                       class="form-control"
+                                       id="centerEmail"
+                                       name="centerEmail"
+                                       ng-model="center.email"
+                                       placeholder="Enter Center Email"
+                                       ng-pattern="/^[^@]+@[^@]+\.[^@]+$/"
+                                       validate-on="dirty"
+                                       required-message="'Required Field'"
+                                       invalid-message="'Please enter a valid email'"
+                                       required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-primary" ng-disabled="updateCenterForm.$invalid" ng-click="update()" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-save" style="padding-right: 3px"></span>Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearEditItem()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

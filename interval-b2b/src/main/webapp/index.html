@@ -30,6 +30,7 @@
     <script src="js/modules/orderstatus.js"></script>
     <script src="js/modules/inventory.js"></script>
     <script src="js/modules/product.js"></script>
+    <script src="js/modules/home.js"></script>
 </head>
 
 <body ng-app="app" ng-controller="NavCtrl">
@@ -63,40 +64,39 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                        <li ng-if="roleId<=1" ng-class="navClass('home')">
-                            <a href="" ng-click="loadHome()">Home</a>
-                        </li>
-                        <li ng-if="roleId<=1" ng-class="navClass('dashboard')">
-                            <a href="" ng-click="loadDashboard()">Dashboard</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('categories')">
-                            <a href="" ng-click="loadCategories()">Categories</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('centers')">
-                            <a href="" ng-click="loadCenters()">Centers</a>
-                        </li>
-                        <li ng-if="roleId<=1" ng-class="navClass('inventory')">
-                            <a href="" ng-click="loadInventory()">Inventory</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('orderstatus')">
-                            <a href="" ng-click="loadOrderStatus()">Order Status</a>
-                        </li>
-                        <li ng-if="roleId<=1" ng-class="navClass('product')">
-                            <a href="" ng-click="loadProduct()">Product</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('sales')">
-                            <a href="" ng-click="loadSales()">Sales</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('about')">
-                            <a href="" ng-click="loadAbout()">About</a>
-                        </li>
-                        <li ng-if="roleId<1"  ng-class="navClass('services')">
-                            <a href="" ng-click="loadServices()">Services</a>
-                        </li>
-                        <li ng-if="roleId<1" ng-class="navClass('contact')">
-                            <a href="" ng-click="loadContact()">Contact</a>
-                        </li>
-                    </div>
+                    <li ng-if="roleId<=1" ng-class="navClass('home')">
+                        <a href="" ng-click="loadHome()">Home</a>
+                    </li>
+                    <li ng-if="roleId<=1" ng-class="navClass('dashboard')">
+                        <a href="" ng-click="loadDashboard()">Dashboard</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('categories')">
+                        <a href="" ng-click="loadCategories()">Categories</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('centers')">
+                        <a href="" ng-click="loadCenters()">Centers</a>
+                    </li>
+                    <li ng-if="roleId<=1" ng-class="navClass('inventory')">
+                        <a href="" ng-click="loadInventory()">Inventory</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('orderstatus')">
+                        <a href="" ng-click="loadOrderStatus()">Order Status</a>
+                    </li>
+                    <li ng-if="roleId<=1" ng-class="navClass('product')">
+                        <a href="" ng-click="loadProduct()">Product</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('sales')">
+                        <a href="" ng-click="loadSales()">Sales</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('about')">
+                        <a href="" ng-click="loadAbout()">About</a>
+                    </li>
+                    <li ng-if="roleId<1"  ng-class="navClass('services')">
+                        <a href="" ng-click="loadServices()">Services</a>
+                    </li>
+                    <li ng-if="roleId<1" ng-class="navClass('contact')">
+                        <a href="" ng-click="loadContact()">Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
