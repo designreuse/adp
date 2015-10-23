@@ -99,15 +99,21 @@ app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,US
     };
 
     $scope.loadHome = function () {
-        if($scope.center != null){
+        /*if($scope.center != null){
             $scope.pageHeader = $scope.center.name;
         }else{
             $scope.pageHeader = "Home";
-        }
+        }*/
+        $scope.pageHeader = "Home";
         $location.url('/home');
     };
 
     $scope.loadDashboard = function () {
+        /*if($scope.center != null){
+            $scope.pageHeader = $scope.center.name;
+        }else{
+            $scope.pageHeader = "Dashboard";
+        }*/
         $scope.pageHeader = "Dashboard";
         $location.url('/dashboard');
     };

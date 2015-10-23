@@ -65,7 +65,7 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li ng-if="checkForVendor()" ng-class="navClass('home')">
-                        <a href="" ng-click="loadHome()">Home</a>
+                        <a href="" ng-click="loadHome()">{{center.name}}</a>
                     </li>
                     <li ng-if="checkForVendorAdmin()" ng-class="navClass('dashboard')">
                         <a href="" ng-click="loadDashboard()">Dashboard</a>

@@ -1,0 +1,21 @@
+<div ng-if="checkForAdmin()">
+    <h1>Dashboard for admin</h1>
+</div>
+
+<div ng-if="checkForVendor()">
+    <div class="table-responsive">
+        <div id="openOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    </div>
+    <div class="table-responsive">
+        <div id="processOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    </div>
+    <div class="table-responsive">
+        <div id="rfdOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    </div>
+    <div class="table-responsive">
+        <div id="dlvdOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    </div>
+    <div class="table-responsive">
+        <div id="otherOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    </div>
+</div>
