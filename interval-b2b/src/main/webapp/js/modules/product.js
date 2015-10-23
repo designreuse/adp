@@ -37,8 +37,7 @@ app.controller('ProductCtrl',
         };
 
         $scope.load = function () {
-
-            if($scope.roleId<1){
+            if($scope.checkForAdmin()){
                 productFactory.query(function (data) {
                     $scope.products = data;
                     $scope.gridOpts.data = $scope.products;
@@ -101,7 +100,7 @@ app.controller('ProductCtrl',
         }
 
         $scope.loadCenters = function () {
-            if($scope.roleId<1){
+            if($scope.checkForAdmin()){
                 centersFactory.query(function (data) {
                     $scope.centers = data;
                 });
@@ -119,11 +118,11 @@ app.controller('ProductCtrl',
 );
 
 app.factory("productFactory", function ($resource) {
-    return $resource('v1/product/:id?type=:type', null,
+    return $resource('v1/product/:id', null,
         {
             'update': { method: 'PUT' },
             'uploadImage' : {method: 'POST', headers: {'Content-Type' : undefined}},
-            'getProductByCenter' : { method: 'GET' ,isArray:'true'}
+            'getProductByCenter' : { url : 'v1/product/:id?type=:type', method: 'GET' ,isArray:'true'}
         });
 })
 

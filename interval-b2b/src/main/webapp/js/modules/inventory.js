@@ -37,7 +37,7 @@ app.controller('InventoryCtrl',
         };
 
         $scope.load = function() {
-            if ($scope.roleId < 1) {
+            if ($scope.checkForAdmin()) {
                 inventoryFactory.query(function (data) {
                     $scope.inventories = data;
                     $scope.gridOpts.data = $scope.inventories;
@@ -94,7 +94,7 @@ app.controller('InventoryCtrl',
         }
 
         $scope.loadProducts = function () {
-            if ($scope.roleId < 1) {
+            if ($scope.checkForAdmin()) {
                 productFactory.query(function (data) {
                     $scope.products = data;
                 });
@@ -115,10 +115,10 @@ app.controller('InventoryCtrl',
     });
 
 app.factory("inventoryFactory", function ($resource) {
-    return $resource('v1/inventory/:id?type=:type', null,
+    return $resource('v1/inventory/:id', null,
         {
             'update': { method:'PUT' },
-            'getInventoryByCenter' : { method: 'GET' ,isArray:'true'}
+            'getInventoryByCenter' : { url: 'v1/inventory/:id?type=:type', method: 'GET' ,isArray:'true'}
         });
 })
 

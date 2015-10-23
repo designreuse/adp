@@ -99,7 +99,11 @@ app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,US
     };
 
     $scope.loadHome = function () {
-        $scope.pageHeader = "Home";
+        if($scope.center != null){
+            $scope.pageHeader = $scope.center.name;
+        }else{
+            $scope.pageHeader = "Home";
+        }
         $location.url('/home');
     };
 
@@ -141,6 +145,30 @@ app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,US
     $scope.loadInventory = function () {
         $scope.pageHeader = "Inventory";
         $location.url('/inventory');
+    }
+
+    $scope.checkForAdmin = function (){
+        if($scope.roleId == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    $scope.checkForVendor = function (){
+        if($scope.roleId == 2){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    $scope.checkForVendorAdmin = function (){
+        if($scope.roleId <= 2){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }]);
