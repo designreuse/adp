@@ -1,72 +1,82 @@
-var app = angular.module('app', ["ngRoute","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator"])
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+var app = angular.module('app', ["ui.router","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator"])
+    .config(function ($stateProvider,$locationProvider, $httpProvider,$urlRouterProvider) {
 
-        $routeProvider.when('/home',
+        $urlRouterProvider.otherwise('/login');
+
+        $stateProvider
+            .state('home',
             {
+                url:'/home',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
-            });
-        $routeProvider.when('/about',
+            })
+            .state('about',
             {
+                url:'/about',
                 templateUrl: 'templates/about.html',
                 controller: 'AboutCtrl'
-            });
-        $routeProvider.when('/contact',
+            })
+            .state('contact',
             {
+                url:'/contact',
                 templateUrl: 'templates/contact.html',
                 controller: 'ContactCtrl'
-            });
-        $routeProvider.when('/categories',
+            })
+            .state('categories',
             {
+                url:'/categories',
                 templateUrl: 'templates/categories.html',
                 controller: 'CategoriesCtrl'
-            });
-        $routeProvider.when('/centers',
+            })
+            .state('centers',
             {
+                url:'/centers',
                 templateUrl: 'templates/centers.html',
                 controller: 'CentersCtrl'
-            });
-        $routeProvider.when('/orderStatus',
+            })
+            .state('orderStatus',
             {
+                url:'/orderStatus',
                 templateUrl: 'templates/orderstatus.html',
                 controller: 'OrderStatusCtrl'
-            });
-        $routeProvider.when('/product',
+            })
+            .state('product',
             {
+                url:'/product',
                 templateUrl: 'templates/product.html',
                 controller: 'ProductCtrl'
-            });
-        $routeProvider.when('/inventory',
+            })
+            .state('inventory',
             {
+                url:'/inventory',
                 templateUrl: 'templates/inventory.html',
                 controller: 'InventoryCtrl'
-            });
-        $routeProvider.when('/dashboard',
+            })
+            .state('dashboard',
             {
+                url:'/dashboard',
                 templateUrl: 'templates/dashboard.html',
                 controller: 'DashboardCtrl'
-            });
-        $routeProvider.when('/sales',
+            })
+            .state('sales',
             {
+                url:'/sales',
                 templateUrl: 'templates/sales.html',
                 controller: 'SalesCtrl'
-            });
-        $routeProvider.when('/services',
+            })
+            .state('services',
             {
+                url:'/services',
                 templateUrl: 'templates/services.html',
                 controller: 'ServicesCtrl'
-            });
-        $routeProvider.when('/login',
+            })
+            .state('login',
             {
+                url:'/login',
                 templateUrl: 'templates/login.html',
                 controller: 'LoginCtrl'
             });
-        $routeProvider.otherwise(
-            {
-                redirectTo: '/login',
-                controller: 'LoginCtrl'
-            }
-        );
+
     });
 app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,USER_ROLES,AuthService) {
 
@@ -100,20 +110,20 @@ app.controller('NavCtrl', ['$scope', '$location', function ($scope, $location,US
 
     $scope.loadHome = function () {
         /*if($scope.center != null){
-            $scope.pageHeader = $scope.center.name;
-        }else{
-            $scope.pageHeader = "Home";
-        }*/
+         $scope.pageHeader = $scope.center.name;
+         }else{
+         $scope.pageHeader = "Home";
+         }*/
         $scope.pageHeader = "Home";
         $location.url('/home');
     };
 
     $scope.loadDashboard = function () {
         /*if($scope.center != null){
-            $scope.pageHeader = $scope.center.name;
-        }else{
-            $scope.pageHeader = "Dashboard";
-        }*/
+         $scope.pageHeader = $scope.center.name;
+         }else{
+         $scope.pageHeader = "Dashboard";
+         }*/
         $scope.pageHeader = "Dashboard";
         $location.url('/dashboard');
     };
