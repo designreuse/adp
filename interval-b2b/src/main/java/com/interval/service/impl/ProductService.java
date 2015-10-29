@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by USER on 24-08-2015.
@@ -45,7 +46,7 @@ public class ProductService extends BaseService<RESTProduct> {
     }
 
     @Override
-    public List<RESTProduct> get(String id, String type) {
+    public List<RESTProduct> get(String id, String type, Map<Object, Object> params) {
         List<Product> products = null;
         List<RESTProduct> restProducts = new ArrayList<RESTProduct>();
         if(type != null){

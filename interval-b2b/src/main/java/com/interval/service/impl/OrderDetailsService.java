@@ -1,9 +1,6 @@
 package com.interval.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import javax.inject.Inject;
 
@@ -48,14 +45,18 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
     }
 
     @Override
-    public List<RESTOrderDetail> get(String id, String type) {
+    public List<RESTOrderDetail> get(String id, String type, Map<Object, Object> params) {
         List<OrderDetail> orderDetailList = null;
         List<RESTOrderDetail> restOrderDetails = new ArrayList<RESTOrderDetail>();
+        String status = null;
         if (type != null) {
+            if(params != null && params.containsKey("status")){
+                status = (String)params.get("status");
+            }
             if (type.equalsIgnoreCase("user")) {
-                orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByUser(id));
+                orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByUser(id, status));
             } else if (type.equalsIgnoreCase("center")) {
-                orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByCenter(id));
+                orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByCenter(id, status));
             }
             if (orderDetailList != null) {
                 for (OrderDetail orderDetail : orderDetailList) {

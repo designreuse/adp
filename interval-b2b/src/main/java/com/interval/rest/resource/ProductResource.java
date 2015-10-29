@@ -48,7 +48,7 @@ public class ProductResource {
                                       @QueryParam("type") final String type){
         List<RESTProduct> products;
         if(type != null){
-            products = (List<RESTProduct>)productService.get(id, type);
+            products = (List<RESTProduct>)productService.get(id, type, null);
         }else{
             RESTProduct product = (RESTProduct)productService.get(id);
             products = new ArrayList<RESTProduct>();

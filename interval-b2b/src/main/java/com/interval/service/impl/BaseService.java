@@ -3,6 +3,7 @@ package com.interval.service.impl;
 import com.interval.service.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by User on 9/15/2015.
@@ -40,7 +41,7 @@ public class BaseService<T> implements Service<T> {
     }
 
     @Override
-    public List<T> get(String id, String type) {
+    public List<T> get(String id, String type, Map<Object, Object> params) {
         return null;
     }
 

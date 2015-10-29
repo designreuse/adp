@@ -25,7 +25,7 @@ public class CommonService extends BaseService<Object> {
     }
 
     @Override
-    public List<Object> get(String id, String type) {
+    public List<Object> get(String id, String type, Map<Object, Object> params) {
         List<Object> list = new ArrayList<Object>();
         if(type != null && type.equalsIgnoreCase("center")){
             Center center = centerDao.get(id);

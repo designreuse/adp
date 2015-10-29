@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by User on 8/21/2015.
@@ -45,7 +46,7 @@ public class InventoryService extends BaseService<RESTInventory> {
     }
 
     @Override
-    public List<RESTInventory> get(String id, String type) {
+    public List<RESTInventory> get(String id, String type, Map<Object, Object> params) {
         List<Inventory> inventories = null;
         List<RESTInventory> restInventories = new ArrayList<RESTInventory>();
         if(type != null){

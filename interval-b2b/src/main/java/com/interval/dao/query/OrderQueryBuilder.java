@@ -7,13 +7,21 @@ import java.util.List;
  */
 public class OrderQueryBuilder {
 
-    public static String getByUser(final String id){
-        final String query = "from OrderDetail od where od.user.id=" + id;
-        return query;
+    public static String getByUser(final String id, final String status){
+        final StringBuilder query = new StringBuilder("from OrderDetail od where od.user.id=");
+        query.append(id);
+        if(status != null){
+            query.append(" and od.orderStatus.id=").append(status);
+        }
+        return query.toString();
     }
 
-    public static String getByCenter(final String id){
-        final String query = "from OrderDetail od where od.show.screen.center.id=" + id;
-        return query;
+    public static String getByCenter(final String id, final String status){
+        final StringBuilder query = new StringBuilder("from OrderDetail od where od.show.screen.center.id=");
+        query.append(id);
+        if(status != null){
+            query.append(" and od.orderStatus.id=").append(status);
+        }
+        return query.toString();
     }
 }

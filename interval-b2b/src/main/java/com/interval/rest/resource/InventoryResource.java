@@ -41,7 +41,7 @@ public class InventoryResource {
                                       @QueryParam("type") final String type){
         List<RESTInventory> inventories;
         if(type != null){
-            inventories = (List<RESTInventory>)inventoryService.get(id, type);
+            inventories = (List<RESTInventory>)inventoryService.get(id, type, null);
         }else{
             RESTInventory inventory = (RESTInventory)inventoryService.get(id);
             inventories = new ArrayList<RESTInventory>();

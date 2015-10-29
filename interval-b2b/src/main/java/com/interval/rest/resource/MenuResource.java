@@ -35,7 +35,7 @@ public class MenuResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMenuByCenter(@PathParam("centerId") final String centerId,
                                     @QueryParam("type") final String type) {
-        final List<Object> menu = (List<Object>)commonService.get(centerId, type);
+        final List<Object> menu = (List<Object>)commonService.get(centerId, type, null);
         return Response.ok().entity(menu.get(0)).build();
     }
 }

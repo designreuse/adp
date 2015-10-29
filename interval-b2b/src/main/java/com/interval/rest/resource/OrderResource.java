@@ -21,7 +21,9 @@ import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by User on 27-07-2015.
@@ -50,10 +52,15 @@ public class OrderResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByFilter(@PathParam("id") final String id,
-                                      @QueryParam("type") final String type){
+                                      @QueryParam("type") final String type,
+                                      @QueryParam("status") final String status){
         List<RESTOrderDetail> orderDetails;
+        Map<Object, Object> params = new HashMap<Object, Object>();
         if(type != null){
-            orderDetails = (List<RESTOrderDetail>)orderDetailsService.get(id, type);
+            if(status != null){
+                params.put("status", status);
+            }
+            orderDetails = (List<RESTOrderDetail>)orderDetailsService.get(id, type, params);
         }else{
             RESTOrderDetail orderDetail = (RESTOrderDetail)orderDetailsService.get(id);
             orderDetails = new ArrayList<RESTOrderDetail>();
