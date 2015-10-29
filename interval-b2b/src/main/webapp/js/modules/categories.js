@@ -79,10 +79,3 @@ app.controller('CategoriesCtrl',
 
     }
 );
-
-app.factory("categoriesFactory", function ($resource) {
-    return $resource('v1/category/:id', null,
-        {
-            'update': { method:'PUT' }
-        });
-})

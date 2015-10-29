@@ -10,6 +10,7 @@ public class RESTShow {
     private Date time;
     private Date createdTime;
     private Date updatedTime;
+    private String screenName;
 
     public Integer getId() {
         return id;
@@ -41,5 +42,13 @@ public class RESTShow {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
     }
 }

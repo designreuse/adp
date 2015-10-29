@@ -24,4 +24,10 @@ public class OrderQueryBuilder {
         }
         return query.toString();
     }
+
+    public static String updateOrderStatus(final String id, final String status){
+        StringBuilder query = new StringBuilder("update Order_Detail od set od.status = ").append(status)
+                .append(" where od.id = ").append(id);
+        return query.toString();
+    }
 }

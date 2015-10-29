@@ -21,7 +21,7 @@ public class BaseService<T> implements Service<T> {
     }
 
     @Override
-    public void update(String id, String type) {
+    public void update(String id, String type, Map<Object, Object> params) {
 
     }
 

@@ -1,0 +1,6 @@
+<div class="ui-grid-cell-contents">
+    <button ng-if="grid.options.name == 'openOrdersGridOpts'" class="btn-small" type="button" ng-click="grid.appScope.updateOrderStatus(grid, row.entity.id, '3')">Process</button>
+    <button ng-if="grid.options.name == 'inProcessOrdersGridOpts'" class="btn-small" type="button" ng-click="grid.appScope.updateOrderStatus(grid, row.entity.id, '4')">Ready for Delivery</button>
+    <button ng-if="grid.options.name == 'rfdOrdersGridOpts'" class="btn-small" type="button" ng-click="grid.appScope.updateOrderStatus(grid, row.entity.id, '5')">Delivered</button>
+    <button ng-if="grid.options.name == 'dlvdOrdersGridOpts'" class="btn-small" type="button" ng-click="grid.appScope.updateOrderStatus(grid, row.entity.id, '6')">Close</button>
+</div>

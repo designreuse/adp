@@ -78,10 +78,5 @@ app.controller('OrderStatusCtrl',
     }
 );
 
-app.factory("orderStatusFactory", function ($resource) {
-    return $resource('v1/orderStatus/:id', null,
-        {
-            'update': { method: 'PUT' }
-        });
-})
+
 

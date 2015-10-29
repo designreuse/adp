@@ -98,12 +98,31 @@ public class OrderResource {
         return Response.ok().entity(orderDetailsResult).build();
     }
 
+    @PUT
+    @Path("/{orderId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateStatus(@Context final HttpContext requestContext,
+                                 @PathParam("orderId") final String orderId,
+                                 @QueryParam("status") final String statusId){
+        Map<Object, Object> params = new HashMap<Object, Object>();
+        try {
+            if(statusId != null){
+                params.put("status", statusId);
+                orderDetailsService.update(orderId, "status", params);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.ok().entity(null).build();
+    }
+
     @POST
     @Path("/{orderId}/removeItems")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response removeItems(@PathParam("orderId") final String orderId){
-        orderDetailsService.update(orderId, "remove items");
+        orderDetailsService.update(orderId, "remove items", null);
         return Response.ok().entity(null).build();
     }
     

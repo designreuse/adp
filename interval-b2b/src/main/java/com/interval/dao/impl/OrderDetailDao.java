@@ -49,4 +49,8 @@ public class OrderDetailDao extends BaseDao<OrderDetail> {
 		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
 
+	@Override
+	public void executeSQL(String query) {
+		sessionFactory.getCurrentSession().createSQLQuery(query).executeUpdate();
+	}
 }

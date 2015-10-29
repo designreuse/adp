@@ -117,13 +117,4 @@ app.controller('ProductCtrl',
     }
 );
 
-app.factory("productFactory", function ($resource) {
-    return $resource('v1/product/:id', null,
-        {
-            'update': { method: 'PUT' },
-            'uploadImage' : {method: 'POST', headers: {'Content-Type' : undefined}},
-            'getProductByCenter' : { url : 'v1/product/:id?type=:type', method: 'GET' ,isArray:'true'}
-        });
-})
-
 

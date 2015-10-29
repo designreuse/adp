@@ -114,11 +114,4 @@ app.controller('InventoryCtrl',
 
     });
 
-app.factory("inventoryFactory", function ($resource) {
-    return $resource('v1/inventory/:id', null,
-        {
-            'update': { method:'PUT' },
-            'getInventoryByCenter' : { url: 'v1/inventory/:id?type=:type', method: 'GET' ,isArray:'true'}
-        });
-})
 

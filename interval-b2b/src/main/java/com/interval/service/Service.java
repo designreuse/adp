@@ -12,7 +12,7 @@ public interface Service<T> {
 
     public T update(T  t);
 
-    public void update(final String id, final String type);
+    public void update(final String id, final String type, Map<Object, Object> params);
 
     public T get(final String id);
 

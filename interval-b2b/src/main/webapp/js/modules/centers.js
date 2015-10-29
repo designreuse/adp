@@ -130,30 +130,3 @@ app.controller('CentersCtrl',
 
     }
 );
-
-app.factory("centersFactory", function ($resource) {
-    return $resource('v1/center/:id', null,
-        {
-            'update' : {method : 'PUT'}
-        });
-});
-
-app.filter('formatShows', function () {
-    return function (value, row) {
-        var shows = "", index;
-        for	(index = 0; index < row.shows.length; index++) {
-            shows += "," + row.shows[index].time;
-        }
-        return shows;
-    };
-});
-
-app.filter('formatScreens', function () {
-    return function (value, row) {
-        var screens = "", index;
-        for	(index = 0; index < row.screens.length; index++) {
-            screens += row.screens[index].name + (row.screens[index].shows.length);
-        }
-        return screens;
-    };
-});

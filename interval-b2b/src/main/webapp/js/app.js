@@ -1,4 +1,5 @@
-var app = angular.module('app', ["ui.router","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator"])
+var app = angular.module('app', ["ui.router","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator",
+"app.services", "app.filters"])
     .config(function ($stateProvider,$locationProvider, $httpProvider,$urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/login');
@@ -201,10 +202,6 @@ app.controller('ContactCtrl', function ($scope, $compile) {
     console.log('inside contact controller');
 });
 
-app.controller('DashboardCtrl', function ($scope, $compile) {
-    console.log('inside dashboard controller');
-});
-
 app.controller('SalesCtrl', function ($scope, $compile) {
     console.log('inside sales controller');
 });
@@ -227,15 +224,4 @@ app.directive('convertToNumber', function() {
     };
 });
 
-app.filter('formatBoolean', function () {
-    return function (value, fieldVal) {
-        var value = "";
-        if(fieldVal == true){
-            value = "Yes";
-        }else if(fieldVal == false){
-            value = "No";
-        }
-        return value;
-    };
-});
 

@@ -60,7 +60,9 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
             }
             if (orderDetailList != null) {
                 for (OrderDetail orderDetail : orderDetailList) {
-                    restOrderDetails.add(OrderDetailTransformer.transformRESTOrderDetail(orderDetail));
+                    RESTOrderDetail restOrderDetail = OrderDetailTransformer.transformRESTOrderDetail(orderDetail);
+                    restOrderDetail.getShow().setScreenName(orderDetail.getShow().getScreen().getName());
+                    restOrderDetails.add(restOrderDetail);
                 }
             }
         }
@@ -79,14 +81,18 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
     }
 
     @Override
-    public void update(String id, String type) {
-        if (id != null && type != null && type.equalsIgnoreCase("remove items")) {
-            OrderDetail orderDetail = orderDetailDao.get(id);
-            orderDetail.getOrderItems().clear();
-            updateLineItemPrice(orderDetail);
-            updateTotals(orderDetail);
-            orderDetail.setUpdatedTime(new Date());
-            orderDetailDao.update(orderDetail);
+    public void update(String id, String type, Map<Object, Object> params) {
+        if (id != null && type != null) {
+            if(type.equalsIgnoreCase("remove items")){
+                OrderDetail orderDetail = orderDetailDao.get(id);
+                orderDetail.getOrderItems().clear();
+                updateLineItemPrice(orderDetail);
+                updateTotals(orderDetail);
+                orderDetail.setUpdatedTime(new Date());
+                orderDetailDao.update(orderDetail);
+            }else if(type.equalsIgnoreCase("status") && params != null && params.containsKey("status")){
+                orderDetailDao.executeSQL(OrderQueryBuilder.updateOrderStatus(id, (String)params.get("status")));
+            }
         }
     }
 

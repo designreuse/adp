@@ -3,19 +3,59 @@
 </div>
 
 <div ng-if="checkForVendor()">
-    <div class="table-responsive">
-        <div id="openOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <div class="panel-warning">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left">Open</h4>
+            <h4 class="panel-title pull-right">Count: {{openOrders.length}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="openOrdersGrid" ui-grid="openOrdersGridOpts" class="dshBrdGrid"></div><br>
+            </div>
+        </div>
     </div>
-    <div class="table-responsive">
-        <div id="processOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <div class="panel-info">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left">In Process</h4>
+            <h4 class="panel-title pull-right">Count: {{inProcessOrders.length}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="processOrdersGrid" ui-grid="inProcessOrdersGridOpts" class="dshBrdGrid"></div><br>
+            </div>
+        </div>
     </div>
-    <div class="table-responsive">
-        <div id="rfdOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <div class="panel-success">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left">Ready For Delivery</h4>
+            <h4 class="panel-title pull-right">Count: {{rfdOrders.length}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="rfdOrdersGrid" ui-grid="rfdOrdersGridOpts" class="dshBrdGrid"></div><br>
+            </div>
+        </div>
     </div>
-    <div class="table-responsive">
-        <div id="dlvdOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <div class="panel-success">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left">Delivered</h4>
+            <h4 class="panel-title pull-right">Count: {{dlvdOrders.length}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="dlvdOrdersGrid" ui-grid="dlvdOrdersGridOpts" class="dshBrdGrid"></div><br>
+            </div>
+        </div>
     </div>
-    <div class="table-responsive">
-        <div id="otherOrdersGrid" ui-grid-selection ui-grid="gridOpts" class="grid"></div><br>
+    <div class="panel-info">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left">Others</h4>
+            <h4 class="panel-title pull-right">Count: {{otherOrders.length}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="otherOrdersGrid" ui-grid="otherOrdersGridOpts" class="dshBrdGrid"></div><br>
+            </div>
+        </div>
     </div>
 </div>
