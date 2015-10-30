@@ -8,8 +8,8 @@ app.controller('OrderStatusCtrl',
         $scope.disableEdit = false;
         $scope.editItem = {}
         var columnDef = [
-            {name: 'Name', field: 'name'},
-            {name: 'Description', field: 'description'}
+            {name: 'Name', field: 'name', enableColumnMenu: false},
+            {name: 'Description', field: 'description', enableColumnMenu: false}
         ];
 
         $scope.gridOpts = {

@@ -8,14 +8,18 @@ app.controller('CategoriesCtrl',
         $scope.disableEdit = false;
         $scope.editItem = {};
         var columnDef = [
-            {name : 'Name', field : 'name'},
-            {name : 'Description', field : 'description'},
-            {name : 'Active', field : 'active', cellFilter : 'formatBoolean:row.entity.active'}
+            {name : 'Name', field : 'name', enableColumnMenu: false},
+            {name : 'Description', field : 'description', enableColumnMenu: false},
+            {name : 'Active', field : 'active', enableColumnMenu: false, cellFilter : 'formatBoolean:row.entity.active'}
         ];
 
         $scope.gridOpts = {
             columnDefs : columnDef,
             data : $scope.categories,
+            gridMenuShowHideColumns: false,
+            enableGridMenu: true,
+            exporterMenuPdf: false,
+            exporterCsvFilename: 'categories.csv',
             enableRowSelection: true,
             enableSelectAll: false,
             multiSelect : false,

@@ -10,15 +10,19 @@ app.controller('ProductCtrl',
         $scope.editItem = {};
         $scope.centers = [];
         var columnDef = [
-            {name: 'Name', field: 'name'},
-            {name: 'Description', field: 'description'},
-            {name: 'Price', field: 'price'},
-            {name: 'Active', field: 'active', cellFilter : 'formatBoolean:row.entity.active'}
+            {name: 'Name', field: 'name', enableColumnMenu: false},
+            {name: 'Description', field: 'description', enableColumnMenu: false},
+            {name: 'Price', field: 'price', enableColumnMenu: false},
+            {name: 'Active', field: 'active', enableColumnMenu: false, cellFilter : 'formatBoolean:row.entity.active'}
         ];
 
         $scope.gridOpts = {
             columnDefs: columnDef,
             data: $scope.products,
+            gridMenuShowHideColumns: false,
+            enableGridMenu: true,
+            exporterMenuPdf: false,
+            exporterCsvFilename: 'products.csv',
             enableRowSelection: true,
             enableSelectAll: false,
             multiSelect: false,

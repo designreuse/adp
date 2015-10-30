@@ -1,5 +1,5 @@
-var app = angular.module('app', ["ui.router","ngResource","ui.grid","ui.grid.selection","ui.bootstrap","angularValidator",
-"app.services", "app.filters"])
+var app = angular.module('app', ["ui.router","ngResource","ui.grid","ui.grid.selection","ui.grid.exporter",
+    "ui.bootstrap","angularValidator","app.services", "app.filters"])
     .config(function ($stateProvider,$locationProvider, $httpProvider,$urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/login');

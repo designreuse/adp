@@ -10,16 +10,23 @@ app.controller('CentersCtrl',
         $scope.checkboxSelection = '0';
         $scope.editItem = {};
         var columnDef = [
-            {name : 'Name', field : 'name'},
-            {name : 'Address', field : 'address1'},
-            {name : 'Phone', field : 'phone'},
-            {name : 'Email', field : 'email'},
-            {name : 'Screens', cellFilter : 'formatScreens:row.entity', cellTemplate : "<span class='ui-grid-cell-contents' ng-repeat='screen in row.entity.screens'>{{screen.name}}</span>"}
+            {name : 'Name', field : 'name', enableColumnMenu: false},
+            {name : 'Address', field : 'address1', enableColumnMenu: false},
+            {name : 'Phone', field : 'phone', enableColumnMenu: false},
+            {name : 'Email', field : 'email', enableColumnMenu: false},
+            {name : 'Screens', enableColumnMenu: false, cellTemplate :
+                "<div class='ui-grid-cell-contents'>" +
+                "<span ng-repeat='screen in row.entity.screens'>{{screen.name}},</span>" +
+                "</div>"}
         ];
 
         $scope.gridOpts = {
             columnDefs : columnDef,
             data : $scope.centers,
+            gridMenuShowHideColumns: false,
+            enableGridMenu: true,
+            exporterMenuPdf: false,
+            exporterCsvFilename: 'centers.csv',
             enableRowSelection: true,
             enableSelectAll: false,
             multiSelect : false,

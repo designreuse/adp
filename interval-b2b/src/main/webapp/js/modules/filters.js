@@ -14,7 +14,7 @@ angular.module('app.filters', ["ngResource"])
     return function (value, row) {
         var screens = "", index;
         for	(index = 0; index < row.screens.length; index++) {
-            screens += row.screens[index].name + (row.screens[index].shows.length);
+            screens += row.screens[index].name;
         }
         return screens;
     };

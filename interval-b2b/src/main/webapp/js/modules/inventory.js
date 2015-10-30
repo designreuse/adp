@@ -10,15 +10,19 @@ app.controller('InventoryCtrl',
         $scope.disableEdit = false;
         $scope.editItem = {};
         var columnDef = [
-            {name : 'Product', field : 'product.name'},
-            {name : 'Available Quantity', field : 'availableQuantity'},
-            {name : 'Safety Stock', field : 'safetyStock'},
-            {name : 'Availability', field : 'availability',cellFilter : 'formatBoolean:row.entity.availability'}
+            {name : 'Product', field : 'product.name', enableColumnMenu: false},
+            {name : 'Available Quantity', field : 'availableQuantity', enableColumnMenu: false},
+            {name : 'Safety Stock', field : 'safetyStock', enableColumnMenu: false},
+            {name : 'Availability', field : 'availability', enableColumnMenu: false,cellFilter : 'formatBoolean:row.entity.availability'}
         ];
 
         $scope.gridOpts = {
             columnDefs : columnDef,
             data : $scope.inventories,
+            gridMenuShowHideColumns: false,
+            enableGridMenu: true,
+            exporterMenuPdf: false,
+            exporterCsvFilename: 'inventory.csv',
             enableRowSelection: true,
             enableSelectAll: false,
             multiSelect : false,
