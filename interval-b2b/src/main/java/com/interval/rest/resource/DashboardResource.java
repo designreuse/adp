@@ -25,14 +25,28 @@ public class DashboardResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DashboardResource.class);
 
-    public DashboardResource() {
+    private final Service dashBoardService;
 
+    @Inject
+    public DashboardResource(final Service dashBoardService) {
+        this.dashBoardService = dashBoardService;
     }
 
     @GET
-    @Path("/{centerId}")
+    @Path("/products")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDashboard(@PathParam("centerId") final String centerId) {
-        return Response.ok().entity(null).build();
+    public Response getProductsByCenter() {
+        List data = null;
+        data = dashBoardService.get(null, "products", null);
+        return Response.ok().entity(data).build();
+    }
+
+    @GET
+    @Path("/orders")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrdersByCenter() {
+        List data = null;
+        data = dashBoardService.get(null, "orders", null);
+        return Response.ok().entity(data).build();
     }
 }

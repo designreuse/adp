@@ -11,4 +11,5 @@
     <bean id="productDao" class="com.interval.dao.impl.ProductDao"/>
     <bean id="orderItemDao" class="com.interval.dao.impl.OrderItemDao"/>
     <bean id="userDao" class="com.interval.dao.impl.UserDao"/>
+    <bean id="dashboardDao" class="com.interval.dao.impl.DashboardDao"/>
 </beans>

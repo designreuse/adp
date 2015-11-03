@@ -1,5 +1,5 @@
 app.controller('DashboardCtrl',
-    function ($scope, orderFactory) {
+    function ($scope, orderFactory, dashboardFactory) {
         console.log('inside dashboard controller');
         $scope.openOrders = null;
         $scope.inProcessOrders = null;
@@ -62,7 +62,7 @@ app.controller('DashboardCtrl',
             name : 'otherOrdersGridOpts'
         };
 
-        $scope.load = function(){
+        $scope.loadForVendor = function(){
             $scope.loadOpenOrders();
             $scope.loadInProcessOrders();
             $scope.loadRFDOrders();
@@ -113,7 +113,70 @@ app.controller('DashboardCtrl',
             });
         }
 
-        $scope.load();
+        $scope.loadForAdmin = function(){
+            $scope.loadProductCountByCenter();
+            $scope.loadOrderCountByCenter();
+        }
+
+        $scope.loadProductCountByCenter = function(){
+            dashboardFactory.productCountByCenter(null, function (data) {
+                var chartData = [{key: "Product per Center", values : data}];
+                $scope.createProductsByCenterChart(chartData);
+            });
+        }
+
+        $scope.loadOrderCountByCenter = function(){
+            dashboardFactory.orderCountByCenter(null, function (data) {
+                var chartData = [{key: "Orders per Center", values : data}];
+                $scope.createOrdersByCenterChart(chartData);
+            });
+        }
+
+        $scope.createProductsByCenterChart = function(data){
+            nv.addGraph(function() {
+                var chart = nv.models.discreteBarChart()
+                    .x(function(d) { return d.name })
+                    .y(function(d) { return d.productCount })
+                    .staggerLabels(true)
+                    .showValues(true);
+
+                d3.select('#productsByCenter')
+                    .datum(data)
+                    .transition().duration(500)
+                    .call(chart)
+                ;
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+        }
+
+        $scope.createOrdersByCenterChart = function(data){
+            nv.addGraph(function() {
+                var chart = nv.models.discreteBarChart()
+                    .x(function(d) { return d.name })
+                    .y(function(d) { return d.orderCount })
+                    .staggerLabels(true)
+                    .showValues(true);
+
+                d3.select('#ordersByCenter')
+                    .datum(data)
+                    .transition().duration(500)
+                    .call(chart)
+                ;
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+        }
+
+        if($scope.centerId){
+            $scope.loadForVendor();
+        }else{
+            $scope.loadForAdmin();
+        }
 
     }
 );
