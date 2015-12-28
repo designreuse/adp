@@ -47,7 +47,6 @@ public class CategoryResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTCategory category = UnMarshaller.unmarshallJSON(RESTCategory.class, request);
-            LOGGER.info(category.getDescription());
             categoryService.create(category);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTCategory {0}", exc);
@@ -63,7 +62,6 @@ public class CategoryResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTCategory category = UnMarshaller.unmarshallJSON(RESTCategory.class, request);
-            LOGGER.info(category.getDescription());
             categoryService.update(category);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTCategory {0}", exc);

@@ -1,8 +1,7 @@
 package com.interval.rest.resource;
 
-import com.interval.common.UnMarshaller;
+import com.interval.common.Constants;
 import com.interval.service.Service;
-import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -36,8 +34,8 @@ public class DashboardResource {
     @Path("/products")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductsByCenter() {
-        List data = null;
-        data = dashBoardService.get(null, "products", null);
+        List data;
+        data = dashBoardService.get(null, Constants.PRODUCT_COUNT, null);
         return Response.ok().entity(data).build();
     }
 
@@ -45,8 +43,8 @@ public class DashboardResource {
     @Path("/orders")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByCenter() {
-        List data = null;
-        data = dashBoardService.get(null, "orders", null);
+        List data;
+        data = dashBoardService.get(null, Constants.ORDER_COUNT, null);
         return Response.ok().entity(data).build();
     }
 }

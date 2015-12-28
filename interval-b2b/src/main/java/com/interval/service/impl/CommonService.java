@@ -1,5 +1,6 @@
 package com.interval.service.impl;
 
+import com.interval.common.Constants;
 import com.interval.dao.impl.CenterDao;
 import com.interval.dao.models.Category;
 import com.interval.dao.models.Center;
@@ -27,7 +28,7 @@ public class CommonService extends BaseService<Object> {
     @Override
     public List<Object> get(String id, String type, Map<Object, Object> params) {
         List<Object> list = new ArrayList<Object>();
-        if(type != null && type.equalsIgnoreCase("center")){
+        if(type != null && type.equalsIgnoreCase(Constants.CENTER)){
             Center center = centerDao.get(id);
             if(center != null){
                 list.add(transformToCenterMenu(center));

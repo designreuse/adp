@@ -42,7 +42,7 @@ public class ProfileResource {
     @GET
     @Path("{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProfileForId(@PathParam("userId") final String userID) {
+    public Response getProfileForUser(@PathParam("userId") final String userID) {
         final RESTUser restUser = (RESTUser) profileService.get(userID);
         return Response.ok(restUser).build();
     }
@@ -86,7 +86,7 @@ public class ProfileResource {
     }
 
     @POST
-    @Path( "login" )
+    @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces( MediaType.APPLICATION_JSON)
     public Response login(@Context final HttpContext requestContext) {
@@ -103,11 +103,10 @@ public class ProfileResource {
     }
 
     @POST
-    @Path( "logout" )
+    @Path("logout")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces( MediaType.APPLICATION_JSON )
     public Response logout(@Context final HttpHeaders httpHeaders) {
-
         try {
             if(httpHeaders.getRequestHeader("auth_token") != null){
                 String auth_token = httpHeaders.getRequestHeader("auth_token").get(0);

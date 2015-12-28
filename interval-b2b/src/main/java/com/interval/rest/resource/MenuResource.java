@@ -1,6 +1,5 @@
 package com.interval.rest.resource;
 
-import com.interval.rest.models.RESTCenter;
 import com.interval.service.Service;
 import com.sun.jersey.spi.resource.Singleton;
 import org.slf4j.Logger;

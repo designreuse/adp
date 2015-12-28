@@ -1,5 +1,6 @@
 package com.interval.service.impl;
 
+import com.interval.common.Constants;
 import com.interval.dao.impl.InventoryDao;
 import com.interval.dao.models.Inventory;
 import com.interval.dao.query.InventoryQueryBuilder;
@@ -49,10 +50,8 @@ public class InventoryService extends BaseService<RESTInventory> {
     public List<RESTInventory> get(String id, String type, Map<Object, Object> params) {
         List<Inventory> inventories = null;
         List<RESTInventory> restInventories = new ArrayList<RESTInventory>();
-        if(type != null){
-            if(type.equalsIgnoreCase("center")){
-                inventories = inventoryDao.search(InventoryQueryBuilder.getInventoryByCenter(id));
-            }
+        if(type != null && type.equalsIgnoreCase(Constants.CENTER)){
+            inventories = inventoryDao.search(InventoryQueryBuilder.getInventoryByCenter(id));
             if(inventories != null){
                 for(Inventory inventory : inventories){
                     restInventories.add(InventoryTransformer.transformRESTInventory(inventory));

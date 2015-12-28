@@ -1,5 +1,6 @@
 package com.interval.service.impl;
 
+import com.interval.common.Constants;
 import com.interval.dao.impl.ProductDao;
 import com.interval.dao.models.Product;
 import com.interval.dao.query.ProductQueryBuilder;
@@ -49,10 +50,8 @@ public class ProductService extends BaseService<RESTProduct> {
     public List<RESTProduct> get(String id, String type, Map<Object, Object> params) {
         List<Product> products = null;
         List<RESTProduct> restProducts = new ArrayList<RESTProduct>();
-        if(type != null){
-            if(type.equalsIgnoreCase("center")){
-                products = productDao.search(ProductQueryBuilder.getProductsByCenter(id));
-            }
+        if(type != null && type.equalsIgnoreCase(Constants.CENTER)){
+            products = productDao.search(ProductQueryBuilder.getProductsByCenter(id));
             if(products != null){
                 for(Product product : products){
                     restProducts.add(ProductTransformer.transformRESTProduct(product));

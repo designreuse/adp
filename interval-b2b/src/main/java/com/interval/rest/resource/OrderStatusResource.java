@@ -47,7 +47,6 @@ public class OrderStatusResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTOrderStatus restOrderStatus = UnMarshaller.unmarshallJSON(RESTOrderStatus.class, request);
-            LOGGER.info(restOrderStatus.getName());
             orderStatusService.create(restOrderStatus);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTOrderStatus {0}", exc);
@@ -63,7 +62,6 @@ public class OrderStatusResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTOrderStatus restOrderStatus = UnMarshaller.unmarshallJSON(RESTOrderStatus.class, request);
-            LOGGER.info(restOrderStatus.getName());
             orderStatusService.update(restOrderStatus);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTOrderStatus {0}", exc);

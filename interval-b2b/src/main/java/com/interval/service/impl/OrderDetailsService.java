@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.inject.Inject;
 
+import com.interval.common.Constants;
 import com.interval.dao.impl.OrderDetailDao;
 import com.interval.dao.impl.OrderItemDao;
 import com.interval.dao.impl.ProductDao;
@@ -35,11 +36,6 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
     }
 
     @Override
-    public List<RESTOrderDetail> getAll() {
-        return null;
-    }
-
-    @Override
     public void delete(String id) {
         orderDetailDao.delete(id);
     }
@@ -50,12 +46,12 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
         List<RESTOrderDetail> restOrderDetails = new ArrayList<RESTOrderDetail>();
         String status = null;
         if (type != null) {
-            if(params != null && params.containsKey("status")){
-                status = (String)params.get("status");
+            if(params != null && params.containsKey(Constants.STATUS)){
+                status = (String)params.get(Constants.STATUS);
             }
-            if (type.equalsIgnoreCase("user")) {
+            if (type.equalsIgnoreCase(Constants.USER)) {
                 orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByUser(id, status));
-            } else if (type.equalsIgnoreCase("center")) {
+            } else if (type.equalsIgnoreCase(Constants.CENTER)) {
                 orderDetailList = orderDetailDao.search(OrderQueryBuilder.getByCenter(id, status));
             }
             if (orderDetailList != null) {
@@ -83,15 +79,15 @@ public class OrderDetailsService extends BaseService<RESTOrderDetail> {
     @Override
     public void update(String id, String type, Map<Object, Object> params) {
         if (id != null && type != null) {
-            if(type.equalsIgnoreCase("remove items")){
+            if(type.equalsIgnoreCase(Constants.REMOVE_ITEMS)){
                 OrderDetail orderDetail = orderDetailDao.get(id);
                 orderDetail.getOrderItems().clear();
                 updateLineItemPrice(orderDetail);
                 updateTotals(orderDetail);
                 orderDetail.setUpdatedTime(new Date());
                 orderDetailDao.update(orderDetail);
-            }else if(type.equalsIgnoreCase("status") && params != null && params.containsKey("status")){
-                orderDetailDao.executeSQL(OrderQueryBuilder.updateOrderStatus(id, (String)params.get("status")));
+            }else if(type.equalsIgnoreCase(Constants.STATUS) && params != null && params.containsKey(Constants.STATUS)){
+                orderDetailDao.executeSQL(OrderQueryBuilder.updateOrderStatus(id, (String)params.get(Constants.STATUS)));
             }
         }
     }

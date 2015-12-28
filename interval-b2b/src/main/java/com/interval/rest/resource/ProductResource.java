@@ -44,8 +44,7 @@ public class ProductResource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductsByFilter(@PathParam("id") final String id,
-                                      @QueryParam("type") final String type){
+    public Response getProductsByFilter(@PathParam("id") final String id, @QueryParam("type") final String type){
         List<RESTProduct> products;
         if(type != null){
             products = (List<RESTProduct>)productService.get(id, type, null);
@@ -86,7 +85,6 @@ public class ProductResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try {
             RESTProduct product = UnMarshaller.unmarshallJSON(RESTProduct.class, request);
-            LOGGER.info(product.getName());
             productService.create(product);
         } catch (Exception exc) {
             LOGGER.error("exception occurred while converting to RESTProduct {0}", exc);
@@ -107,8 +105,7 @@ public class ProductResource {
     @Path("{productId}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response uploadImage(@PathParam("productId") final String productId,
-                                FormDataMultiPart form){
+    public Response uploadImage(@PathParam("productId") final String productId, FormDataMultiPart form){
         FormDataBodyPart filePart = form.getField("imageFile");
         ContentDisposition headerOfFilePart =  filePart.getContentDisposition();
         String imageFileName = (String)form.getField("imageFileName").getValue();

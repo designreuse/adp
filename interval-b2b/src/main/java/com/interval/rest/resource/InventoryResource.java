@@ -64,7 +64,6 @@ public class InventoryResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTInventory restInventory = UnMarshaller.unmarshallJSON(RESTInventory.class, request);
-            LOGGER.info("inventory id ",restInventory.getId());
             inventoryService.create(restInventory);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTInventory {0}", exc);
@@ -80,7 +79,6 @@ public class InventoryResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTInventory restInventory = UnMarshaller.unmarshallJSON(RESTInventory.class, request);
-            LOGGER.info("inventory id ",restInventory.getId());
             inventoryService.update(restInventory);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTInventory {0}", exc);

@@ -65,7 +65,6 @@ public class CenterResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTCenter center = UnMarshaller.unmarshallJSON(RESTCenter.class, request);
-            LOGGER.info(center.getName());
             centerService.update(center);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTCenter {0}", exc);
@@ -81,7 +80,6 @@ public class CenterResource {
         String request = requestContext.getRequest().getEntity(String.class);
         try{
             RESTCenter center = UnMarshaller.unmarshallJSON(RESTCenter.class, request);
-            LOGGER.info(center.getName());
             centerService.create(center);
         }catch (Exception exc){
             LOGGER.error("exception occurred while converting to RESTCenter {0}", exc);

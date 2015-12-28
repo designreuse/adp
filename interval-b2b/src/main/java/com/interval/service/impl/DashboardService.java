@@ -1,5 +1,6 @@
 package com.interval.service.impl;
 
+import com.interval.common.Constants;
 import com.interval.dao.impl.DashboardDao;
 import com.interval.dao.query.DashboardQueryBuilder;
 import com.interval.rest.models.MetricsByCenter;
@@ -26,9 +27,9 @@ public class DashboardService extends BaseService {
     public List get(String id, String type, Map params) {
         List data = null;
         if(type != null){
-            if(type.equals("products")){
+            if(type.equals(Constants.PRODUCT_COUNT)){
                 data = dashboardDao.search(DashboardQueryBuilder.productCountByCenter());
-            }else if(type.equals("orders")){
+            }else if(type.equals(Constants.ORDER_COUNT)){
                 data = dashboardDao.search(DashboardQueryBuilder.orderCountByCenter());
             }
         }
@@ -41,9 +42,9 @@ public class DashboardService extends BaseService {
             MetricsByCenter metricsByCenter = new MetricsByCenter();
             metricsByCenter.setId((Integer) row[0]);
             metricsByCenter.setName((String) row[1]);
-            if(type.equals("products")){
+            if(type.equals(Constants.PRODUCT_COUNT)){
                 metricsByCenter.setProductCount(((BigInteger) row[2]).intValue());
-            }else if(type.equals("orders")){
+            }else if(type.equals(Constants.ORDER_COUNT)){
                 metricsByCenter.setOrderCount(((BigInteger) row[2]).intValue());
             }
             metricsByCenters.add(metricsByCenter);

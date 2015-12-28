@@ -8,14 +8,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.interval.common.Constants;
 import com.interval.common.UnMarshaller;
-import com.interval.rest.models.RESTProduct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.interval.common.Constants;
 import com.interval.rest.models.RESTOrderDetail;
-import com.interval.rest.models.RESTOrderItem;
 import com.interval.service.Service;
 import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.spi.resource.Singleton;
@@ -58,7 +56,7 @@ public class OrderResource {
         Map<Object, Object> params = new HashMap<Object, Object>();
         if(type != null){
             if(status != null){
-                params.put("status", status);
+                params.put(Constants.STATUS, status);
             }
             orderDetails = (List<RESTOrderDetail>)orderDetailsService.get(id, type, params);
         }else{
@@ -77,8 +75,8 @@ public class OrderResource {
         try {
             RESTOrderDetail restOrderDetails = UnMarshaller.unmarshallJSON(RESTOrderDetail.class, request);
             updatedRestOrderDetails = (RESTOrderDetail) orderDetailsService.create(restOrderDetails);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exc) {
+            LOGGER.error("exception occurred while converting to RESTOrderDetail {0}", exc);
         }
         return Response.ok().entity(updatedRestOrderDetails).build();
     }
@@ -92,8 +90,8 @@ public class OrderResource {
         try {
         	RESTOrderDetail orderDetails = UnMarshaller.unmarshallJSON(RESTOrderDetail.class, request);
         	orderDetailsResult = (RESTOrderDetail) orderDetailsService.update(orderDetails);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exc) {
+            LOGGER.error("exception occurred while converting to RESTOrderDetail {0}", exc);
         }
         return Response.ok().entity(orderDetailsResult).build();
     }
@@ -102,17 +100,15 @@ public class OrderResource {
     @Path("/{orderId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateStatus(@Context final HttpContext requestContext,
-                                 @PathParam("orderId") final String orderId,
-                                 @QueryParam("status") final String statusId){
+    public Response updateStatus(@PathParam("orderId") final String orderId, @QueryParam("status") final String statusId){
         Map<Object, Object> params = new HashMap<Object, Object>();
         try {
             if(statusId != null){
-                params.put("status", statusId);
-                orderDetailsService.update(orderId, "status", params);
+                params.put(Constants.STATUS, statusId);
+                orderDetailsService.update(orderId, Constants.STATUS, params);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exc) {
+            LOGGER.error("exception occurred while converting to RESTOrderDetail {0}", exc);
         }
         return Response.ok().entity(null).build();
     }
@@ -122,7 +118,7 @@ public class OrderResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response removeItems(@PathParam("orderId") final String orderId){
-        orderDetailsService.update(orderId, "remove items", null);
+        orderDetailsService.update(orderId, Constants.REMOVE_ITEMS, null);
         return Response.ok().entity(null).build();
     }
     
