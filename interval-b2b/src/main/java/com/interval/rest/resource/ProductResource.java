@@ -32,7 +32,7 @@ public class ProductResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductResource.class);
 
-    private static final String IMAGE_UPLOAD_DIR = "E:\\User\\app\\images\\";
+    private static final String IMAGE_UPLOAD_DIR = "E:\\Muthuraj\\app\\images\\";
 
     private final Service productService;
 
@@ -116,7 +116,7 @@ public class ProductResource {
             RESTProduct product = UnMarshaller.unmarshallJSON(RESTProduct.class, request);
             InputStream fileInputStream = filePart.getValueAs(InputStream.class);
             CommonUtil.writeToFile(fileInputStream, IMAGE_UPLOAD_DIR, fileName);
-            product.setImage(IMAGE_UPLOAD_DIR + fileName);
+            product.setImage(fileName);
             productService.update(product);
         } catch (Exception exc) {
             LOGGER.error("exception occurred while converting to RESTProduct {0}", exc);

@@ -34,7 +34,7 @@ public class CommonUtil {
 
     public static void writeToFile(final InputStream fileInputStream, final String location,
                                    final String fileName){
-        OutputStream outputStream = null;
+        OutputStream outputStream;
         try{
             outputStream = new FileOutputStream(new File(location + fileName));
             outputStream.write(IOUtils.toByteArray(fileInputStream));
